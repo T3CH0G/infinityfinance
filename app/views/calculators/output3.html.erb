@@ -1,4 +1,4 @@
-<h1> Lumpsum Output </h1>
+<h1> Target Savings Output </h1>
 <script type="text/javascript" src="application.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script>
 <div id="chart">
@@ -13,21 +13,16 @@ var myChart = new Chart(ctx, {
         labels: <%=@labels%>,
         datasets: [{
           type: 'line',
-          label: '',
+          label: 'Years',
           fill: false,
           data: <%=@outputs_int%>,
           borderColor: '#FF0000'
         },
         {
-          label: 'Nominal',
+          label: 'Graph',
           backgroundColor: '#99CC99',
           data: <%=@outputs_int%>
 
-        },
-        {
-          label: 'Real value',
-          data: <%=@outputs2_int%>,
-          backgroundColor: '#FF0000'
         }]
     },
     options: {
@@ -45,25 +40,10 @@ var myChart = new Chart(ctx, {
 <table>
   <tr>
     <th>Year</th>
-    <th>Nominal Growth</th> 
+    <th>output</th> 
   </tr>
   <% x=1%>
   <% @outputs.each do |i|%>
-  <tr>
-    <td><%=x%></td>
-    <td><%=i%></td> 
-  </tr>
-  <%x+=1%>
-  <%end%>
-</table>
-
-<table>
-  <tr>
-    <th>Year</th>
-    <th>Real Growth</th> 
-  </tr>
-  <% x=1%>
-  <% @outputs2.each do |i|%>
   <tr>
     <td><%=x%></td>
     <td><%=i%></td> 

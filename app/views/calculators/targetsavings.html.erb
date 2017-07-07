@@ -1,0 +1,7 @@
+<%= form_for :output3, url:"calculators_controller/output3" do |f| %>
+  Target Amount: <%= f.number_field :target %> </br>
+  Investment Growth Rate: <%= f.number_field :investment_gr %> </br>
+  Current age: <%= f.number_field :current_age %> </br>
+  Retirement age: <%= f.number_field :retirement_age %> </br>
+  <%= f.submit "Calculate!" %>
+<% end %>
