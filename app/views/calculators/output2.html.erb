@@ -1,0 +1,54 @@
+<h1> Lumpsum Output </h1>
+<script type="text/javascript" src="application.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script>
+<div id="chart">
+<canvas id="myChart"></canvas>
+</div>
+<script>
+var ctx = document.getElementById("myChart");
+
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: <%=@labels%>,
+        datasets: [{
+          type: 'line',
+          label: 'Years',
+          fill: false,
+          data: <%=@outputs_int%>,
+          borderColor: '#FF0000'
+        },
+        {
+          label: 'Graph',
+          backgroundColor: '#99CC99',
+          data: <%=@outputs_int%>
+
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
+
+<table>
+  <tr>
+    <th>Year</th>
+    <th>output</th> 
+  </tr>
+  <% x=1%>
+  <% @outputs.each do |i|%>
+  <tr>
+    <td><%=x%></td>
+    <td><%=i%></td> 
+  </tr>
+  <%x+=1%>
+  <%end%>
+</table>
+<%=link_to "Back", root_path%> 
