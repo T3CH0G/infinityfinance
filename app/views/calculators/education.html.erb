@@ -1,0 +1,10 @@
+<%= form_for :educationoutput, url:"calculators_controller/educationoutput" do |f| %>
+  Deposit: <%= f.number_field :deposit %> </br>
+  Interest: <%= f.number_field :interest %> </br>
+  Frequency:  <%= f.select :frequency, options_for_select([['Monthly'], ['Yearly']])%> </br>
+  Current Age: <%= f.number_field :current_age%> </br>
+  Retirement Age: <%= f.number_field :retirement_age%> </br>
+  Lump Sum: <%= f.number_field :lumpsum%> </br>
+  Inflation: <%= f.number_field :inflation%> </br>
+  <%= f.submit "Calculate!" %>
+<% end %>

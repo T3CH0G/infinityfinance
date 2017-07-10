@@ -26,7 +26,10 @@ class CalculatorsController < ApplicationController
 		for g in 1..@investments.length
 			@labels.push(g)
 		end
-		render 'output'
+
+		respond_to do |format|
+		       format.js 
+		end
 	end
 
 	def output2
@@ -93,5 +96,208 @@ class CalculatorsController < ApplicationController
 		end
 
 		render 'output3'
+	end
+
+
+	def investment_calculator_output
+		@deposit = params[:investment_calculator_output][:deposit].to_f
+		@interest = params[:investment_calculator_output][:interest].to_f
+		@frequency = params[:investment_calculator_output][:frequency]
+		@current_age = params[:investment_calculator_output][:current_age].to_f
+		@retirement_age = params[:investment_calculator_output][:retirement_age].to_f
+		@lumpsum = params[:investment_calculator_output][:lumpsum].to_f
+		@inflation = params[:investment_calculator_output][:inflation].to_f
+		@years = @retirement_age-@current_age
+		@ir=@interest/100
+		@ir=@ir.to_f
+		@inflation_rate=@inflation/100
+		@inflation_rate=@inflation_rate.to_f
+		@real_rate=@ir-@inflation_rate
+		@real_rate = @real_rate.to_f
+
+		if @frequency=="Monthly"
+			@exp=1/12.to_f
+			@mci = (1.00+@ir)**@exp
+		elsif @frequency=="Yearly"
+			@mci = 1+@ir
+		end
+
+		if @frequency=="Monthly"
+			@exp=1/12.to_f
+			@mci2 = (1.00+@real_rate)**@exp
+		elsif @frequency=="Yearly"
+			@mci2 = 1+@real_rate
+		end
+
+		@months=@years*12
+		@months=@months.to_i
+		@amount=@lumpsum
+		@amount2=@lumpsum
+		@array=[]
+		@array2=[]
+
+		if @frequency=="Monthly"
+			@months.times do
+				@amount=(@amount*@mci)+(@deposit*@mci)
+				@amount = @amount.round(2)
+				@array.push(@amount)
+			end
+		elsif @frequency=="Yearly"
+			@years.to_i.times do
+			@amount=(@amount*@mci)+(@deposit*@mci)
+			@amount = @amount.round(2)
+			@array.push(@amount)
+			end
+		end
+
+		if @frequency=="Monthly"
+			@months.times do
+				@amount2=(@amount2*@mci2)+(@deposit*@mci2)
+				@amount2 = @amount2.round(2)
+				@array2.push(@amount2)
+			end
+		elsif @frequency=="Yearly"
+			@years.to_i.times do
+			@amount2=(@amount2*@mci2)+(@deposit*@mci2)
+			@amount2 = @amount2.round(2)
+			@array2.push(@amount2)
+			end
+		end
+
+		n = 12
+
+		if @frequency=="Monthly"
+			@array = (n - 1).step(@array.size - 1, n).map { |i| @array[i] }
+		end
+
+		if @frequency=="Monthly"
+			@array2 = (n - 1).step(@array2.size - 1, n).map { |i| @array2[i] }
+		end
+
+		@outputs=@array
+		@outputs2=@array2
+
+		@outputs_int = @outputs.map(&:to_i)
+		@outputs2_int = @outputs2.map(&:to_i)
+
+		@total=@outputs_int.last
+		@initial=@lumpsum.to_i
+
+		if @frequency=="Monthly"
+			@contributions=@deposit*@months
+		elsif @frequency=="Yearly"
+			@contributions=@deposit*@years
+		end
+
+		@contributions=@contributions.to_i
+		@growth=@total-@initial-@contributions
+
+		@growth=@growth.to_s
+		@contributions=@contributions.to_s
+		@initial=@initial.to_s
+
+		@labels=[]
+		@labels2=[]
+
+		for g in 1..@outputs.length
+			@labels.push(g)
+		end
+
+		for r in 1..@outputs2.length
+			@labels2.push(r)
+		end
+
+		render 'output2'
+	end
+
+	def educationoutput
+		@deposit = params[:educationoutput][:deposit].to_f
+		@interest = params[:educationoutput][:interest].to_f
+		@frequency = params[:educationoutput][:frequency]
+		@current_age = params[:educationoutput][:current_age].to_f
+		@retirement_age = params[:educationoutput][:retirement_age].to_f
+		@lumpsum = params[:educationoutput][:lumpsum].to_f
+		@inflation = params[:educationoutput][:inflation].to_f
+		@years = @retirement_age-@current_age
+		@ir=@interest/100
+		@ir=@ir.to_f
+		@inflation_rate=@inflation/100
+		@inflation_rate=@inflation_rate.to_f
+		@real_rate=@ir-@inflation_rate
+		@real_rate = @real_rate.to_f
+
+		if @frequency=="Monthly"
+			@exp=1/12.to_f
+			@mci = (1.00+@ir)**@exp
+		elsif @frequency=="Yearly"
+			@mci = 1+@ir
+		end
+
+		if @frequency=="Monthly"
+			@exp=1/12.to_f
+			@mci2 = (1.00+@real_rate)**@exp
+		elsif @frequency=="Yearly"
+			@mci2 = 1+@real_rate
+		end
+
+		@months=@years*12
+		@months=@months.to_i
+		@amount=@lumpsum
+		@amount2=@lumpsum
+		@array=[]
+		@array2=[]
+
+		if @frequency=="Monthly"
+			@months.times do
+				@amount=(@amount*@mci)+(@deposit*@mci)
+				@amount = @amount.round(2)
+				@array.push(@amount)
+			end
+		elsif @frequency=="Yearly"
+			@years.to_i.times do
+			@amount=(@amount*@mci)+(@deposit*@mci)
+			@amount = @amount.round(2)
+			@array.push(@amount)
+			end
+		end
+
+		if @frequency=="Monthly"
+			@months.times do
+				@amount2=(@amount2*@mci2)+(@deposit*@mci2)
+				@amount2 = @amount2.round(2)
+				@array2.push(@amount2)
+			end
+		elsif @frequency=="Yearly"
+			@years.to_i.times do
+			@amount2=(@amount2*@mci2)+(@deposit*@mci2)
+			@amount2 = @amount2.round(2)
+			@array2.push(@amount2)
+			end
+		end
+
+		n = 12
+
+		if @frequency=="Monthly"
+			@output = (n - 1).step(@array.size - 1, n).map { |i| @array[i] }
+		end
+
+		@outputs=@array
+		@outputs2=@array2
+
+		@outputs_int = @outputs.map(&:to_i)
+		@outputs2_int = @outputs2.map(&:to_i)
+
+		@labels=[]
+		@labels2=[]
+
+		for g in 1..@outputs.length
+			@labels.push(g)
+		end
+
+		for r in 1..@outputs2.length
+			@labels2.push(r)
+		end
+
+		render 'output2'
 	end
 end
