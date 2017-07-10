@@ -99,14 +99,15 @@ class CalculatorsController < ApplicationController
 	end
 
 
-	def investment_calculator_output
-		@deposit = params[:investment_calculator_output][:deposit].to_f
-		@interest = params[:investment_calculator_output][:interest].to_f
-		@frequency = params[:investment_calculator_output][:frequency]
-		@current_age = params[:investment_calculator_output][:current_age].to_f
-		@retirement_age = params[:investment_calculator_output][:retirement_age].to_f
-		@lumpsum = params[:investment_calculator_output][:lumpsum].to_f
-		@inflation = params[:investment_calculator_output][:inflation].to_f
+	def investment_calculator
+	if params[:investment_calculator]
+		@deposit = params[:investment_calculator][:deposit].to_f
+		@interest = params[:investment_calculator][:interest].to_f
+		@frequency = params[:investment_calculator][:frequency]
+		@current_age = params[:investment_calculator][:current_age].to_f
+		@retirement_age = params[:investment_calculator][:retirement_age].to_f
+		@lumpsum = params[:investment_calculator][:lumpsum].to_f
+		@inflation = params[:investment_calculator][:inflation].to_f
 		@years = @retirement_age-@current_age
 		@ir=@interest/100
 		@ir=@ir.to_f
@@ -207,7 +208,10 @@ class CalculatorsController < ApplicationController
 			@labels2.push(r)
 		end
 
-		render 'output2'
+		render 'investment_calculator'
+	else
+		render 'investment_calculator'
+	end
 	end
 
 	def educationoutput

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 	post '/calculators_controller/output2', to:'calculators#output2'
 
 	post '/calculators_controller/output3', to:'calculators#output3'
-	post '/calculators_controller/investment_calculator_output', to:'calculators#investment_calculator_output'
+	post '/investment_calculator', to:'calculators#investment_calculator'
 	post '/calculators_controller/educationoutput', to:'calculators#educationoutput'
 	get '/lumpsum', to:'calculators#lumpsum'
 	get '/targetsavings', to:'calculators#targetsavings'
