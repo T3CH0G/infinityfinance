@@ -7,10 +7,12 @@ Rails.application.routes.draw do
 
 	post '/calculators_controller/output3', to:'calculators#output3'
 	post '/investment_calculator', to:'calculators#investment_calculator'
-	post '/calculators_controller/educationoutput', to:'calculators#educationoutput'
+	post '/retirement_planner', to:'calculators#retirement_planner'
+	post '/educationoutput', to:'calculators#educationoutput'
 	get '/lumpsum', to:'calculators#lumpsum'
 	get '/targetsavings', to:'calculators#targetsavings'
 	get '/investment_calculator', to:'calculators#investment_calculator'
+	get '/retirement_planner', to:'calculators#retirement_planner'
 	get '/education', to:'calculators#education'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

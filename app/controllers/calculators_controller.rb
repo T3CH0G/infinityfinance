@@ -100,21 +100,188 @@ class CalculatorsController < ApplicationController
 
 
 	def investment_calculator
-	if params[:investment_calculator]
-		@deposit = params[:investment_calculator][:deposit].to_f
-		@interest = params[:investment_calculator][:interest].to_f
-		@frequency = params[:investment_calculator][:frequency]
-		@current_age = params[:investment_calculator][:current_age].to_f
-		@retirement_age = params[:investment_calculator][:retirement_age].to_f
-		@lumpsum = params[:investment_calculator][:lumpsum].to_f
-		@inflation = params[:investment_calculator][:inflation].to_f
+		if params[:investment_calculator]
+			@deposit = params[:investment_calculator][:deposit].to_f
+			@interest = params[:investment_calculator][:interest].to_f
+			@frequency = params[:investment_calculator][:frequency]
+			@current_age = params[:investment_calculator][:current_age].to_f
+			@retirement_age = params[:investment_calculator][:retirement_age].to_f
+			@lumpsum = params[:investment_calculator][:lumpsum].to_f
+			@inflation = params[:investment_calculator][:inflation].to_f
+
+			@investment_name = params[:investment_calculator][:investment_name]
+			@investment_ls = params[:investment_calculator][:investment_ls].to_f
+			@investment_regular = params[:investment_calculator][:investment_regular].to_f
+			@investment_growth = params[:investment_calculator][:investment_growth].to_f
+			@investment_name2 = params[:investment_calculator][:investment_name2]
+			@investment_ls2 = params[:investment_calculator][:investment_ls2].to_f
+			@investment_regular2 = params[:investment_calculator][:investment_regular2].to_f
+			@investment_growth2 = params[:investment_calculator][:investment_growth2].to_f
+			@investment_name3 = params[:investment_calculator][:investment_name3]
+			@investment_ls3 = params[:investment_calculator][:investment_ls3].to_f
+			@investment_regular3 = params[:investment_calculator][:investment_regular3].to_f
+			@investment_growth3 = params[:investment_calculator][:investment_growth3].to_f
+			@investment_name4 = params[:investment_calculator][:investment_name4]
+			@investment_ls4 = params[:investment_calculator][:investment_ls4].to_f
+			@investment_regular4 = params[:investment_calculator][:investment_regular4].to_f
+			@investment_growth4 = params[:investment_calculator][:investment_growth4].to_f
+			@investment_name5 = params[:investment_calculator][:investment_name5]
+			@investment_ls5 = params[:investment_calculator][:investment_ls5].to_f
+			@investment_regular5 = params[:investment_calculator][:investment_regular5].to_f
+			@investment_growth5 = params[:investment_calculator][:investment_growth5].to_f
+
+			@years = @retirement_age-@current_age
+			@ir=@interest/100
+			@ir=@ir.to_f
+			@invr=@investment_growth/100
+			@invr=@invr.to_f
+			@inflation_rate=@inflation/100
+			@inflation_rate=@inflation_rate.to_f
+			@real_rate=@ir-@inflation_rate
+			@real_rate = @real_rate.to_f
+			@inv_real_rate=@invr-@inflation_rate
+			@inv_real_rate = @real_rate.to_f
+
+			if @frequency=="Monthly"
+				@exp=1/12.to_f
+				@mci = (1.00+@ir)**@exp
+			elsif @frequency=="Yearly"
+				@mci = 1+@ir
+			end
+
+			if @frequency=="Monthly"
+				@exp=1/12.to_f
+				@mci2 = (1.00+@real_rate)**@exp
+			elsif @frequency=="Yearly"
+				@mci2 = 1+@real_rate
+			end
+
+			if @frequency=="Monthly"
+				@exp=1/12.to_f
+				@invmci = (1.00+@invr)**@exp
+			elsif @frequency=="Yearly"
+				@invmci = 1+@invr
+			end
+
+			if @frequency=="Monthly"
+				@exp=1/12.to_f
+				@invmci2 = (1.00+@inv_real_rate)**@exp
+			elsif @frequency=="Yearly"
+				@invmci2 = 1+@inv_real_rate
+			end
+
+			@months=@years*12
+			@months=@months.to_i
+			@amount=@lumpsum+@investment_ls
+			@amount2=@lumpsum+@investment_ls
+			@array=[]
+			@array2=[]
+
+			if @frequency=="Monthly"
+				@months.times do
+					@amount=(@amount*@mci)+(@deposit*@mci)+(@investment_regular*@invmci)
+					@amount = @amount.round(2)
+					@array.push(@amount)
+				end
+			elsif @frequency=="Yearly"
+				@years.to_i.times do
+				@amount=(@amount*@mci)+(@deposit*@mci)+(@investment_regular*@invmci)
+				@amount = @amount.round(2)
+				@array.push(@amount)
+				end
+			end
+
+			if @frequency=="Monthly"
+				@months.times do
+					@amount2=(@amount2*@mci2)+(@deposit*@mci2)+(@investment_regular*@invmci2)
+					@amount2 = @amount2.round(2)
+					@array2.push(@amount2)
+				end
+			elsif @frequency=="Yearly"
+				@years.to_i.times do
+				@amount2=(@amount2*@mci2)+(@deposit*@mci2)+(@investment_regular*@invmci2)
+				@amount2 = @amount2.round(2)
+				@array2.push(@amount2)
+				end
+			end
+
+			n = 12
+
+			if @frequency=="Monthly"
+				@array = (n - 1).step(@array.size - 1, n).map { |i| @array[i] }
+			end
+
+			if @frequency=="Monthly"
+				@array2 = (n - 1).step(@array2.size - 1, n).map { |i| @array2[i] }
+			end
+
+			@outputs=@array
+			@outputs2=@array2
+
+			@outputs_int = @outputs.map(&:to_i)
+			@outputs2_int = @outputs2.map(&:to_i)
+
+			@total=@outputs_int.last
+			@initial=@lumpsum.to_i
+
+			if @frequency=="Monthly"
+				@contributions=@deposit*@months
+			elsif @frequency=="Yearly"
+				@contributions=@deposit*@years
+			end
+
+			@contributions=@contributions.to_i
+			@growth=@total-@initial-@contributions
+
+			@growth=@growth.to_s
+			@contributions=@contributions.to_s
+			@initial=@initial.to_s
+
+			@labels=[]
+			@labels2=[]
+
+			for g in 1..@outputs.length
+				@labels.push(g)
+			end
+
+			for r in 1..@outputs2.length
+				@labels2.push(r)
+			end
+
+			render 'investment_calculator'
+		else
+			render 'investment_calculator'
+		end
+	end
+
+	def retirement_planner
+		if params[:retirement_planner]
+		@deposit = params[:retirement_planner][:deposit].to_f
+		@current_p = params[:retirement_planner][:current_p].to_f
+		@interest = params[:retirement_planner][:interest].to_f
+		@frequency = params[:retirement_planner][:frequency]
+		@current_age = params[:retirement_planner][:current_age].to_f
+		@retirement_age = params[:retirement_planner][:retirement_age].to_f
+		@lumpsum = params[:retirement_planner][:lumpsum].to_f
+		@inflation = params[:retirement_planner][:inflation].to_f
+		@retirement_length = params[:retirement_planner][:retirement_length].to_f
 		@years = @retirement_age-@current_age
 		@ir=@interest/100
 		@ir=@ir.to_f
 		@inflation_rate=@inflation/100
 		@inflation_rate=@inflation_rate.to_f
-		@real_rate=@ir-@inflation_rate
-		@real_rate = @real_rate.to_f
+		@formula_inflation=@inflation_rate+1
+		@formula_interest=@ir+1
+		@formula_retirement = @retirement_length-1
+		@formula_years=@years
+		@iterate_sum=0
+		@retirement_length.to_i.times do
+			@iterate = ((@formula_interest)**@formula_retirement)*((@formula_inflation)**@formula_years)
+			@iterate_sum = @iterate_sum+@iterate
+			@formula_retirement-=1
+			@formula_years+=1
+		end
+		@formula=(@deposit*@iterate_sum)/((@formula_interest)**@retirement_length)
 
 		if @frequency=="Monthly"
 			@exp=1/12.to_f
@@ -124,46 +291,34 @@ class CalculatorsController < ApplicationController
 		end
 
 		if @frequency=="Monthly"
-			@exp=1/12.to_f
-			@mci2 = (1.00+@real_rate)**@exp
+			@premium_f=12
 		elsif @frequency=="Yearly"
-			@mci2 = 1+@real_rate
+			@premium_f=1
 		end
+
+		@denom=((((@mci)**((@premium_f*@years)+1))-1)/(@mci-1))-1
+		@premium = (@formula-@lumpsum*(1+@mci)**(@premium_f*@years))/@denom
 
 		@months=@years*12
 		@months=@months.to_i
 		@amount=@lumpsum
 		@amount2=@lumpsum
 		@array=[]
-		@array2=[]
 
 		if @frequency=="Monthly"
 			@months.times do
-				@amount=(@amount*@mci)+(@deposit*@mci)
+				@amount=(@amount*@mci)+(@premium*@mci)
 				@amount = @amount.round(2)
 				@array.push(@amount)
 			end
 		elsif @frequency=="Yearly"
 			@years.to_i.times do
-			@amount=(@amount*@mci)+(@deposit*@mci)
+			@amount=(@amount*@mci)+(@premium*@mci)
 			@amount = @amount.round(2)
 			@array.push(@amount)
 			end
 		end
 
-		if @frequency=="Monthly"
-			@months.times do
-				@amount2=(@amount2*@mci2)+(@deposit*@mci2)
-				@amount2 = @amount2.round(2)
-				@array2.push(@amount2)
-			end
-		elsif @frequency=="Yearly"
-			@years.to_i.times do
-			@amount2=(@amount2*@mci2)+(@deposit*@mci2)
-			@amount2 = @amount2.round(2)
-			@array2.push(@amount2)
-			end
-		end
 
 		n = 12
 
@@ -171,15 +326,37 @@ class CalculatorsController < ApplicationController
 			@array = (n - 1).step(@array.size - 1, n).map { |i| @array[i] }
 		end
 
-		if @frequency=="Monthly"
-			@array2 = (n - 1).step(@array2.size - 1, n).map { |i| @array2[i] }
+		@startyear= @years
+		@outputs2=[]
+		@array.length.times do |x|
+			@outputs2.push(0)
+		end
+		@retirement_length.to_i.times do 
+			@amount=@amount*(@ir+1)
+			@withdrawal=@deposit*((@formula_inflation)**@startyear)
+			@outputs2.push(@withdrawal)
+			@amount=@amount-@withdrawal
+			@amount = @amount.round(2)
+			@startyear+=1
+			@array.push(@amount)
 		end
 
+
 		@outputs=@array
-		@outputs2=@array2
+
 
 		@outputs_int = @outputs.map(&:to_i)
-		@outputs2_int = @outputs2.map(&:to_i)
+		@growths=[0]
+		@f=0
+		@growth_output=@outputs_int.length-1
+		@growth_output.times do
+			@p1=@outputs_int[@f+1]
+			@p2=@outputs_int[@f]
+			@g=@p1-@p2
+			@growths.push(@g)
+			@f+=1
+		end
+		@outputs_int2 = @outputs2.map(&:to_i)
 
 		@total=@outputs_int.last
 		@initial=@lumpsum.to_i
@@ -191,45 +368,75 @@ class CalculatorsController < ApplicationController
 		end
 
 		@contributions=@contributions.to_i
+		if @total.nil?
+		@growth=0;
+		else
 		@growth=@total-@initial-@contributions
+		end
 
 		@growth=@growth.to_s
 		@contributions=@contributions.to_s
 		@initial=@initial.to_s
 
 		@labels=[]
-		@labels2=[]
 
 		for g in 1..@outputs.length
 			@labels.push(g)
 		end
 
-		for r in 1..@outputs2.length
-			@labels2.push(r)
+		if @current_p > @premium
+			@difference= @current_p-@premium
+			@advice = "You are paying #{@difference.round(2)} more than you need to."
+		elsif @current_p < @premium
+			@difference= @premium-@current_p
+			@advice = "You are paying #{@difference} less than you need to."
+		else
+			@difference="0"
+			@advice="Congrats nibba"
 		end
 
-		render 'investment_calculator'
+		@difference=@difference.round(2)
+
+		render 'retirement_planner'
 	else
-		render 'investment_calculator'
+		render 'retirement_planner'
 	end
 	end
 
 	def educationoutput
+		@child1_name = params[:educationoutput][:child1_name]
+		@child1_startingage = params[:educationoutput][:child1_startingage]
+		@child1_currentage = params[:educationoutput][:child1_currentage]
+		@child1_years = params[:educationoutput][:child1_years]
+		@child1_tuition = params[:educationoutput][:child1_tuition]
+		@child1_living_expense = params[:educationoutput][:child1_living_expense]
+		@tuition_inflation = params[:educationoutput][:tuition_inflation].to_f
+
 		@deposit = params[:educationoutput][:deposit].to_f
 		@interest = params[:educationoutput][:interest].to_f
 		@frequency = params[:educationoutput][:frequency]
-		@current_age = params[:educationoutput][:current_age].to_f
-		@retirement_age = params[:educationoutput][:retirement_age].to_f
 		@lumpsum = params[:educationoutput][:lumpsum].to_f
 		@inflation = params[:educationoutput][:inflation].to_f
 		@years = @retirement_age-@current_age
 		@ir=@interest/100
 		@ir=@ir.to_f
+		@years=@child1_years
 		@inflation_rate=@inflation/100
 		@inflation_rate=@inflation_rate.to_f
-		@real_rate=@ir-@inflation_rate
-		@real_rate = @real_rate.to_f
-
+		@formula_inflation=@inflation_rate+1
+		@formula_interest=@ir+1
+		@retirement_length=@child1_years
+		@formula_retirement = @retirement_length-1
+		@formula_years=@years
+		@iterate_sum=0
+		@retirement_length.to_i.times do
+			@iterate = ((@formula_interest)**@formula_retirement)*((@formula_inflation)**@formula_years)
+			@iterate_sum = @iterate_sum+@iterate
+			@formula_retirement-=1
+			@formula_years+=1
+		end
+		@formula=(@deposit*@iterate_sum)/((@formula_interest)**@retirement_length)
+		
 		if @frequency=="Monthly"
 			@exp=1/12.to_f
 			@mci = (1.00+@ir)**@exp
@@ -238,70 +445,114 @@ class CalculatorsController < ApplicationController
 		end
 
 		if @frequency=="Monthly"
-			@exp=1/12.to_f
-			@mci2 = (1.00+@real_rate)**@exp
+			@premium_f=12
 		elsif @frequency=="Yearly"
-			@mci2 = 1+@real_rate
+			@premium_f=1
 		end
+
+		@denom=((((@mci)**((@premium_f*@years)+1))-1)/(@mci-1))-1
+		@premium = (@formula-@lumpsum*(1+@mci)**(@premium_f*@years))/@denom
 
 		@months=@years*12
 		@months=@months.to_i
 		@amount=@lumpsum
 		@amount2=@lumpsum
 		@array=[]
-		@array2=[]
 
 		if @frequency=="Monthly"
 			@months.times do
-				@amount=(@amount*@mci)+(@deposit*@mci)
+				@amount=(@amount*@mci)+(@premium*@mci)
 				@amount = @amount.round(2)
 				@array.push(@amount)
 			end
 		elsif @frequency=="Yearly"
 			@years.to_i.times do
-			@amount=(@amount*@mci)+(@deposit*@mci)
+			@amount=(@amount*@mci)+(@premium*@mci)
 			@amount = @amount.round(2)
 			@array.push(@amount)
 			end
 		end
 
-		if @frequency=="Monthly"
-			@months.times do
-				@amount2=(@amount2*@mci2)+(@deposit*@mci2)
-				@amount2 = @amount2.round(2)
-				@array2.push(@amount2)
-			end
-		elsif @frequency=="Yearly"
-			@years.to_i.times do
-			@amount2=(@amount2*@mci2)+(@deposit*@mci2)
-			@amount2 = @amount2.round(2)
-			@array2.push(@amount2)
-			end
-		end
 
 		n = 12
 
 		if @frequency=="Monthly"
-			@output = (n - 1).step(@array.size - 1, n).map { |i| @array[i] }
+			@array = (n - 1).step(@array.size - 1, n).map { |i| @array[i] }
 		end
 
+		@startyear= @years
+		@outputs2=[]
+		@array.length.times do |x|
+			@outputs2.push(0)
+		end
+		@retirement_length.to_i.times do 
+			@amount=@amount*(@ir+1)
+			@withdrawal=@deposit*((@formula_inflation)**@startyear)
+			@outputs2.push(@withdrawal)
+			@amount=@amount-@withdrawal
+			@amount = @amount.round(2)
+			@startyear+=1
+			@array.push(@amount)
+		end
+
+
 		@outputs=@array
-		@outputs2=@array2
+
 
 		@outputs_int = @outputs.map(&:to_i)
-		@outputs2_int = @outputs2.map(&:to_i)
+		@growths=[0]
+		@f=0
+		@growth_output=@outputs_int.length-1
+		@growth_output.times do
+			@p1=@outputs_int[@f+1]
+			@p2=@outputs_int[@f]
+			@g=@p1-@p2
+			@growths.push(@g)
+			@f+=1
+		end
+		@outputs_int2 = @outputs2.map(&:to_i)
+
+		@total=@outputs_int.last
+		@initial=@lumpsum.to_i
+
+		if @frequency=="Monthly"
+			@contributions=@deposit*@months
+		elsif @frequency=="Yearly"
+			@contributions=@deposit*@years
+		end
+
+		@contributions=@contributions.to_i
+		if @total.nil?
+		@growth=0;
+		else
+		@growth=@total-@initial-@contributions
+		end
+
+		@growth=@growth.to_s
+		@contributions=@contributions.to_s
+		@initial=@initial.to_s
 
 		@labels=[]
-		@labels2=[]
 
 		for g in 1..@outputs.length
 			@labels.push(g)
 		end
 
-		for r in 1..@outputs2.length
-			@labels2.push(r)
+		if @current_p > @premium
+			@difference= @current_p-@premium
+			@advice = "You are paying #{@difference.round(2)} more than you need to."
+		elsif @current_p < @premium
+			@difference= @premium-@current_p
+			@advice = "You are paying #{@difference} less than you need to."
+		else
+			@difference="0"
+			@advice="Congrats nibba"
 		end
 
-		render 'output2'
+		@difference=@difference.round(2)
+
+		render 'retirement_planner'
+	else
+		render 'retirement_planner'
 	end
 end

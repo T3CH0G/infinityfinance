@@ -1,0 +1,25 @@
+<label for="confirm" class="cols-sm-3 control-label">Existing Investments</label>
+						<div class="form-group">
+							<label for="confirm" class="cols-sm-2 control-label">Investment Name</label>
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input class="form-control" type="text_area" name="investment_calculator[investment_name]" id="investment_calculator_investment_name" value=<%=@investment_name%>>
+								</div>
+							<label for="confirm" class="cols-sm-2 control-label">Lump Sum</label>
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input class="form-control" type="number" name="investment_calculator[investment_ls]" id="investment_calculator_investment_ls" value=<%=@investment_ls%>>
+								</div>
+								<label for="confirm" class="cols-sm-2 control-label">Regular Contribution</label>
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input class="form-control" type="number" name="investment_calculator[investment_regular]" id="investment_calculator_investment_regular" value=<%=@investment_regular%>>
+								</div>
+								<label for="confirm" class="cols-sm-2 control-label">Growth Rate</label>
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input class="form-control" type="number" name="investment_calculator[investment_growth]" id="investment_calculator_investment_growth" value=<%=@investment_growth%>>
+								</div>
+								<a href="#" onclick="removeField($(this))" class="remove-field" > X </a>
+							</div>
+						</div>			
