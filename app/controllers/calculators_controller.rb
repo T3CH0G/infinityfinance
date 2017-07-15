@@ -134,13 +134,19 @@ class CalculatorsController < ApplicationController
 			@ir=@interest/100
 			@ir=@ir.to_f
 			@invr=@investment_growth/100
-			@invr=@invr.to_f
+			@invr2=@investment_growth2/100
+			@invr3=@investment_growth3/100
+			@invr4=@investment_growth4/100
+			@invr5=@investment_growth5/100
 			@inflation_rate=@inflation/100
 			@inflation_rate=@inflation_rate.to_f
 			@real_rate=@ir-@inflation_rate
 			@real_rate = @real_rate.to_f
 			@inv_real_rate=@invr-@inflation_rate
-			@inv_real_rate = @real_rate.to_f
+			@inv_real_rate2=@invr2-@inflation_rate
+			@inv_real_rate3=@invr3-@inflation_rate
+			@inv_real_rate4=@invr4-@inflation_rate
+			@inv_real_rate5=@invr5-@inflation_rate
 
 			if @frequency=="Monthly"
 				@exp=1/12.to_f
@@ -163,11 +169,68 @@ class CalculatorsController < ApplicationController
 				@invmci = 1+@invr
 			end
 
+
 			if @frequency=="Monthly"
 				@exp=1/12.to_f
-				@invmci2 = (1.00+@inv_real_rate)**@exp
+				@invmci2 = (1.00+@invr2)**@exp
 			elsif @frequency=="Yearly"
-				@invmci2 = 1+@inv_real_rate
+				@invmci2 = 1+@invr2
+			end
+
+			if @frequency=="Monthly"
+				@exp=1/12.to_f
+				@invmci3 = (1.00+@invr3)**@exp
+			elsif @frequency=="Yearly"
+				@invmci3 = 1+@invr3
+			end
+
+			if @frequency=="Monthly"
+				@exp=1/12.to_f
+				@invmci4 = (1.00+@invr4)**@exp
+			elsif @frequency=="Yearly"
+				@invmci4 = 1+@invr4
+			end
+
+			if @frequency=="Monthly"
+				@exp=1/12.to_f
+				@invmci5 = (1.00+@invr5)**@exp
+			elsif @frequency=="Yearly"
+				@invmci5 = 1+@invr5
+			end
+
+			if @frequency=="Monthly"
+				@exp=1/12.to_f
+				@real_invmci = (1.00+@inv_real_rate)**@exp
+			elsif @frequency=="Yearly"
+				@real_invmci = 1+@inv_real_rate
+			end
+
+			if @frequency=="Monthly"
+				@exp=1/12.to_f
+				@real_invmci2 = (1.00+@inv_real_rate2)**@exp
+			elsif @frequency=="Yearly"
+				@real_invmci2 = 1+@inv_real_rate2
+			end
+
+			if @frequency=="Monthly"
+				@exp=1/12.to_f
+				@real_invmci3 = (1.00+@inv_real_rate3)**@exp
+			elsif @frequency=="Yearly"
+				@real_invmci3 = 1+@inv_real_rate3
+			end
+
+			if @frequency=="Monthly"
+				@exp=1/12.to_f
+				@real_invmci4 = (1.00+@inv_real_rate4)**@exp
+			elsif @frequency=="Yearly"
+				@real_invmci4 = 1+@inv_real_rate4
+			end
+
+			if @frequency=="Monthly"
+				@exp=1/12.to_f
+				@real_invmci5 = (1.00+@inv_real_rate5)**@exp
+			elsif @frequency=="Yearly"
+				@real_invmci5 = 1+@inv_real_rate5
 			end
 
 			@months=@years*12
@@ -179,13 +242,13 @@ class CalculatorsController < ApplicationController
 
 			if @frequency=="Monthly"
 				@months.times do
-					@amount=(@amount*@mci)+(@deposit*@mci)+(@investment_regular*@invmci)
+					@amount=(@amount*@mci)+(@deposit*@mci)+(@investment_regular*@invmci)+(@investment_regular2*@invmci2)+(@investment_regular3*@invmci3)+(@investment_regular4*@invmci4)+(@investment_regular5*@invmci5)
 					@amount = @amount.round(2)
 					@array.push(@amount)
 				end
 			elsif @frequency=="Yearly"
 				@years.to_i.times do
-				@amount=(@amount*@mci)+(@deposit*@mci)+(@investment_regular*@invmci)
+				@amount=(@amount*@mci)+(@deposit*@mci)+(@investment_regular*@invmci)+(@investment_regular2*@invmci2)+(@investment_regular3*@invmci3)+(@investment_regular4*@invmci4)+(@investment_regular5*@invmci5)
 				@amount = @amount.round(2)
 				@array.push(@amount)
 				end
@@ -193,13 +256,13 @@ class CalculatorsController < ApplicationController
 
 			if @frequency=="Monthly"
 				@months.times do
-					@amount2=(@amount2*@mci2)+(@deposit*@mci2)+(@investment_regular*@invmci2)
+					@amount2=(@amount2*@mci2)+(@deposit*@mci2)+(@investment_regular*@real_invmci)+(@investment_regular2*@real_invmci2)+(@investment_regular3*@real_invmci3)+(@investment_regular4*@real_invmci4)+(@investment_regular5*@real_invmci5)
 					@amount2 = @amount2.round(2)
 					@array2.push(@amount2)
 				end
 			elsif @frequency=="Yearly"
 				@years.to_i.times do
-				@amount2=(@amount2*@mci2)+(@deposit*@mci2)+(@investment_regular*@invmci2)
+				@amount2=(@amount2*@mci2)+(@deposit*@mci2)+(@investment_regular*@real_invmci)+(@investment_regular2*@real_invmci2)+(@investment_regular3*@real_invmci3)+(@investment_regular4*@real_invmci4)+(@investment_regular5*@real_invmci5)
 				@amount2 = @amount2.round(2)
 				@array2.push(@amount2)
 				end

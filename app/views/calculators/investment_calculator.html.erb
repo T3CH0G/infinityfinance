@@ -1,128 +1,249 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
 <div class="container">
-			<div class="row main">
-			<div class="col-lg-12">
-				<div class="main-login main-center">
-				<h2>Investment Calculator</h2>
-				<div class="col-lg-2">
-						<%= form_for :investment_calculator, url:"investment_calculator" do |f| %>
-						<div class="form-group">
-							<label for="name" class="cols-sm-2 control-label">Amount Deposited</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
-									<input class="form-control" type="number" name="investment_calculator[deposit]" id="investment_calculator_deposit" value=<%=@deposit%>>
+	<div class="row main">
+			<div class="col-md-12">
+					<div class="main-login main-center">
+						<h2>Investment Calculator</h2>
+						<div class="col-lg-2">
+								<%= form_for :investment_calculator, url:"investment_calculator" do |f| %>
+								<div class="form-group">
+									<label for="name" class="cols-sm-2 control-label">Amount Deposited</label>
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="investment_calculator[deposit]" id="investment_calculator_deposit" value=<%=@deposit%>>
+										</div>
+									</div>
 								</div>
-							</div>
+
+
+								<div class="form-group">
+									<label for="email" class="cols-sm-2 control-label">Interest Rate Percentage</label>
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-percent" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="investment_calculator[interest]" id="investment_calculator_interest" value=<%=@interest%>>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="username" class="cols-sm-2 control-label">Frequency</label>
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											  <select class="form-control" name="investment_calculator[frequency]"id="investment_calculator_frequency" value=<%=@frequency%>>
+											  	<option>Monthly</option>
+											    <option>Yearly</option>
+											  </select>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="password" class="cols-sm-2 control-label">Current Age</label>
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="investment_calculator[current_age]" id="investment_calculator_current_age" value=<%=@current_age%>>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="confirm" class="cols-sm-2 control-label">Retirement Age</label>
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="investment_calculator[retirement_age]" id="investment_calculator_retirement_age" value=<%=@retirement_age%>>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="confirm" class="cols-sm-2 control-label">Lump Sum</label>
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="investment_calculator[lumpsum]" id="investment_calculator_lumpsum" value=<%=@lumpsum%>>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="confirm" class="cols-sm-2 control-label">Inflation</label>
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-percent" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="investment_calculator[inflation]" id="investment_calculator_inflation" value=<%=@inflation%>>
+										</div>
+									</div>
+								</div>	
+
+								<hr>	
+
+							
+								<div class="input_fields_wrap">
+								<label for="confirm" class="cols-sm-3 control-label">Existing Investments</label>
+								<div class="form-group">
+									<label for="confirm" class="cols-sm-2 control-label">Investment Name</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="text_area" name="investment_calculator[investment_name]" id="investment_calculator_investment_name" value=<%=@investment_name%>>
+										</div>
+									<label for="confirm" class="cols-sm-2 control-label">Lump Sum</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="investment_calculator[investment_ls]" id="investment_calculator_investment_ls" value=<%=@investment_ls%>>
+										</div>
+										<label for="confirm" class="cols-sm-2 control-label">Regular Contribution</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="investment_calculator[investment_regular]" id="investment_calculator_investment_regular" value=<%=@investment_regular%>>
+										</div>
+										<label for="confirm" class="cols-sm-2 control-label">Growth Rate</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="investment_calculator[investment_growth]" id="investment_calculator_investment_growth" value=<%=@investment_growth%>>
+										</div>
+								</div>	
+								<hr>
+
+								<%if @investment_name2%>
+								<div id="divs">
+								<label for="confirm" class="cols-sm-3 control-label">Existing Investments</label>
+								<div class="form-group">
+									<label for="confirm" class="cols-sm-2 control-label">Investment Name</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="text_area" name="investment_calculator[investment_name2]" id="investment_calculator_investment_name2" value=<%=@investment_name2%>>
+										</div>
+									<label for="confirm" class="cols-sm-2 control-label">Lump Sum</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="investment_calculator[investment_ls2]" id="investment_calculator_investment_ls2" value=<%=@investment_ls2%>>
+										</div>
+										<label for="confirm" class="cols-sm-2 control-label">Regular Contribution</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="investment_calculator[investment_regular2]" id="investment_calculator_investment_regular2" value=<%=@investment_regular2%>>
+										</div>
+										<label for="confirm" class="cols-sm-2 control-label">Growth Rate</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="investment_calculator[investment_growth2]" id="investment_calculator_investment_growth2" value=<%=@investment_growth2%>>
+										</div>
+								</div>	
+								</div>
+								<hr>
+								<%end%>
+
+								<%if @investment_name3%>
+								<div id="divs">
+								<label for="confirm" class="cols-sm-3 control-label">Existing Investments</label>
+								<div class="form-group">
+									<label for="confirm" class="cols-sm-2 control-label">Investment Name</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="text_area" name="investment_calculator[investment_name3]" id="investment_calculator_investment_name3" value=<%=@investment_name3%>>
+										</div>
+									<label for="confirm" class="cols-sm-2 control-label">Lump Sum</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="investment_calculator[investment_ls3]" id="investment_calculator_investment_ls3" value=<%=@investment_ls3%>>
+										</div>
+										<label for="confirm" class="cols-sm-2 control-label">Regular Contribution</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="investment_calculator[investment_regular3]" id="investment_calculator_investment_regular3" value=<%=@investment_regular3%>>
+										</div>
+										<label for="confirm" class="cols-sm-2 control-label">Growth Rate</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="investment_calculator[investment_growth3]" id="investment_calculator_investment_growth3" value=<%=@investment_growth3%>>
+										</div>
+								</div>	
+								</div>
+								<hr>
+								<%end%>
+
+								<%if @investment_name4%>
+								<div id="divs">
+								<label for="confirm" class="cols-sm-3 control-label">Existing Investments</label>
+								<div class="form-group">
+									<label for="confirm" class="cols-sm-2 control-label">Investment Name</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="text_area" name="investment_calculator[investment_name4]" id="investment_calculator_investment_name4" value=<%=@investment_name4%>>
+										</div>
+									<label for="confirm" class="cols-sm-2 control-label">Lump Sum</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="investment_calculator[investment_ls4]" id="investment_calculator_investment_ls4" value=<%=@investment_ls4%>>
+										</div>
+										<label for="confirm" class="cols-sm-2 control-label">Regular Contribution</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="investment_calculator[investment_regular4]" id="investment_calculator_investment_regular4" value=<%=@investment_regular4%>>
+										</div>
+										<label for="confirm" class="cols-sm-2 control-label">Growth Rate</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="investment_calculator[investment_growth4]" id="investment_calculator_investment_growth4" value=<%=@investment_growth4%>>
+										</div>
+								</div>	
+								</div>
+								<hr>
+								<%end%>
+
+								<%if @investment_name5%>
+								<div id="divs">
+								<label for="confirm" class="cols-sm-3 control-label">Existing Investments</label>
+								<div class="form-group">
+									<label for="confirm" class="cols-sm-2 control-label">Investment Name</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="text_area" name="investment_calculator[investment_name5]" id="investment_calculator_investment_name5" value=<%=@investment_name5%>>
+										</div>
+									<label for="confirm" class="cols-sm-2 control-label">Lump Sum</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="investment_calculator[investment_ls5]" id="investment_calculator_investment_ls5" value=<%=@investment_ls5%>>
+										</div>
+										<label for="confirm" class="cols-sm-2 control-label">Regular Contribution</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="investment_calculator[investment_regular5]" id="investment_calculator_investment_regular5" value=<%=@investment_regular5%>>
+										</div>
+										<label for="confirm" class="cols-sm-2 control-label">Growth Rate</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="investment_calculator[investment_growth5]" id="investment_calculator_investment_growth5" value=<%=@investment_growth5%>>
+										</div>
+								</div>	
+								</div>
+								<hr>
+								<%end%>
+								</div>
+
+									<button class="add_field_button">+</button>
+									
+									<button class="remove_field">-</button>
+
+
+						
+
+								<div class="form-group ">
+									  <%= f.submit "Calculate!", :class => 'btn btn-primary' %>
+									<% end %>
+								</div>
 						</div>
-
-
-						<div class="form-group">
-							<label for="email" class="cols-sm-2 control-label">Interest Rate Percentage</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-percent" aria-hidden="true"></i></span>
-									<input class="form-control" type="number" name="investment_calculator[interest]" id="investment_calculator_interest" value=<%=@interest%>>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="username" class="cols-sm-2 control-label">Frequency</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									  <select class="form-control" name="investment_calculator[frequency]"id="investment_calculator_frequency" value=<%=@frequency%>>
-									  	<option>Monthly</option>
-									    <option>Yearly</option>
-									  </select>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="password" class="cols-sm-2 control-label">Current Age</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input class="form-control" type="number" name="investment_calculator[current_age]" id="investment_calculator_current_age" value=<%=@current_age%>>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="confirm" class="cols-sm-2 control-label">Retirement Age</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input class="form-control" type="number" name="investment_calculator[retirement_age]" id="investment_calculator_retirement_age" value=<%=@retirement_age%>>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="confirm" class="cols-sm-2 control-label">Lump Sum</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
-									<input class="form-control" type="number" name="investment_calculator[lumpsum]" id="investment_calculator_lumpsum" value=<%=@lumpsum%>>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="confirm" class="cols-sm-2 control-label">Inflation</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-percent" aria-hidden="true"></i></span>
-									<input class="form-control" type="number" name="investment_calculator[inflation]" id="investment_calculator_inflation" value=<%=@inflation%>>
-								</div>
-							</div>
-						</div>		
-
-						<div class="input_fields_wrap">
-						<label for="confirm" class="cols-sm-3 control-label">Existing Investments</label>
-						<div class="form-group">
-							<label for="confirm" class="cols-sm-2 control-label">Investment Name</label>
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input class="form-control" type="text_area" name="investment_calculator[investment_name]" id="investment_calculator_investment_name" value=<%=@investment_name%>>
-								</div>
-							<label for="confirm" class="cols-sm-2 control-label">Lump Sum</label>
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input class="form-control" type="number" name="investment_calculator[investment_ls]" id="investment_calculator_investment_ls" value=<%=@investment_ls%>>
-								</div>
-								<label for="confirm" class="cols-sm-2 control-label">Regular Contribution</label>
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input class="form-control" type="number" name="investment_calculator[investment_regular]" id="investment_calculator_investment_regular" value=<%=@investment_regular%>>
-								</div>
-								<label for="confirm" class="cols-sm-2 control-label">Growth Rate</label>
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input class="form-control" type="number" name="investment_calculator[investment_growth]" id="investment_calculator_investment_growth" value=<%=@investment_growth%>>
-								</div>
-						</div>	
-						</div>
-
-				
-
-						<div class="form-group ">
-							  <%= f.submit "Calculate!", :class => 'btn btn-primary' %>
-							<% end %>
-						</div>
-				</div>
-			</div>
-
-								<div class="col-md-2"><button class="add_field_button">Add More Fields</button></div>
-							</div>
-							<div class="col-md-2"><button class="remove_field">Remove Field</div>
-<%if @deposit %>
-<div class="col-lg-10">
-<%=render "graph"%>
-</div>
-<%end%>
-</div>
+					</div>
+				<%if @deposit %>
+					<div class="col-lg-10">
+						<%=render "graph"%>
+					</div>
+				<%end%>
+	</div>
 </div>
