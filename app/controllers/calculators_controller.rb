@@ -301,15 +301,11 @@ class CalculatorsController < ApplicationController
 			@initial=@initial.to_s
 
 			@labels=[]
-			@labels2=[]
 
-			for g in 1..@outputs.length
+			for g in @current_age.to_i..(@retirement_age.to_i-1)
 				@labels.push(g)
 			end
 
-			for r in 1..@outputs2.length
-				@labels2.push(r)
-			end
 
 			render 'investment_calculator'
 		else

@@ -31,7 +31,7 @@ Premium: <%=@premium%></br>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <% x=1%>
+                                        <% x=@current_age.to_int%>
                                         <% @outputs.each do |i|%>
                                             <tr>
                                               <td><%=x%></td>
@@ -60,7 +60,7 @@ Premium: <%=@premium%></br>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <% x=1%>
+                                        <% x = @current_age.to_i%>
                                         <% if @outputs2%>
                                         <% @outputs2.each do |i|%>
                                             <tr>
