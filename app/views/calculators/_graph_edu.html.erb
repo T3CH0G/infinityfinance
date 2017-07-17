@@ -6,89 +6,77 @@
 </div>
 </div>
 <div class="row">
-<div class="col-md-12">
-              <div class="panel panel-default">
-                            <div class="panel-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-hover table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Fund Value Required for Retirement</th>
-                                                <th>Premium</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                              <td><%=@formula.round(2)%></td> 
-                                              <td><%=@premium.round(2)%></td>
-                                              </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                  </div>
-<div class="row">
-<div class="col-md-12">
-              <div class="panel panel-default">
-                            <div class="panel-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-hover table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Difference</th>
-                                                <th>Advice</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                              <td><%=@difference%></td> 
-                                              <td><%=@advice%></td>
-                                              </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                  </div>
-<div class="col-md-12">
+<div id="donughtchart">
+<div class="col-lg-6">
+<canvas id="donught" width="300" height="300"></canvas>
+Total: <%=@total%></br>
+<%if @formula%>
+Formula: <%=@formula%></br>
+Premium: <%=@premium%></br>
+<%end%>
+</div>
+</div>
+<div class="col-lg-3">
               <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>Table</h3>
+                                <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Nominal Growth Panel</h3>
                             </div>
                             <div class="panel-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-hover table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Age</th>
-                                                <th>Fund Value</th>
-                                                <th>Withdrawals</th>
-                                                <th>Growth</th>
+                                                <th>Year</th>
+                                                <th>Value</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <% x = @current_age.to_i%>
-                                        <% y=0%>
+                                        <% x=@child_currentage.to_int%>
+                                        <% @outputs.each do |i|%>
                                             <tr>
-                                             <% @outputs.each do |i|%>
                                               <td><%=x%></td>
                                               <td><%=i%></td> 
-                                              <td><%=@outputs_int2[y]%></td>
-                                              <td><%=@growths[y]%></td>
-                                              </tr>
-                                              <%y+=1%>
-                                              <%x+=1%>
-                                              <%end%>
+                                            </tr>
+                                            <%x+=1%>
+                                            <%end%>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </div>
-                  </div>
+                    <div class="col-lg-3">
+              <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Real Growth Panel</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Year</th>
+                                                <th>Value</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <% x = @child_currentage.to_i%>
+                                        <% if @outputs2%>
+                                        <% @outputs2.each do |i|%>
+                                            <tr>
+                                              <td><%=x%></td>
+                                              <td><%=i%></td> 
+                                            </tr>
+                                            <%x+=1%>
+                                            <%end%>
+                                             <%end%>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+</div>
 <script>
 var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
@@ -127,4 +115,21 @@ var myChart = new Chart(ctx, {
     }
 });
 
+</script>
+<script>
+var dtx = document.getElementById("donught").getContext('2d');
+var myChart = new Chart(dtx, {
+  type: 'doughnut',
+  data: {
+    labels: ["Growth", "Initial", "Contributions"],
+    datasets: [{
+      backgroundColor: [
+        "#2ecc71",
+        "#000080",
+        "#3498db"
+      ],
+      data: [<%=@growth%>, <%=@initial%>, <%=@contributions%>]
+    }]
+  }
+});
 </script>

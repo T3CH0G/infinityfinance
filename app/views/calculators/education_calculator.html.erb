@@ -1,0 +1,285 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+<div class="container">
+<div class="row main">
+<div class="col-md-12">
+<div class="main-login main-center">
+						<h2>Education Calculator</h2>
+						<div class="col-lg-2">
+		<%= form_for :education_calculator, url:"education_calculator" do |f| %>
+		<div class="form-group">
+			<label for="name" class="cols-sm-2 control-label">Amount Deposited</label>
+			<div class="cols-sm-10">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
+					<input class="form-control" type="number" name="education_calculator[deposit]" id="education_calculator_deposit" value=<%=@deposit%>>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="form-group">
+			<label for="email" class="cols-sm-2 control-label">Interest Rate Percentage</label>
+			<div class="cols-sm-10">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-percent" aria-hidden="true"></i></span>
+					<input class="form-control" type="number" name="education_calculator[interest]" id="education_calculator_interest" value=<%=@interest%>>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="username" class="cols-sm-2 control-label">Frequency</label>
+			<div class="cols-sm-10">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+					  <select class="form-control" name="education_calculator[frequency]"id="education_calculator_frequency" value=<%=@frequency%>>
+					    <option>Yearly</option>
+					    <option>Monthly</option>
+					  </select>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="form-group">
+			<label for="confirm" class="cols-sm-2 control-label">Lump Sum</label>
+			<div class="cols-sm-10">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
+					<input class="form-control" type="number" name="education_calculator[lumpsum]" id="education_calculator_lumpsum" value=<%=@lumpsum%>>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="confirm" class="cols-sm-2 control-label">General Inflation</label>
+			<div class="cols-sm-10">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-percent" aria-hidden="true"></i></span>
+					<input class="form-control" type="number" name="education_calculator[inflation]" id="education_calculator_inflation" value=<%=@inflation%>>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="confirm" class="cols-sm-2 control-label">Tuition Inflation</label>
+			<div class="cols-sm-10">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-percent" aria-hidden="true"></i></span>
+					<input class="form-control" type="number" name="education_calculator[tuition_inflation]" id="education_calculator_tuition_inflation" value=<%=@tuition_inflation%>>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="input_fields_wrap2">
+				<label for="confirm" class="cols-sm-3 control-label">Children</label>
+				<hr>
+								<div class="form-group">
+									<label for="confirm" class="cols-sm-2 control-label">Child Name</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="textarea" name="education_calculator[child_name]" id="education_calculator_child_name" value=<%=@child_name%>>
+										</div>
+									<label for="confirm" class="cols-sm-2 control-label">Starting Age</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="education_calculator[child_startingage]" id="education_calculator_child_startingage" value=<%=@child_startingage%>>
+										</div>
+										<label for="confirm" class="cols-sm-2 control-label">Current Age</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="education_calculator[child_currentage]" id="education_calculator_child_currentage" value=<%=@child_currentage%>>
+										</div>
+										<label for="confirm" class="cols-sm-2 control-label">Years</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="education_calculator[child_years]" id="education_calculator_child_years" value=<%=@child_years%>>
+										</div>
+										<label for="confirm" class="cols-sm-2 control-label">Tuition</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="education_calculator[child_tuition]" id="education_calculator_child_tuition" value=<%=@child_tuition%>>
+										</div>
+										<label for="confirm" class="cols-sm-2 control-label">Living Expense</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="education_calculator[child_living_expense]" id="education_calculator_child_living_expense" value=<%=@child_living_expense%>>
+										</div>
+								</div>	
+								<hr>
+
+								<%if @child2_name%>
+								<div id="divs">
+								<div class="form-group">
+									<label for="confirm" class="cols-sm-2 control-label">Child Name</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="textarea" name="education_calculator[child2_name]" id="education_calculator_child2_name" value=<%=@child2_name%>>
+										</div>
+									<label for="confirm" class="cols-sm-2 control-label">Starting Age</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="education_calculator[child2_startingage]" id="education_calculator_child2_startingage" value=<%=@child2_startingage%>>
+										</div>
+										<label for="confirm" class="cols-sm-2 control-label">Current Age</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="education_calculator[child2_currentage]" id="education_calculator_child2_currentage" value=<%=@child2_currentage%>>
+										</div>
+										<label for="confirm" class="cols-sm-2 control-label">Years</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="education_calculator[child2_years]" id="education_calculator_child2_years" value=<%=@child2_years%>>
+										</div>
+										<label for="confirm" class="cols-sm-2 control-label">Tuition</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="education_calculator[child2_tuition]" id="education_calculator_child2_tuition" value=<%=@child2_tuition%>>
+										</div>
+										<label for="confirm" class="cols-sm-2 control-label">Living Expense</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="education_calculator[child2_living_expense]" id="education_calculator_child2_living_expense" value=<%=@child2_living_expense%>>
+										</div>
+								</div>
+								</div>	
+								<hr>
+								<%end%>
+
+								<%if @child3_name%>
+								<div id="divs">
+								<div class="form-group">
+									<label for="confirm" class="cols-sm-2 control-label">Child Name</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="textarea" name="education_calculator[child3_name]" id="education_calculator_child3_name" value=<%=@child3_name%>>
+										</div>
+									<label for="confirm" class="cols-sm-2 control-label">Starting Age</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="education_calculator[child3_startingage]" id="education_calculator_child3_startingage" value=<%=@child3_startingage%>>
+										</div>
+										<label for="confirm" class="cols-sm-2 control-label">Current Age</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="education_calculator[child3_currentage]" id="education_calculator_child3_currentage" value=<%=@child3_currentage%>>
+										</div>
+										<label for="confirm" class="cols-sm-2 control-label">Years</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="education_calculator[child3_years]" id="education_calculator_child3_years" value=<%=@child3_years%>>
+										</div>
+										<label for="confirm" class="cols-sm-2 control-label">Tuition</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="education_calculator[child3_tuition]" id="education_calculator_child3_tuition" value=<%=@child3_tuition%>>
+										</div>
+										<label for="confirm" class="cols-sm-2 control-label">Living Expense</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="education_calculator[child3_living_expense]" id="education_calculator_child3_living_expense" value=<%=@child3_living_expense%>>
+										</div>
+								</div>
+								</div>	
+								<hr>
+								<%end%>
+
+								<%if @child4_name%>
+								<div id="divs">
+								<div class="form-group">
+									<label for="confirm" class="cols-sm-2 control-label">Child Name</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="textarea" name="education_calculator[child4_name]" id="education_calculator_child4_name" value=<%=@child4_name%>>
+										</div>
+									<label for="confirm" class="cols-sm-2 control-label">Starting Age</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="education_calculator[child4_startingage]" id="education_calculator_child4_startingage" value=<%=@child4_startingage%>>
+										</div>
+										<label for="confirm" class="cols-sm-2 control-label">Current Age</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="education_calculator[child4_currentage]" id="education_calculator_child4_currentage" value=<%=@child4_currentage%>>
+										</div>
+										<label for="confirm" class="cols-sm-2 control-label">Years</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="education_calculator[child4_years]" id="education_calculator_child4_years" value=<%=@child4_years%>>
+										</div>
+										<label for="confirm" class="cols-sm-2 control-label">Tuition</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="education_calculator[child4_tuition]" id="education_calculator_child4_tuition" value=<%=@child4_tuition%>>
+										</div>
+										<label for="confirm" class="cols-sm-2 control-label">Living Expense</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="education_calculator[child4_living_expense]" id="education_calculator_child4_living_expense" value=<%=@child4_living_expense%>>
+										</div>
+								</div>
+								</div>	
+								<hr>
+								<%end%>
+
+								<%if @child5_name%>
+								<div id="divs">
+								<div class="form-group">
+									<label for="confirm" class="cols-sm-2 control-label">Child Name</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="textarea" name="education_calculator[child5_name]" id="education_calculator_child5_name" value=<%=@child5_name%>>
+										</div>
+									<label for="confirm" class="cols-sm-2 control-label">Starting Age</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="education_calculator[child5_startingage]" id="education_calculator_child5_startingage" value=<%=@child5_startingage%>>
+										</div>
+										<label for="confirm" class="cols-sm-2 control-label">Current Age</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="education_calculator[child5_currentage]" id="education_calculator_child5_currentage" value=<%=@child5_currentage%>>
+										</div>
+										<label for="confirm" class="cols-sm-2 control-label">Years</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="education_calculator[child5_years]" id="education_calculator_child5_years" value=<%=@child5_years%>>
+										</div>
+										<label for="confirm" class="cols-sm-2 control-label">Tuition</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="education_calculator[child5_tuition]" id="education_calculator_child5_tuition" value=<%=@child5_tuition%>>
+										</div>
+										<label for="confirm" class="cols-sm-2 control-label">Living Expense</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="education_calculator[child5_living_expense]" id="education_calculator_child5_living_expense" value=<%=@child5_living_expense%>>
+										</div>
+								</div>
+								</div>	
+								<hr>
+								<%end%>
+								</div>
+
+									<button class="add_field_button2">+</button>
+									
+									<button class="remove_field2">-</button>	
+									<hr>											
+
+									<div class="form-group ">
+									  <%= f.submit "Calculate!", :class => 'btn btn-primary' %>
+									<% end %>
+								</div>
+						</div>
+				</div>
+				<%if @deposit %>
+					<div class="col-lg-10">
+						<%=render "graph_edu"%>
+					</div>
+				<%end%>
+</div>
+</div>
+</div>
+

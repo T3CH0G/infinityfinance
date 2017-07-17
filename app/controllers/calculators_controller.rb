@@ -356,7 +356,7 @@ class CalculatorsController < ApplicationController
 		end
 
 		@denom=((((@mci)**((@premium_f*@years)+1))-1)/(@mci-1))-1
-		@premium = (@formula-@lumpsum*(1+@mci)**(@premium_f*@years))/@denom
+		@premium = (@formula-@lumpsum*((@mci)**(@premium_f*@years)))/@denom
 
 		@months=@years*12
 		@months=@months.to_i
@@ -448,7 +448,7 @@ class CalculatorsController < ApplicationController
 			@advice = "You are paying #{@difference.round(2)} more than you need to."
 		elsif @current_p < @premium
 			@difference= @premium-@current_p
-			@advice = "You are paying #{@difference} less than you need to."
+			@advice = "You are paying #{@difference.round(2)} less than you need to."
 		else
 			@difference="0"
 			@advice="Congrats nibba"
@@ -462,39 +462,78 @@ class CalculatorsController < ApplicationController
 	end
 	end
 
-	def educationoutput
-		@child1_name = params[:educationoutput][:child1_name]
-		@child1_startingage = params[:educationoutput][:child1_startingage]
-		@child1_currentage = params[:educationoutput][:child1_currentage]
-		@child1_years = params[:educationoutput][:child1_years]
-		@child1_tuition = params[:educationoutput][:child1_tuition]
-		@child1_living_expense = params[:educationoutput][:child1_living_expense]
-		@tuition_inflation = params[:educationoutput][:tuition_inflation].to_f
+	def education_calculator
+	if params[:education_calculator]
+		@child_name = params[:education_calculator][:child_name]
+		@child_startingage = params[:education_calculator][:child_startingage].to_f
+		@child_currentage = params[:education_calculator][:child_currentage].to_f
+		@child_years = params[:education_calculator][:child_years].to_f
+		@child_tuition = params[:education_calculator][:child_tuition].to_f
+		@child_living_expense = params[:education_calculator][:child_living_expense].to_f
 
-		@deposit = params[:educationoutput][:deposit].to_f
-		@interest = params[:educationoutput][:interest].to_f
-		@frequency = params[:educationoutput][:frequency]
-		@lumpsum = params[:educationoutput][:lumpsum].to_f
-		@inflation = params[:educationoutput][:inflation].to_f
-		@years = @retirement_age-@current_age
+		@child2_name = params[:education_calculator][:child2_name]
+		@child2_startingage = params[:education_calculator][:child2_startingage].to_f
+		@child2_currentage = params[:education_calculator][:child2_currentage].to_f
+		@child2_years = params[:education_calculator][:child2_years].to_f
+		@child2_tuition = params[:education_calculator][:child2_tuition].to_f
+		@child2_living_expense = params[:education_calculator][:child2_living_expense].to_f
+
+		@child3_name = params[:education_calculator][:child3_name]
+		@child3_startingage = params[:education_calculator][:child3_startingage].to_f
+		@child3_currentage = params[:education_calculator][:child3_currentage].to_f
+		@child3_years = params[:education_calculator][:child3_years].to_f
+		@child3_tuition = params[:education_calculator][:child3_tuition].to_f
+		@child3_living_expense = params[:education_calculator][:child3_living_expense].to_f
+
+		@child4_name = params[:education_calculator][:child4_name]
+		@child4_startingage = params[:education_calculator][:child4_startingage].to_f
+		@child4_currentage = params[:education_calculator][:child4_currentage].to_f
+		@child4_years = params[:education_calculator][:child4_years].to_f
+		@child4_tuition = params[:education_calculator][:child4_tuition].to_f
+		@child4_living_expense = params[:education_calculator][:child4_living_expense].to_f
+
+		@child5_name = params[:education_calculator][:child5_name]
+		@child5_startingage = params[:education_calculator][:child5_startingage].to_f
+		@child5_currentage = params[:education_calculator][:child5_currentage].to_f
+		@child5_years = params[:education_calculator][:child5_years].to_f
+		@child5_tuition = params[:education_calculator][:child5_tuition].to_f
+		@child5_living_expense = params[:education_calculator][:child5_living_expense].to_f
+
+		@deposit = params[:education_calculator][:deposit].to_f
+		@interest = params[:education_calculator][:interest].to_f
+		@frequency = params[:education_calculator][:frequency]
+		@lumpsum = params[:education_calculator][:lumpsum].to_f
+		@inflation = params[:education_calculator][:inflation].to_f
+		@tuition_inflation = params[:education_calculator][:tuition_inflation].to_f
 		@ir=@interest/100
 		@ir=@ir.to_f
-		@years=@child1_years
+		@years=@child_startingage-@child_currentage
 		@inflation_rate=@inflation/100
 		@inflation_rate=@inflation_rate.to_f
-		@formula_inflation=@inflation_rate+1
+		@tuition_inflationz=@tuition_inflation/100
+		@formula_inflation=@tuition_inflationz+1
+		@formula_inflation2=@inflation_rate+1
 		@formula_interest=@ir+1
-		@retirement_length=@child1_years
+		@retirement_length=@child_years
 		@formula_retirement = @retirement_length-1
+		@formula_retirement2=@formula_retirement
 		@formula_years=@years
+		@formula_years2=@formula_years
 		@iterate_sum=0
+		@iterate_sum2=0
 		@retirement_length.to_i.times do
 			@iterate = ((@formula_interest)**@formula_retirement)*((@formula_inflation)**@formula_years)
 			@iterate_sum = @iterate_sum+@iterate
 			@formula_retirement-=1
 			@formula_years+=1
 		end
-		@formula=(@deposit*@iterate_sum)/((@formula_interest)**@retirement_length)
+		@retirement_length.to_i.times do	
+			@iterate2 = ((@formula_interest)**@formula_retirement2)*((@formula_inflation2)**@formula_years2)
+			@iterate_sum2 = @iterate_sum2 + @iterate2
+			@formula_retirement2-=1
+			@formula_years2+=1
+		end
+		@formula=((@child_tuition*@iterate_sum)+(@child_living_expense*@iterate_sum2))/(@formula_interest**@retirement_length)
 		
 		if @frequency=="Monthly"
 			@exp=1/12.to_f
@@ -509,8 +548,20 @@ class CalculatorsController < ApplicationController
 			@premium_f=1
 		end
 
-		@denom=((((@mci)**((@premium_f*@years)+1))-1)/(@mci-1))-1
-		@premium = (@formula-@lumpsum*(1+@mci)**(@premium_f*@years))/@denom
+		@r2d2=@retirement_length
+
+		@denom_iterate_sum=0
+
+		@retirement_length.to_i.times do
+		@denom_iterate = (@formula_interest**@r2d2)
+		@denom_iterate_sum= @denom_iterate +@denom_iterate_sum
+		@r2d2-=1
+		end
+
+		@denom=(@formula_interest**@child_years)*(@lumpsum*@mci)*@denom_iterate_sum
+		@denom2=((((@mci)**((@premium_f*@child_years)+1))-1)/(@mci-1))-1
+		@denom = @denom * @denom2
+		@premium = @formula/@denom
 
 		@months=@years*12
 		@months=@months.to_i
@@ -554,9 +605,7 @@ class CalculatorsController < ApplicationController
 			@array.push(@amount)
 		end
 
-
 		@outputs=@array
-
 
 		@outputs_int = @outputs.map(&:to_i)
 		@growths=[0]
@@ -597,6 +646,8 @@ class CalculatorsController < ApplicationController
 			@labels.push(g)
 		end
 
+		if @current_p
+
 		if @current_p > @premium
 			@difference= @current_p-@premium
 			@advice = "You are paying #{@difference.round(2)} more than you need to."
@@ -607,11 +658,13 @@ class CalculatorsController < ApplicationController
 			@difference="0"
 			@advice="Congrats nibba"
 		end
-
-		@difference=@difference.round(2)
-
-		render 'retirement_planner'
-	else
-		render 'retirement_planner'
+@difference=@difference.round(2)
 	end
+
+
+		render 'education_calculator'
+	else
+		render 'education_calculator'
+	end
+end
 end
