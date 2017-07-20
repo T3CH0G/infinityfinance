@@ -1,0 +1,1739 @@
+/*
+Theme Name: Infinity Solutions Theme
+Theme URI: http://infinitysolutions.com
+Description: Custom theme for Infinity Financial Solutions.
+Version: 3.0
+Author: Tim Aikin
+*/
+
+
+
+/*
+
+CONTENTS
+1. Resets
+2. Typography
+3. Browser Tweaks
+4. Helpers
+5. Structural
+6. Specific Styles
+7. Media Queries
+8. Additions
+
+*/
+
+
+
+/* ------------------------------------------------------------------
+
+1. RESETS
+
+------------------------------------------------------------------ */
+
+
+
+/* ----- General resets ----- */
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; vertical-align: baseline; background: transparent;}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;}
+
+nav ul {list-style: none;}
+
+blockquote, q {quotes: none;}
+
+blockquote:before, blockquote:after,
+q:before, q:after {content:''; content: none;}
+
+a {margin:0; padding:0; font-size:100%; vertical-align:baseline; background:transparent;}
+
+ins {background-color: #CCC; color: #000; text-decoration: none;}
+
+mark {background-color:#CCC; color:#000; font-style:italic; font-weight:bold;}
+
+del {text-decoration: line-through;}
+
+abbr[title], dfn[title] {border-bottom: 1px dotted; cursor: help;}
+
+
+
+/* ----- Specific table resets, still need cellspacing="0" in the markup ----- */
+
+table {border-collapse: collapse; border-spacing: 0;}
+
+table, td, th {text-align: left; font-weight: normal; vertical-align: middle;}
+
+td, td img {vertical-align: top;}
+
+hr {display: block; height:1px; border: 0; border-top: 1px solid #CCC; margin: 1em 0; padding: 0;}
+
+input, select {vertical-align: middle;}
+
+
+
+/* ----- Form specific resets ----- */
+
+input, select { vertical-align:middle; }
+
+label {margin-bottom: 2px; display: block;}
+
+input[type="text"], input[type="password"], textarea, select {
+  background-color: #FFF; border: solid 1px #ECECEC; padding: 5px; margin: 0 0 10px 0 !important; width: 440px; color: #808080;}
+
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus, select:focus {
+  background-color: #FFF; border: solid 1px #CCC; padding: 5px;}
+
+input[type="text"], input[type="password"] {height: 20px; display: block;}
+
+textarea {height: 150px; display: block; overflow: auto; line-height: 1.5em !important;}
+
+/* Align checkboxes, radios, text inputs with their label */
+input[type="radio"], input.radio {vertical-align: text-bottom;}
+input[type="checkbox"], input.checkbox {vertical-align: bottom;}
+.ie7 input[type="checkbox"], .ie7 input.checkbox {vertical-align: baseline;}
+.ie6 input {vertical-align: text-bottom;}
+
+/* Fixes legend issues in IE */
+.ie6 legend, .ie7 legend {margin-left: -7px;}
+
+input[disabled="disabled"] {background-color: #ECECEC;}
+
+/* Hand cursor on clickable input elements */
+label, input[type="button"], input[type="submit"], button {cursor: pointer;}
+
+/* Webkit browsers add a 2px chrome margin on form elements */
+button, input, select, textarea {margin: 0;}
+
+/* Make buttons play nice in IE */
+button {width: auto; overflow: visible;}
+
+/* Bicubic resizing for non-native sized IMG */
+.ie7 img {-ms-interpolation-mode: bicubic;}
+
+
+
+/* ----- Force a scrollbar in non-IE ----- */
+
+html {overflow-y: scroll;}
+
+
+
+/* ------------------------------------------------------------------
+
+2. TYPOGRAPHY
+
+------------------------------------------------------------------ */
+
+
+
+/* ----- Font resets ----- */
+
+html {font-size: 100.01%}
+
+body {font-size: 13px; font: normal 13px "proxima-nova-1","proxima-nova-2", helvetica, arial, sans-serif; color: #000; height: 100%;}
+.ie6 body, .ie7 body, .ie8 body {font: normal 12px helvetica, arial, sans-serif; color: #000; height: 100%;}
+
+select, input, textarea, button {font: 99% sans-serif;}
+
+
+
+/* ----- Normalize monospace sizing ----- */
+
+pre, code, kbd, samp {font-family: monospace, sans-serif;}
+
+
+
+/* ----- Headings ----- */
+
+h1, h2 ,h3 ,h4 ,h5 ,h6 {color: #000; font-weight: normal; margin: 0; line-height: 1.2em;}
+
+h1 img, h2 img, h3 img, h4 img, h5 img, h6 img {margin: 0;}
+
+h1 {
+  font: normal 30px "museo-1", "museo-2", helvetica, arial, sans-serif; margin: 0 0 15px 0;}
+.ie6 h1, .ie7 h1, .ie8 h1 {
+  font: normal 30px georgia, "times new roman", serif; margin: 0 0 15px 0;}
+
+h2 {
+  font: normal 18px "museo-1", "museo-2", helvetica, arial, sans-serif; margin: 0 0 15px 0; line-height: 1.5em;}
+.ie6 h2, .ie7 h2, .ie8 h2 {
+  font: normal 18px georgia, "times new roman", serif; margin: 0 0 15px 0; line-height: 1.5em;}
+
+h3 {
+  font: normal 16px "museo-1", "museo-2", helvetica, arial, sans-serif; margin: 0 0 15px 0; line-height: 1.5em;}
+.ie6 h3, .ie7 h3, .ie8 h3 {
+  font: normal 16px georgia, "times new roman", serif; margin: 0 0 15px 0; line-height: 1.5em;}
+
+h4 {
+  font: normal 12px "proxima-nova-1","proxima-nova-2", helvetica, arial, sans-serif; margin: 0 0 15px 0;
+  text-transform: uppercase; font-weight: bold;}
+.ie6 h4, .ie7 h4, .ie8 h4 {
+  font: normal 12px helvetica, arial, sans-serif; font-weight: bold; margin: 0 0 15px 0;
+  text-transform: uppercase; font-weight: bold;}
+
+h5 {
+  font: normal 13px "proxima-nova-1","proxima-nova-2", helvetica, arial, sans-serif; margin: 0 0 15px 0;
+  font-weight: 700; line-height: 1.8em;}
+.ie6 h5, .ie7 h5, .ie8 h5 {
+  font: normal 13px helvetica, arial, sans-serif; margin: 0 0 15px 0;
+  font-weight: 700; line-height: 1.8em;}
+
+h6 {
+  font: normal 16px "proxima-nova-1","proxima-nova-2", helvetica, arial, sans-serif; margin: 0 0 15px 0;
+  padding-left: 15px; border-left: solid 5px #FFF; color: #808080; font-style: italic; line-height: 1.5em;}
+.ie6 h6, .ie7 h6, .ie8 h6 {
+  font: normal 16px helvetica, arial, sans-serif; margin: 0 0 15px 0;
+  padding-left: 15px; border-left: solid 5px #FFF; color: #808080; font-style: italic; line-height: 1.5em;}
+
+
+
+/* ----- Paragraphs etc. ----- */
+
+p {margin: 0 0 15px 0; line-height: 1.8em; color: #808080;}
+
+blockquote {font: normal 16px georgia, serif; color: #333; margin: 10px;}
+
+blockquote p {line-height: 1.5em;}
+
+cite {display: block; margin: 10px 0 0 0; font: normal 10px helvetica, arial, sans-serif; color: #666;}
+
+small {font-size: 85%;}
+
+strong, th {font-weight: bold;}
+
+sub {vertical-align: sub; font-size: smaller;}
+
+sup {vertical-align: super; font-size: smaller;}
+
+
+
+/* ----- Styling code snippets ----- */
+
+pre {
+  padding: 0 0 10px 0;
+  white-space: pre; /* CSS 2 */
+  white-space: pre-wrap; /* CSS 2.1 */
+  white-space: pre-line; /* CSS 3 (and 2.1) */
+  word-wrap: break-word; /* IE */
+}
+
+
+
+/* ----- Lists ----- */
+
+ul {margin: 0 0 20px 15px; list-style-type: disc;}
+
+ol {margin: 0 0 20px 15px; list-style-type: decimal;}
+
+ul li, ol li {padding-left: 0px; margin: 0 0 5px 0; color: #808080; line-height: 1.5em;}
+
+nav ul, nav li {margin: 0;}
+
+
+
+/* ----- Link styles, included accessible focus treatment ----- */
+
+a img {border: 0; background: 0;}
+
+a, a:active, a:visited {
+  color: #29A198; text-decoration: none;}
+
+a:hover, a:active {outline: none;}
+
+a:hover {color: #FFF; text-decoration: none; background: #29A198;}
+
+a:focus {color: #29A198; text-decoration: none;}
+
+/* Tap highlight color */
+a:link {-webkit-tap-highlight-color: #29A198;}
+
+
+
+/* ----- Selection declarations ----- */
+
+::-moz-selection {background: #CCC; color: #FFF; text-shadow: none;}
+::selection {background: #CCC; color: #FFF; text-shadow: none;}
+
+
+
+/* ------------------------------------------------------------------
+
+3. BROWSER TWEAKS
+
+------------------------------------------------------------------ */
+
+
+
+/* ----- IE5.5 alignment bug ----- */
+
+body {text-align: center;}
+.container {text-align: left;}
+
+
+
+/* ------------------------------------------------------------------
+
+4. HELPERS
+
+This section contains little bits of useful code that help across the
+site and can be resused multiple times. Things like clearfix and image
+replacement for example.
+
+------------------------------------------------------------------ */
+
+
+
+/* ----- Clearfix ----- */
+
+.clearfix:before, .clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+* html .clearfix { height: 1%; } /* Hides from IE-mac */
+.clearfix { display: block; zoom: 1;}
+
+
+
+/* ----- Image Replacement ----- */
+
+.ir {display: block; text-indent: -999em; overflow: hidden; background-repeat: no-repeat; text-align: left; direction: ltr;}
+
+
+
+/* ----- Hiding Content ----- */
+
+/* Hide for both screenreaders and browsers */
+.hidden {display: none; visibility: hidden;}
+
+/* Hide only visually, but have it available for screenreaders */
+.visuallyhidden {position: absolute !important;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);}
+
+/* Hide visually and from screenreaders, but maintain layout */
+.invisible {visibility:hidden;}
+
+
+
+/* ------------------------------------------------------------------
+
+5. STRUCTURAL
+
+------------------------------------------------------------------ */
+
+
+
+body {text-align: center; background-color: #F0F0F0;}
+
+.container {width: 960px; background-color: #F0F0F0; text-align: left; padding: 0; margin: 0 auto 0 auto;}
+
+
+
+/* ----- Grids ----- */
+
+.grid1, .grid2, .grid3, .grid4, .grid5, .grid6 {float: left; padding: 20px;}
+.grid1 {width: 120px;}
+.grid2 {width: 280px;}
+.grid3 {width: 440px;}
+.grid4 {width: 600px;}
+.grid5 {width: 760px;}
+.grid6 {width: 920px;}
+.grid_full {width: 960px; float: left; padding: 0px;}
+
+
+
+/* ------------------------------------------------------------------
+
+6. SPECIFIC STYLES
+
+------------------------------------------------------------------ */
+
+
+
+/* ----- Reusables ----- */
+
+#header .break, #footer .break {
+  width: 920px; height: 1px; display: block; border-bottom: solid 1px #FFF; clear: both;
+  margin: 0 20px 0 20px; padding: 15px 0 0 0; z-index: -1;}
+
+
+
+/* ----- 404 ----- */
+
+#four_zero_four {width: 440px; margin: 150px auto 100px auto; text-align: center; clear: both;}
+
+
+
+/* ----- Header ----- */
+
+/* Client Login */
+#header #hat {color: #CCC; padding: 0 20px 0 20px;}
+#header #client_login_form_wrapper {
+  display: none; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;
+  position: relative; top: -15px; padding: 40px 20px 40px 20px; color: #FFF;}
+#header #login_explanation {margin: 0 auto 0 auto; max-width: 400px; padding: 0 0 20px 0;}
+#header #login_links {margin: 0 auto 0 auto; max-width: 400px; padding: 0 0 10px 0;}
+#header #login_button {padding: 16px; font-size: 13px; color: #FFF !important; background: #3dccbf; border: 0; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
+#header #forgot_password_button {margin: 0 0 0 15px;}
+#header #login_explanation h4, #header #login_explanation p, #forgot_password_wrapper h4, #forgot_password_wrapper p {
+  margin: 0 0 5px 0; color: #FFF;}
+#header #client_login_form_wrapper form input[type="text"], #header #client_login_form_wrapper form input[type="password"] {width: 180px;}
+#header #client_login_form_wrapper form {padding: 20px; width: 400px; height: 110px; float: left;}
+#header #client_login_form_wrapper .client_login_form_section {width: 200px; height: 70px; float: left;}
+#header #client_login_form_wrapper #submit_wrapper {width: 200px; float: left;}
+#header #client_login_form_wrapper #forgot_password {width: 200px; float: left;}
+#header #client_login_form_wrapper label {font-weight: bold; margin: 0 0 10px 0;}
+#header #client_login_form_wrapper input[type="submit"] {
+  padding: 8px; color: #FFF; border: 0; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
+#header #client_login_form_button {
+  display: block; color: #FFF; width: 100px; height: 23px; float: right; position: relative; top: -25px; padding: 47px 10px 1px 10px;
+  text-align: center; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
+#header .c_minus {display: none;}
+#header #forgot_password_wrapper {display: none;}
+
+/* Search Form */
+#header #search_form {width: 300px; height: 30px; float: left; text-align: right; padding: 15px 10px 0 480px;}
+#header #search_form input[type="text"] {width: 160px; float: left;}
+#header #search_form input[type="submit"] {
+  margin-left: 10px; background: #CCC; padding: 8px; color: #FFF; border: 0;
+  -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; float: left;}
+.ie7 #header #search_form input[type="submit"], .ie6 #header #search_form input[type="submit"] {width: 100px;}
+.searchterm {background: #CCC;}
+#search_results_list {margin: 0 0 0 20px;}
+#search_navigation {height: 20px; margin-top: 30px; position: relative; left: -20px;}
+#search_navigation span a {
+  float: left; padding: 5px; background: #FFF; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; margin: 10px 10px 0 0;}
+
+/* Logo */
+#header #logo {float: left; height: 35px; padding-top: 0px;}
+#header #logo a {
+	display: block; width: 120px; height: 34px; background: url('images/logo_under.png') top left no-repeat;
+	overflow: hidden; text-indent: -9999px;}
+#header #logo a:hover {
+	display: block; width: 120px; height: 34px; background: url('images/logo_over.png') top left no-repeat;
+	overflow: hidden; text-indent: -9999px;}
+
+/* Main Navigation */
+#header #nav_main {float: right; height: 35px; text-align: right; position: relative; right: -10px; padding-top: 0px;}
+#header #nav_main ul {margin: 0;}
+#header #nav_main ul li {display: inline-block; list-style-type: none; padding: 0 10px 0 11px;}
+.ie7 #header #nav_main ul li, .ie6 #header #nav_main ul li {zoom: 1; display: inline;}
+#header #nav_main ul li a {
+  height: 30px; display: block; padding: 20px 0 22px 0; color: #000;
+  font-size: 12px; text-transform: uppercase; font-weight: bold;}
+.ie7 #header #nav_main ul li a, .ie6 #header #nav_main ul li a {zoom: 1; display: inline;}
+#header #nav_main ul li a:hover {background: none; color: #000 !important; height: 29px;}
+#header #nav_main ul #nav_home a:hover {border-bottom: solid 1px #29A198;}
+#header #nav_main ul #nav_personal a:hover {border-bottom: solid 1px #6C71C3;}
+#header #nav_main ul #nav_corporate a:hover {border-bottom: solid 1px #B58A00;}
+#header #nav_main ul #nav_about a:hover {border-bottom: solid 1px #859A01;}
+#header #nav_main ul #nav_blog a:hover {border-bottom: solid 1px #DB322F;}
+#header #nav_main ul #nav_contact a:hover {border-bottom: solid 1px #268BD3;}
+#header #nav_main ul li a:hover, #header #nav_main ul li a:focus {background: none;}
+
+/* Breadcrumb */
+#breadcrumb {color: #808080; font-size: 12px; padding-bottom: 60px; text-transform: capitalize;}
+
+
+
+/* ----- Footer ----- */
+
+#footer {padding-top: 40px;}
+#footer #copyright, #footer #nav_bottom {padding-bottom: 0;}
+#footer #copyright {width: 400px;}
+#footer #nav_bottom {width: 480px;}
+#footer p {font-size: 12px;}
+#footer #advice_sites ul, #footer #local_sites ul {margin: 0;}
+#footer #advice_sites ul li, #footer #local_sites ul li {list-style-type: none; font-size: 12px;}
+#footer #copyright p {color: #999;}
+#footer #nav_bottom ul {text-align: right; color: #999; margin: 0;}
+#footer #nav_bottom ul li {list-style-type: none; font-size: 12px; display: inline-block; padding-left: 10px;}
+.ie7 #footer #nav_bottom ul li, .ie6 #footer #nav_bottom ul li {zoom: 1; display: inline;}
+#footer #nav_bottom ul li, #footer #nav_bottom ul li a {color: #999;}
+#footer #nav_bottom ul li a:hover {color: #FFF;}
+
+#social {
+  clear: both;
+}
+#social.on-blog {
+  padding-top: 25px;
+}
+#social .btn {
+  color: #FFFFFF;
+  display: inline-block;
+  font-size: 13px;
+  margin: 0 5px 8px 0;
+  padding: 8px 10px 8px 10px;
+  text-align: center;
+  width: auto;
+  -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;
+  vertical-align: middle;
+}
+#social .btn img {
+  float: left;
+  height: 15px;
+}
+#social .email, #social .email:hover {
+  background: #29A198;
+  border: solid 1px #29A198;
+}
+#social .facebook, #social .facebook:hover {
+  background: #3b5998;
+  border: solid 1px #3b5998;
+}
+#social .google, #social .google:hover {
+  background: #dd4b39;
+  border: solid 1px #dd4b39;
+}
+#social .linkedin, #social .linkedin:hover {
+  background: #0e76a8;
+  border: solid 1px #0e76a8;
+}
+#social .skype, #social .skype:hover {
+  background: #00aff0;
+  border: solid 1px #00aff0;
+}
+#social .twitter, #social .twitter:hover {
+  background: #00acee;
+  border: solid 1px #00acee;
+}
+
+#link_to_blog {
+  background: none !important;
+}
+
+
+
+/* The possibilities are endless */
+
+#rabbithole {clear: both; padding: 0 20px 0 20px; position: relative;}
+#footer_sleeve {height: 70px; padding-bottom: 30px; margin:0 auto; position: relative; overflow: hidden;}
+#footer_sleeve:after { content: "."; clear: both; display: block; height: 0; visibility: hidden; }
+#endless {width: 500px; height: 30px; cursor: pointer;}
+#endless p {
+  font-size: 12px; color: #999; display: inline;
+  -webkit-transition: all 0.8s; -moz-transition: all 0.8s; -o-transition: all 0.8s; transition: all 0.8s;}
+#endless span {font: normal 20px "Times New Roman", serif; color: #999; position: relative; top: 5px; margin-right: 5px;}
+#secret {position: absolute; top: 100px; left: 0; height: 180px; width: 100%; font-size: 1.1em; }
+#secret_text {width: 440px; height: 180px; float: left;}
+#secret_text p {
+  font: normal 20px "swister-1", "swister-2", helvetica, arial, sans-serif; font-weight: 500; line-height: 1.2em;}
+#secret_spinner {width: 480px; height: 180px; float: left; text-align: right;}
+#secret_spinner img {
+  -webkit-transition: all 80s ease-in-out; -moz-transition: all 80s ease-in-out; -o-transition: all 80s ease-in-out;}
+#secret:hover #secret_spinner img {
+  -webkit-transform: rotate(9999deg); -moz-transform: rotate(9999deg); -o-transform: rotate(9999deg);}
+
+
+
+/* ----- Rotating Banner Defaults ----- */
+
+/* IE Fixes */
+.ie6 .timer, .ie7 .timer, .ie8 .timer {display: none !important;}
+.ie6 div.caption, .ie7 div.caption, .ie8 div.caption {
+  background:transparent; filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000,endColorstr=#99000000);zoom: 1;}
+
+/* Container */
+div.orbit-wrapper {width: 1px; height: 1px; position: relative; padding: 20px;}
+div.orbit {width: 1px; height: 1px; position: relative; overflow: hidden;}
+div.orbit>img {position: absolute; top: 0; left: 0; display: none;}
+div.orbit>a {border: none; position: absolute; top: 0; left: 0; line-height: 0; display: none;}
+.orbit>div {position: absolute; top: 0; left: 0;}
+
+/* Navigation */
+div.slider-nav {display: block;}
+div.slider-nav span {text-indent: -9999px; position: absolute; z-index: 1000; top: 50%; cursor: pointer;}
+.ie6 div.slider-nav {display: none;}
+
+/* Bullets (Only used on smaller sliders) */
+.orbit-bullets {position: absolute; z-index: 1000; list-style: none; bottom: -10px; left: 0; padding: 0;}
+.orbit-bullets li {font-size: 12px; float: left; margin-left: 5px; cursor: pointer; color: #CCC; width: 13px; height: 15px; overflow: hidden;}
+.orbit-bullets li.active {color: #999;}
+.ie6 .orbit-bullets {display: none;}
+
+
+
+/* ----- Home ----- */
+
+/* Hide Small Banners */
+#homepage_banner_static {display: none;}
+
+/* Rotating Banner - Pre Loading */
+#style_home .orbit-wrapper {padding: 0px !important;}
+#homepage_banner {
+  width: 920px; height: 300px; background: #29A198 url('images/loading_home.gif') no-repeat center center;
+  overflow: hidden; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; margin: 20px 0 0 20px;}
+#homepage_banner>img, #homepage_banner>div, #homepage_banner>a { display: none; }
+
+/* Rotating Banner - Container */
+#style_home div.orbit>a {width: 920px; height: 300px;}
+#style_home .orbit>div {width: 920px; height: 300px;}
+
+/* Rotating Banner - Content */
+.homepage_banner_content_wrapper {
+  width: 880px; height: 300px; padding: 20px 20px 20px 50px;
+  -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
+.homepage_banner_content {width: 830px; height: 270px; background: #29A198; padding: 0 40px 0 50px; position: relative; left: -50px;}
+.homepage_banner_kaleidoscope {width: 390px; float: left; padding-top: 20px;}
+.homepage_banner_text {width: 380px; float: left; padding: 30px 20px 0 40px;}
+.homepage_banner_text h2 {font-size: 25px; line-height: 1.2em; color: #FFF;}
+.homepage_banner_text h3 {font-size: 13px; line-height: 1.5em; color: #FFF;}
+.homepage_banner_text p {font-size: 14px; margin: 0;}
+.homepage_banner_text a {color: #63EAD8 !important;}
+#welcome_to_infinity, #our_solutions, #latest_blog_posts {padding-top: 40px;}
+
+/* Rotating Banner - Navigation */
+#style_home div.slider-nav span {width: 35px; height: 40px; margin-top: -30px;}
+#style_home div.slider-nav span.right {background: url(images/arrows_all_large.png); background-position: 35px 0; right: -35px;}
+#style_home div.slider-nav span.right:hover {background-position: 35px -40px;}
+#style_home div.slider-nav span.left {background: url(images/arrows_all_large.png); left: 5px;}
+#style_home div.slider-nav span.left:hover {background-position: 0 -40px;}
+
+/* Solutions Buttons */
+#our_solutions .solution_link a {
+  color: #FFF !important; width: 255px; height: 45px; display: block; padding: 22px 0 0 25px;
+  background: #29A198 url(images/arrows_home_solutions.png) top left no-repeat; background-position: 230px 20px;
+  -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
+#our_solutions .solution_link a:hover, #our_solutions .solution_link a:focus {
+  background: #29A198 url(images/arrows_home_solutions.png) top left no-repeat; background-position: 230px -80px;}
+#our_solutions .solution_link a:active, #our_solutions .solution_link a:visited {
+  background: #29A198 url(images/arrows_home_solutions.png) top left no-repeat; background-position: 230px 20px;}
+.ie6 #our_solutions .solution_link a {background: #29A198 !important;}
+
+/* Other */
+#welcome_to_infinity h4, #our_solutions h4, #latest_blog_posts h4 {padding-top: 15px; border-top: solid 1px #FFF;}
+
+
+
+/* ----- Personal, Corporate & About Us Index Pages ----- */
+
+#page_intro h3 {color: #808080; font: normal 24px "swister-1", "swister-2", helvetica, arial, sans-serif; font-weight: 500; line-height: 1.2em;}
+#items {margin: 0;}
+#items .item {list-style-type: none; height: 220px;}
+#items .item .item_icon {float: left; width: 120px; padding-top: 20px;}
+#items .item .item_icon a:hover {background: none;}
+#items .item .item_icon img {height: 120px; width: 120px;}
+#items .item .item_details {float: left; width: 280px; border-top: solid 1px #FFF; padding: 20px 0 0 40px;}
+
+
+
+/* ----- Personal & Corporate Show Pages ----- */
+
+#page_content .break {display: block; border-top: solid 1px #FFF; width: 440px; padding: 0 0 20px 0; margin: 0;}
+#solution_calltoaction {
+  width: 730px; float: left;
+  padding: 15px; margin: 20px 0 0 20px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;
+  font: normal 20px "swister-1", "swister-2", helvetica, arial, sans-serif; font-weight: 500;}
+.ie6 #solution_calltoaction {margin-left: 10px;}
+#solution_calltoaction p {margin: 0; color: #FFF; padding-left: 35px; line-height: 1.2em;}
+#solution_calltoaction span {
+  height: 33px; font: normal 45px "Times New Roman", serif; color: #FFF; float: left; position: relative; top: -7px;}
+#related_case_studies .break, #related_blog_posts .break {
+  display: block; border-top: solid 1px #FFF; width: 280px; padding: 0 0 24px 0; margin: 0;}
+#nav_sub {float: right;}
+#nav_sub .break {display: block; border-top: solid 1px #FFF; width: 120px; padding: 0 0 24px 0; margin: 0;}
+#nav_sub ul {margin: 0;}
+#nav_sub ul li {color: #808080; list-style-type: none; margin: 0 0 10px 0;}
+#nav_sub ul li a:hover {color: #FFF !important;}
+#nav_sub ul .current_solution, #nav_sub ul .current_page_item {
+  position: relative; left: -25px; width: 110px; padding: 6px 10px 6px 25px;
+  background: #FFF url(images/menu_current.png) top left no-repeat; background-position: 0 0;}
+.ie6 #style_personal #page_content, .ie6 #style_personal #page_content .break,
+.ie6 #style_corporate #page_content, .ie6 #style_corporate #page_content .break
+  {width: 400px;}
+
+
+
+/* ----- About Us > General ----- */
+
+.break_title {color: #000; border-bottom: solid 1px #FFF; padding: 20px 0 20px 0; margin-bottom: 30px;}
+
+
+
+/* ----- About Us > Infinity And You ----- */
+
+.page_infinityandyou #page_content #trusted {float: left; width: 440px; padding: 0 40px 0 0;}
+.page_infinityandyou #page_content #experience {float: right; width: 280px; font-style: italic;}
+
+.page_infinityandyou #page_content #experience h5 {float: left; position: relative; top: 13px; left: 15px; z-index: 999; color: #FFF;}
+.page_infinityandyou #page_content #experience h6 {
+  font: normal 13px "proxima-nova-1","proxima-nova-2", helvetica, arial, sans-serif; font-style: italic;
+  -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; line-height: 1.5em;
+  background: #859A01; color: #FFF; padding: 15px 15px 15px 35px; border: 0;}
+
+.ie6 #style_about #page_content {width: 720px;}
+.ie6 .page_infinityandyou #page_content #trusted {width: 400px;}
+.ie6 .page_infinityandyou #page_content #experience h5,
+.ie7 .page_infinityandyou #page_content #experience h5
+  {display: block; float: none; margin: 0;}
+.ie6 .page_infinityandyou #page_content #experience p,
+.ie7 .page_infinityandyou #page_content #experience p {
+  float: none; position: relative; top: -30px; display: block; padding-left: 40px; width: 205px; margin: 0;}
+
+
+
+/* ----- About Us > Careers ----- */
+
+.page_careers #page_content #great {
+	margin-top: 30px; border-top: solid 1px #FFF; float: left; width: 440px; padding: 20px 40px 0 0;}
+.ie6 .page_careers #page_content #great {width: 400px;}
+.page_careers #page_content #things {
+	margin-top: 30px; border-top: solid 1px #FFF; padding: 20px 0 0 0; float: right; width: 280px;}
+.page_careers #page_content #send {float: right; width: 280px; margin-top: 30px; border-top: solid 1px #FFF; padding: 20px 0 0 0;}
+.page_careers #page_content #meet_our_team {clear: both;}
+.page_careers #page_content #on_facebook {float: left; width: 760px; margin-top: 30px; border-top: solid 1px #FFF; padding: 20px 0 0 0;}
+.ie6 .page_careers #page_content #on_facebook {display: none;}
+
+.page_careers #page_content #things h5 {float: left; position: relative; top: 13px; left: 15px; z-index: 999; color: #FFF;}
+.page_careers #page_content #things h6 {
+  font: normal 13px "proxima-nova-1","proxima-nova-2", helvetica, arial, sans-serif; font-style: italic;
+  -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; line-height: 1.5em;
+  background: #859A01; color: #FFF; padding: 15px 15px 15px 35px; border: 0;}
+
+#meet_our_team ul {margin: 0;}
+#meet_our_team ul .person {padding: 20px 30px 20px 0; float: left;}
+
+.you .you_thumbnail {background: #CCC !important;}
+.you .you_name {color: #808080;}
+
+
+
+/* ----- About Us > Testimonials ----- */
+
+/* Rotating Banner - Pre Loading */
+#testimonials {
+  width: 780px; height: 605px; overflow: hidden; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
+#testimonials>img, #testimonials>div, #testimonials>a { display: none; }
+
+/* Rotating Banner - Container */
+.testimonial_wrapper div.orbit>a {width: 760px; height: 580px;}
+.testimonial_wrapper .orbit>div {width: 760px; height: 580px;}
+.testimonial_wrapper .orbit-wrapper {padding: 0;}
+.testimonial_wrapper .orbit-bullets {position: absolute; bottom: 10px; left: 40px;}
+.testimonial_wrapper .orbit-bullets li {color: #B2CF00;}
+.testimonial_wrapper .orbit-bullets li.active {color: #FFF;}
+
+/* Rotating Banner - Content */
+#testimonials {margin: 0;}
+.testimonial {width: 280px; height: 580px !important;}
+.testimonial .quote {
+  background: #859A01;
+  height: 580px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; padding: 40px 60px 20px 60px;}
+.testimonial .quote p {
+  color: #FFF; font: normal 20px "swister-1", "swister-2", helvetica, arial, sans-serif; font-weight: 500;}
+.testimonial .quote h2 {
+  color: #B2CF00; font: normal 13px "proxima-nova-1","proxima-nova-2", helvetica, arial, sans-serif; line-height: 1.5em; margin: 0;}
+
+/* Rotating Banner - Navigation */
+.testimonial_wrapper div.slider-nav span {width: 35px; height: 40px; margin-top: -20px;}
+.testimonial_wrapper div.slider-nav span.right {background: url(images/arrows_all_large.png); background-position: 35px -320px; right: -15px;}
+.testimonial_wrapper div.slider-nav span.right:hover {background-position: 35px -360px;}
+.testimonial_wrapper div.slider-nav span.left {background: url(images/arrows_all_large.png); background-position: 0 -320px; left: -15px;}
+.testimonial_wrapper div.slider-nav span.left:hover {background-position: 0 -360px;}
+.ie7 .testimonial_wrapper .orbit-bullets {position: relative; top: -35px;}
+
+
+
+/* ----- About Us > Our Partners ----- */
+
+#partners {margin: 0;}
+#partners .tooltip {position: relative; list-style: none; float: left; margin: 0 30px 30px 0; cursor: pointer;}
+#partners .trigger {
+  width: 120px; height: 120px; background: #FFF; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; overflow: hidden;}
+#partners .popup {
+  position: absolute; display: none; background: #FFF; width: 320px; height: 210px; padding: 20px 20px 10px 20px;
+  -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; z-index: 999;
+  -moz-box-shadow: 0 0 5px 3px #CCC; -webkit-box-shadow: 0 0 5px 3px #CCC; box-shadow: 0 0 5px 3px #CCC;}
+.ie6 #partners .popup, .ie7 #partners .popup, .ie8 #partners .popup {border: solid 1px #CCC;}
+#partners .popup p {font-size: 12px;}
+#partners .partner_arrow {position: absolute; top: 239px;}
+.ie6 #partners .partner_arrow, .ie7 #partners .partner_arrow, .ie8 #partners .partner_arrow {display: none;}
+
+
+
+/* ----- About Us > Our People ----- */
+
+/* Filtering */
+.isotope-item {z-index: 2;}
+.isotope-hidden.isotope-item {pointer-events: none; z-index: 1;}
+
+/* Transitions*/
+.isotope, .isotope .isotope-item {-webkit-transition-duration: 0.8s; -moz-transition-duration: 0.8s; transition-duration: 0.8s;}
+.isotope {-webkit-transition-property: height, width; -moz-transition-property: height, width; transition-property: height, width;}
+.isotope .isotope-item {
+  -webkit-transition-property: -webkit-transform, opacity;
+  -moz-transition-property: -moz-transform, opacity;
+  transition-property: transform, opacity;}
+
+/* Disable CSS3 Transitions for Javascript Version */
+.isotope.no-transition, .isotope.no-transition .isotope-item {
+  -webkit-transition-duration: 0s; -moz-transition-duration: 0s; transition-duration: 0s;}
+
+/* Country Map */
+
+#options h3 {width: 120px; float: left;}
+#options h3 span {font: normal 12px "proxima-nova-1","proxima-nova-2", helvetica, arial, sans-serif; color: #808080; font-weight: bold;}
+.ie6 #options h3 span, .ie7 #options h3 span, .ie8 #options h3 span {
+  font: normal 12px helvetica, arial, sans-serif; color: #808080; font-weight: bold;}
+#options #country_map {width: 480px; float: left; height: 360px; position: relative;}
+#options #country_map li {margin: 0;}
+#country_all {display: none;}
+
+#country_china a {
+  height: 220px; width: 250px; display: block; text-indent: 150px;
+  position: absolute; top: 0; left: 0; background: url(images/country_china.png) top left no-repeat;}
+#country_china a:hover, #country_china a:focus, #country_china a:active, #country_china a.selected {
+  background: url(images/country_china.png) !important; background-position: -250px 0 !important; color: #859A01 !important;}
+
+#country_hong-kong a {
+  height: 10px; width: 200px; display: block; text-indent: 10px;
+  position: absolute; top: 180px; left: 215px; background: url(images/country_hongkong.png) top left no-repeat;}
+#country_hong-kong a:hover, #country_hong-kong a:focus, #country_hong-kong a:active, #country_hong-kong a.selected {
+  background: url(images/country_hongkong.png) !important; background-position: -250px 0 !important;color: #859A01 !important;}
+
+#country_japan a {
+  height: 110px; width: 41px; display: block; text-indent: 32px;
+  position: absolute; top: 0; left: 270px; background: url(images/country_japan.png) top left no-repeat;}
+#country_japan a:hover, #country_japan a:focus, #country_japan a:active, #country_japan a.selected {
+  background: url(images/country_japan.png) !important; background-position: 0 0 !important; color: #859A01 !important;}
+
+#country_vietnam a {
+  height: 42px; width: 50px; display: block; text-indent: 55px; padding-top: 48px;
+  position: absolute; top: 200px; left: 148px; background: url(images/country_vietnam.png) top left no-repeat;}
+#country_vietnam a:hover, #country_vietnam a:focus, #country_vietnam a:active, #country_vietnam a.selected {height: 42px;
+  background: url(images/country_vietnam.png) !important; background-position: -250px 0 !important; color: #859A01 !important;}
+
+#country_cambodia a {
+  height: 8px; width: 31px; display: block; text-indent: -40px; padding-top: 22px;
+  position: absolute; top: 243px; left: 152px; background: url(images/country_cambodia.png) top left no-repeat;}
+#country_cambodia a:hover, #country_cambodia a:focus, #country_cambodia a:active, #country_cambodia a.selected {height: 8px;
+  background: url(images/country_cambodia.png) !important; background-position: -250px 0 !important; color: #859A01 !important;}
+
+#country_malaysia a {
+  height: 25px; width: 26px; display: block; text-indent: -47px; padding-top: 5px;
+  position: absolute; top: 298px; left: 145px; background: url(images/country_malaysia.png) top left no-repeat;}
+#country_malaysia a:hover, #country_malaysia a:focus, #country_malaysia a:active, #country_malaysia a.selected {height: 25px;
+  background: url(images/country_malaysia.png) !important; background-position: -250px 0 !important; color: #859A01 !important;}
+
+#country_singapore a {
+  height: 10px; width: 9px; display: block; text-indent: 10px;
+  position: absolute; top: 325px; left: 174px; background: url(images/country_singapore.png) top left no-repeat;}
+#country_singapore a:hover, #country_singapore a:focus, #country_singapore a:active, #country_singapore a.selected {height: 10px;
+  background: url(images/country_singapore.png) !important; background-position: 0 0 !important; color: #859A01 !important;}
+
+#options #country_list {display: none;}
+#options #type_list {width: 120px; float: right;}
+#country_map li, #country_list li, #type_list li {list-style: none; font-size: 12px;}
+
+#people {display: block; margin: 0;}
+#people h4 {width: 120px; float: left; border-top: solid 1px #859A01; padding: 15px 0 30px 0; clear: left;}
+.people {float: left; width: 640px; margin: 0; border-top: solid 1px #FFF; padding: 0 0 30px 0;}
+.person {width: 120px; height: 225px; list-style: none; padding: 20px 0 0 40px; margin-bottom: 10px;}
+.person .person_thumbnail {
+  background: #859A01; height: 120px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; padding-bottom: 5px;}
+.person .person_thumbnail a {display: block; width: 120px;}
+.person .person_thumbnail a:hover {background: none !important;}
+.person .person_thumbnail img {height: 120px; width: 120px;}
+.person .person_name {
+  background: #FFF; padding: 10px; height: 40px; overflow: hidden; position: relative; top: -5px;
+  margin: 0; font: normal 18px "swister-1", "swister-2", helvetica, arial, sans-serif; font-weight: 500; line-height: 1.2em;}
+.person .person_role {
+  font-size: 12px; background: #FFF; padding: 10px; height: 35px; overflow: hidden; position: relative; top: -10px;
+  -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
+
+.ie6 #country_map {display: none;}
+.ie6 #options #country_list {display: block; clear: both; margin: 0; width: 120px; float: left;}
+.ie6 #type_list {width: 120px !important; margin: 0; padding: 0; float: left; position: relative; left: -400px; top: 25px;}
+.ie6 #people {clear: both; margin: 50px 0 0 0;}
+.ie6 .people {width: 600px;}
+
+/* Single Person */
+
+.single_person {padding: 25px 0 0 0; border-top: solid 1px #859A01; float: left; color: #808080;}
+
+.single_person_details {width: 600px; float: left; padding: 25px 0 0 40px; border-top: solid 1px #FFF;}
+#single_person_profile {float: left; width: 280px; padding: 0 40px 0 0;}
+#single_person_contact {float: left; width: 280px;}
+#single_person_contact p {height: 25px; margin: 0 0 10px 0; padding: 0 0 0 30px;}
+#single_person_bio {float: left; width: 280px; padding: 50px 40px 0 0;}
+#single_person_tweets {float: left; width: 280px; padding-top: 50px;}
+
+#sp_based_in {background: url(images/contact_address.png) top left no-repeat;}
+#sp_email {background: url(images/contact_email.png) top left no-repeat;}
+#sp_phone {background: url(images/contact_phone.png) top left no-repeat;}
+#sp_twitter {background: url(images/contact_twitter.png) top left no-repeat;}
+#sp_linkedin {background: url(images/contact_linkedin.png) top left no-repeat;}
+
+/* Offices */
+
+#other_office {height: 100px;}
+.office .person {float: left;}
+
+/* The offices
+  - Vietnam
+  - China
+  - Japan
+  - Cambodia
+  - Malaysia
+  - Singapore
+  - Hong Kong
+*/
+
+.office_china .vietnam,
+.office_china .japan,
+.office_china .cambodia,
+.office_china .malaysia,
+.office_china .singapore,
+.office_china .hong-kong
+	{display: none;}
+.office_japan .vietnam,
+.office_japan .china,
+.office_japan .cambodia,
+.office_japan .malaysia,
+.office_japan .singapore,
+.office_japan .hong-kong
+	{display: none;}
+.office_vietnam .china,
+.office_vietnam .japan,
+.office_vietnam .cambodia,
+.office_vietnam .malaysia,
+.office_vietnam .singapore,
+.office_vietnam .hong-kong
+	{display: none;}
+.office_cambodia .vietnam,
+.office_cambodia .china,
+.office_cambodia .japan,
+.office_cambodia .malaysia,
+.office_cambodia .singapore,
+.office_cambodia .hong-kong
+	{display: none;}
+.office_malaysia .vietnam,
+.office_malaysia .china,
+.office_malaysia .japan,
+.office_malaysia .cambodia,
+.office_malaysia .singapore,
+.office_malaysia .hong-kong
+	{display: none;}
+.office_singapore .vietnam,
+.office_singapore .china,
+.office_singapore .japan,
+.office_singapore .cambodia,
+.office_singapore .malaysia,
+.office_singapore .hong-kong
+	{display: none;}
+.office_hong-kong .vietnam,
+.office_hong-kong .china,
+.office_hong-kong .japan,
+.office_hong-kong .cambodia,
+.office_hong-kong .malaysia,
+.office_hong-kong .singapore
+	{display: none;}
+
+.policy-link {
+  padding: 50px 0 0 0;
+}
+
+
+
+/* ----- Case Studies ----- */
+
+/* Case Study Index Page */
+
+#casestudies {margin: 0;}
+#casestudies .casestudy {list-style-type: none; margin: 0; padding-bottom: 10px;}
+#casestudies .casestudy .casestudy_image {
+  height: 120px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; padding: 10px 0 5px 20px;}
+#casestudies .casestudy .casestudy_image img {height: 120px; width: 120px;}
+#casestudies .casestudy .casestudy_title {height: 90px; background: #FFF; padding: 15px 20px 0 20px; position: relative; top: -5px;}
+#casestudies .casestudy .casestudy_title h2 {
+  font: normal 13px "proxima-nova-1","proxima-nova-2", helvetica, arial, sans-serif; line-height: 1.5em; margin: 0;}
+.ie6 #casestudies .casestudy .casestudy_title h2, .ie7 #casestudies .casestudy .casestudy_title h2,
+.ie8 #casestudies .casestudy .casestudy_title h2 {
+  font: normal 12px helvetica, arial, sans-serif; color: #808080; font-weight: bold; line-height: 1.5em; margin: 0;}
+#casestudies .casestudy .casestudy_type {
+  -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;
+  background: #FFF; padding: 5px 20px 15px 20px; position: relative; top: -10px;}
+#casestudies .casestudy .casestudy_type p {margin: 0;}
+
+.single_casestudies #casestudy_banner_box {height: 250px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
+.single_casestudies #casestudy_image {width: 240px; height: 240px; float: left; padding: 10px 40px 0 40px;}
+.single_casestudies #casestudy_image img {height: 240px; width: 240px;}
+.single_casestudies #casestudy_title {width: 560px; float: right; padding: 40px 40px 0 0;}
+.single_casestudies #casestudy_title p {color: #F893E1; margin: 0 0 5px 0; font-size: 15px;}
+.single_casestudies #casestudy_title h2 {color: #FFF; font-size: 26px;}
+
+/* Related Case Studies (appearing elsewhere) */
+
+/* Rotating Banner - Pre Loading */
+#related_cases {
+  width: 280px; height: 275px; overflow: hidden; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
+#related_cases>img, #related_cases>div, #related_cases>a { display: none; }
+
+/* Rotating Banner - Container */
+#related_case_studies div.orbit>a {width: 280px; height: 275px;}
+#related_case_studies .orbit>div {width: 280px; height: 275px;}
+#related_case_studies .orbit-wrapper {padding: 0;}
+
+/* Rotating Banner - Content */
+#related_cases {margin: 0;}
+.related_case {width: 280px; height: 275px !important;}
+.related_case .casestudy_image {
+  height: 120px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; padding: 10px 0 5px 120px;}
+.related_case .casestudy_image img {height: 120px; width: 120px;}
+.related_case .casestudy_title {height: 110px; background: #FFF; padding: 15px 20px 15px 20px; position: relative; top: -5px;}
+.related_case .casestudy_title h2 {
+  font: normal 13px "proxima-nova-1","proxima-nova-2", helvetica, arial, sans-serif; line-height: 1.5em; margin: 0;}
+.ie6 .related_case .casestudy_title h2, .ie7 .related_case .casestudy_title h2, .ie8 .related_case .casestudy_title h2 {
+  font: normal 12px helvetica, arial, sans-serif; line-height: 1.5em; margin: 0;}
+.related_case .casestudy_buttons {
+  -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;
+  background: #FFF; padding: 5px 20px 15px 20px; position: relative; top: -10px;}
+
+/* Rotating Banner - Navigation */
+#related_case_studies div.slider-nav span {width: 25px; height: 30px; margin-top: -80px;}
+#related_case_studies div.slider-nav span.right {background: url(images/arrows_all_small.png); right: -10px;}
+#related_case_studies div.slider-nav span.left {background: url(images/arrows_all_small.png); left: -10px;}
+#related_case_studies div.slider-nav span.left:hover {background-position: 0 -30px;}
+.ie7 #related_case_studies .orbit-bullets {position: relative; top: -35px;}
+
+
+
+/* ----- Blog ----- */
+
+/* Filter */
+#blog_filter {text-align: right; padding-top: 35px;}
+#blog_filter a {background: #FFF; padding: 8px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; margin-left: 5px;}
+#filter_wrapper, .f_minus {display: none;}
+#filter_wrapper {padding-top: 0; background: #FFF;}
+#filter_content {background: #FFF; padding: 20px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
+#blog_tagcloud {width: 600px; float: left; padding: 0 40px 0 0;}
+#blog_tagcloud h4 {margin: 0 0 5px 0;}
+#blog_tagcloud a {margin-right: 10px;}
+#blog_authors {width: 120px; float: left;}
+#blog_authors ul li {list-style: none; margin: 0 0 8px 0; color: #CCC; font-size: 12px;}
+#blog_dates {width: 120px; float: left;}
+#blog_dates ul li {list-style: none; margin: 0 0 8px 0; color: #CCC; font-size: 12px;}
+#blog_authors ul, #blog_dates ul {margin: 0;}
+
+/* Blog List */
+
+#blogs {margin: 0 0 10r0px 0;}
+.blog {list-style: none;}
+
+.blog .blog_title {width: 280px; float: left; border-top: solid 1px #DB322F; padding: 20px 0 20px 0;}
+.blog .blog_title .blog_date {
+  height: 20px; color: #808080; font-size: 11px; padding: 3px 0 3px 30px; background: url(images/blog_author.png) top left no-repeat;}
+.blog .blog_title .blog_tags {
+  height: 20px; color: #808080; font-size: 11px; padding: 3px 0 3px 30px; background: url(images/blog_tags.png) top left no-repeat;}
+.blog .infinity_ad {
+  background: #FFF; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; padding: 20px 20px 5px 20px; margin: 50px 0 0 0;
+  font-size: 12px; font-style: italic; width: 130px;}
+
+.blog .infinity_ad #logo a {
+	display: block; width: 120px; height: 34px; background: url('logo_under.png') top left no-repeat;
+	overflow: hidden; text-indent: -9999px; padding-bottom: 10px;}
+.blog .infinity_ad #logo a:hover {
+	display: block; width: 120px; height: 34px; background: url('logo_over.png') top left no-repeat;
+	overflow: hidden; text-indent: -9999px;}
+
+.blog .infinity_ad span {font: normal 45px "Times New Roman", serif; color: #CCC; position: relative; top: -3px;}
+
+.latest_posts_on_single {width: 180px; padding: 20px 0 0 20px; position: absolute; top: 860px;}
+.latest_posts_on_single #related_blogs {width: 160px;}
+.latest_posts_on_single #related_blogs h2 {width: 160px;}
+
+.blog .blog_excerpt, #blogs .blog .blog_content {width: 440px; float: left; border-top: solid 1px #FFF; padding: 20px 40px 20px 40px;}
+.blog .blog_content img {padding: 10px; background: #FFF; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
+.blog .blog_content .content_thumbnail img {margin-bottom: 15px;}
+.blog .blog_thumb a:hover {background: none !important;}
+.blog ul, .blog ol {color: #808080; line-height: 1.5em;}
+.ie6 .blog .blog_content {width: 600px;}
+
+.blog .blog_thumb {width: 120px; float: left; border-top: solid 1px #FFF; padding: 20px 0 20px 0;}
+.blog .blog_thumb img {padding: 10px; background: #FFF; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
+.blog .blog_thumb a:hover {background: none;}
+
+.blog .share_buttons {width: 120px; float: left; border-top: solid 1px #FFF; padding: 20px 0 20px 0;}
+.blog .share_buttons .blog_tweet {width: 65px; float: left;}
+.blog .share_buttons .blog_like {width: 55px; float: right;}
+
+.ie6 .blog_title {width: 920px !important;}
+.ie6 .blog_thumb, .ie6 .share_buttons, .ie6 .infinity_ad {display: none;}
+.ie6 .blog_content {width: 920px !important; border: 0 !important; padding: 0 !important;}
+.ie6 .related_person {width: 280px;}
+.ie6 .related_person .person_image {height: 105px !important; overflow: hidden; padding: 0 5px 0 5px !important;}
+.ie6 .related_person .person_details {width: 120px; height: 85px;}
+.ie6 .related_person .person_details p {display: none;}
+.ie6 #comments {width: 920px;}
+.ie6 #comments #comment_list li {display: block; clear: both;}
+.ie6 #comments h4 {padding: 0 0 0 220px !important;}
+.ie6 #comments .comment_author {width: 200px; background: none;}
+.ie6 #comments .comment_text {width: 400px; background: #FFF;}
+.ie6 #comments .comment_text p {font-size: 12px;}
+.ie6 #comments .comment_label {width: 210px !important;}
+.ie6 #comments input[type="text"], .ie6 #comments .comment_input, .ie6 #comments textarea {width: 400px !important;}
+.ie6 #comments #sectionsubmit, .ie6 #comments #no_comments, .ie6 #comments #logged_in {padding-left: 220px !important;}
+
+/* Related Person */
+
+.related_person {height: 120px; width: 445px; margin: 40px 0 0 0;}
+.related_person .person_image {
+  background: #DB322F; height: 120px; width: 120px; padding: 0 5px 0 0; float: left;
+  -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
+.related_person .person_image img {height: 120px; width: 120px; padding: 0; background: none;}
+.related_person .person_details {
+  height: 100px; float: left; background: #FFF; width: 290px; position: relative; left: -5px; padding: 10px 10px 10px 20px;}
+.related_person .person_details h2 {
+  color: #808080; font: normal 18px "swister-1", "swister-2", helvetica, arial, sans-serif; font-weight: 500; margin: 0;}
+.related_person .person_details p {margin: 0;}
+.ie6 .related_person {display: none;}
+
+/* Comments */
+
+#comments {border-top: solid 1px #FFF; margin: 40px 0 0 0; padding: 40px 0 0 0;}
+#comments h4 {padding: 0 0 0 320px;}
+#comments #no_comments {padding: 0 0 50px 320px;}
+#comments #respond {clear: both; margin: 50px 0 0 0;}
+#comments #respond .comment_label {
+  width: 310px; float: left; text-align: right; color: #808080; font-size: 12px; padding: 3px 10px 0 0; font-style: italic;}
+#comments #respond .comment_input {width: 600px; float: left;}
+#comments #respond .respond_section {clear: both; margin: 0 0 15px 0;}
+#comments #respond #sectioncomment {height: 150px;}
+#comments #respond #sectionauthor, #comments #respond #sectionemail {height: 30px;}
+#comments label.error {color: #DB322F; margin: 5px 0 25px 0;}
+#comments #respond #sectionsubmit {padding: 0 0 0 320px;}
+#comments #respond #sectionsubmit input {
+  padding: 8px; background: #DB322F; color: #FFF; border: 0;
+  -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
+#comments #logged_in {padding: 0 0 0 320px; clear: both;}
+#comments #comment_list {margin: 0;}
+#comments #comment_list li {list-style: none;}
+#comments .comment_author {
+  height: 40px; width: 300px; float: left; text-align: right; color: #808080; font-size: 12px; padding: 18px 20px 0 0;
+  background: url(images/menu_current.png) no-repeat; background-position: 310px 10px; font-style: italic;}
+#comments .comment_text {width: 420px; float: left; padding: 15px 15px 0 15px; background: #FFF; margin: 0 0 20px 0;}
+
+/* Related Blogs (used throughout site) */
+
+#related_blogs {list-style: disc url(images/bullet.png); margin: 0 0 0 18px;}
+#related_blogs li {margin-bottom: 10px;}
+#related_blogs li h2 {font-size: 13px; margin-bottom: 0; width: 240px;}
+#related_blogs .blog_date {height: 20px; color: #808080; font-size: 11px; padding: 3px 0 3px 0;}
+
+/* Pagination */
+
+#paging {clear: both; color: #808080;}
+#paging span {
+  padding: 10px; margin: 0 10px 0 0; background: #FFF; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
+#paging a {
+  padding: 10px; margin: 0 10px 0 0; background: #CCC; color: #FFF !important;
+  -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
+#paging a:hover {background: #DB322F;}
+
+
+
+/* ----- Contact ----- */
+
+#offices {margin: 0;}
+#offices .office {list-style-type: none; height: 340px;}
+#offices .office .break {border-top: solid 1px #FFF; display: block;}
+#offices .office h2 {width: 140px; border-top: solid 1px #268BD3; position: relative; top: -1px; padding: 20px 0 0 0; float: left;}
+
+#offices .office .office_map {
+  background: #FFF; float: left; width: 400px; height: 230px; padding: 10px; margin: 20px 0 0 40px;
+  -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
+
+#offices .office_details {width: 280px; float: left; padding: 20px 0 0 40px;}
+
+#offices .office_address, #offices .office_email, #offices .office_phone,
+#offices .office_fax, #offices .office_website, #offices .office_people {
+  min-height: 30px; clear: both; width: 260px; padding: 0 0 10px 30px; font-size: 12px;}
+
+.office_address {background: url(images/contact_address.png) top left no-repeat;}
+.office_email {background: url(images/contact_email.png) top left no-repeat;}
+.office_phone {background: url(images/contact_phone.png) top left no-repeat;}
+.office_fax {background: url(images/contact_fax.png) top left no-repeat;}
+.office_website {background: url(images/contact_website.png) top left no-repeat;}
+.office_people {background: url(images/blog_author.png) top left no-repeat;}
+
+
+
+/* ----- Team Tools ----- */
+
+#teamtools {margin: 0;}
+.teamtool {list-style: none; text-align: center; padding-bottom: 0;}
+.teamtool h2, .teamtool p {margin: 0;}
+.teamtool .teamtool_image {
+  height: 120px; background: #FFF; padding: 20px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
+.teamtool .teamtool_title {background: #FFF; padding: 5px 20px 0 20px; position: relative; top: -5px;}
+.teamtool .teamtool_description {
+  height: 80px; background: #FFF; padding: 10px 20px 15px 20px; position: relative; top: -5px; overflow: hidden;}
+.teamtool .teamtool_link {
+  background: #FFF; padding: 0 20px 20px 20px; position: relative; top: -10px;
+  -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
+
+
+
+/* ----- Section Styles ----- */
+
+/* Default */
+/*
+Dark - #29A198
+Light - #3DCCBF
+Lightest - #63EAD8
+*/
+
+#style_default a, #style_default a:active, #style_default a:visited, #style_default a:focus {color: #29A198;}
+#style_default a:hover {color: #FFF; background: #29A198;}
+#style_default a:link {-webkit-tap-highlight-color: #29A198;}
+#style_default ::-moz-selection {background: #29A198;}
+#style_default ::selection {background: #29A198;}
+#style_default #header #search_form input[type="submit"]:hover {background: #29A198;}
+#style_default #header #client_login_form_wrapper {background: #29A198;}
+#style_default #header #client_login_form_wrapper a {color: #63EAD8;}
+#style_default #header #client_login_form_wrapper #login_button {background: #3DCCBF;}
+#style_default #header #client_login_form_button {background: #29A198;}
+#style_default #header #logo span {color: #29A198;}
+#style_default #footer .tweet {background: #FFF url(images/twitter_bird.png) no-repeat; background-position: 185px 20px;}
+#style_default #endless p:hover {color: #29A198;}
+#style_default #items .item .item_icon {border-top: solid 1px #29A198;}
+
+/* Home */
+/*
+Dark - #29A198
+Light - #3DCCBF
+Lightest - #63EAD8
+*/
+#style_home a, #style_home a:active, #style_home a:visited, #style_home a:focus {color: #29A198;}
+#style_home a:hover {color: #FFF; background: #29A198;}
+#style_home a:link {-webkit-tap-highlight-color: #29A198;}
+#style_home ::-moz-selection {background: #29A198;}
+#style_home ::selection {background: #29A198;}
+#style_home #header #search_form input[type="submit"]:hover {background: #29A198;}
+#style_home #header #client_login_form_wrapper {background: #29A198;}
+#style_home #header #client_login_form_wrapper a {color: #63EAD8;}
+#style_home #header #client_login_form_wrapper #login_button {background: #3DCCBF;}
+#style_home #header #client_login_form_button {background: #29A198;}
+#style_home #header #logo span {color: #29A198;}
+#style_home #header #nav_main ul #nav_home a {border-bottom: solid 1px #29A198; height: 29px;}
+#style_home #footer .tweet {background: #FFF url(images/twitter_bird.png) no-repeat; background-position: 185px 20px;}
+#style_home #endless p:hover {color: #29A198;}
+
+/* Personal */
+/*
+Dark - #6C71C3
+Light - #8D91FF
+Lightest - #B1B1FF
+*/
+#style_personal a, #style_personal a:active, #style_personal a:visited, #style_personal a:focus  {color: #6C71C3;}
+#style_personal a:hover {color: #FFF; background: #6C71C3;}
+#style_personal a:link {-webkit-tap-highlight-color: #6C71C3;}
+#style_personal ::-moz-selection {background: #6C71C3;}
+#style_personal ::selection {background: #6C71C3;}
+#style_personal #header #search_form input[type="submit"]:hover {background: #6C71C3;}
+#style_personal #header #client_login_form_wrapper {background: #6C71C3;}
+#style_personal #header #client_login_form_wrapper a {color: #B1B1FF;}
+#style_personal #header #client_login_form_wrapper #login_button {background: #8D91FF;}
+#style_personal #header #client_login_form_button {background: #6C71C3;}
+#style_personal #header #logo span {color: #6C71C3;}
+#style_personal #header #nav_main ul #nav_personal a {border-bottom: solid 1px #6C71C3; height: 29px;}
+#style_personal #footer .tweet {background: #FFF url(images/twitter_bird.png) no-repeat; background-position: 185px -180px;}
+#style_personal #endless p:hover {color: #6C71C3;}
+#style_personal #items .item .item_icon {border-top: solid 1px #6C71C3;}
+#style_personal #page_content .break {border-top: solid 1px #6C71C3;}
+#style_personal .related_case .casestudy_image {background: #6C71C3;}
+#style_personal #related_case_studies div.slider-nav span.right {background-position: 25px -60px;}
+#style_personal #related_case_studies div.slider-nav span.right:hover {background-position: 25px -90px;}
+#style_personal #related_case_studies div.slider-nav span.left {background-position: 0 -60px;}
+#style_personal #related_case_studies div.slider-nav span.left:hover {background-position: 0 -90px;}
+#style_personal #related_cases {background: #F0F0F0 url('images/loading_solutions.gif') no-repeat center 45px;}
+#style_personal #solution_calltoaction {background: #6C71C3;}
+#style_personal #solution_calltoaction p a {color: #B1B1FF;}
+
+/* Corporate */
+/*
+Dark - #B58A00
+Light - #F2C000
+Lightest - #F2C000
+*/
+#style_corporate a, #style_corporate a:active, #style_corporate a:visited, #style_corporate a:focus  {color: #B58A00;}
+#style_corporate a:hover {color: #FFF; background: #B58A00;}
+#style_corporate a:link {-webkit-tap-highlight-color: #B58A00;}
+#style_corporate ::-moz-selection {background: #B58A00;}
+#style_corporate ::selection {background: #B58A00;}
+#style_corporate #header #search_form input[type="submit"]:hover {background: #B58A00;}
+#style_corporate #header #client_login_form_wrapper {background: #B58A00;}
+#style_corporate #header #client_login_form_wrapper a {color: #F2C000;}
+#style_corporate #header #client_login_form_wrapper #login_button {background: #F2C000;}
+#style_corporate #header #client_login_form_button {background: #B58A00;}
+#style_corporate #header #logo span {color: #B58A00;}
+#style_corporate #header #nav_main ul #nav_corporate a {border-bottom: solid 1px #B58A00; height: 29px;}
+#style_corporate #footer .tweet {background: #FFF url(images/twitter_bird.png) no-repeat; background-position: 185px -380px;}
+#style_corporate #endless p:hover {color: #B58A00;}
+#style_corporate #items .item .item_icon {border-top: solid 1px #B58A00;}
+#style_corporate .related_case .casestudy_image {background: #B58A00;}
+#style_corporate #related_case_studies div.slider-nav span.right {background-position: 25px -120px;}
+#style_corporate #related_case_studies div.slider-nav span.right:hover {background-position: 25px -150px;}
+#style_corporate #related_case_studies div.slider-nav span.left {background-position: 0 -120px;}
+#style_corporate #related_case_studies div.slider-nav span.left:hover {background-position: 0 -150px;}
+#style_corporate #related_cases {background: #F0F0F0 url('images/loading_solutions.gif') no-repeat center 45px;}
+#style_corporate #solution_calltoaction {background: #B58A00;}
+#style_corporate #solution_calltoaction p a {color: #F2C000;}
+
+/* About Us */
+/*
+Dark - #859A01
+Light - #B2CF00
+Lightest - #B2CF00
+*/
+#style_about a, #style_about a:active, #style_about a:visited, #style_about a:focus  {color: #859A01;}
+#style_about a:hover {color: #FFF; background: #859A01;}
+#style_about a:link {-webkit-tap-highlight-color: #859A01;}
+#style_about ::-moz-selection {background: #859A01;}
+#style_about ::selection {background: #859A01;}
+#style_about #header #search_form input[type="submit"]:hover {background: #859A01;}
+#style_about #header #client_login_form_wrapper {background: #859A01;}
+#style_about #header #client_login_form_wrapper a {color: #B2CF00;}
+#style_about #header #client_login_form_wrapper #login_button {background: #B2CF00;}
+#style_about #header #client_login_form_button {background: #859A01;}
+#style_about #header #logo span {color: #859A01;}
+#style_about #header #nav_main ul #nav_about a {border-bottom: solid 1px #859A01; height: 29px;}
+#style_about #footer .tweet {background: #FFF url(images/twitter_bird.png) no-repeat; background-position: 185px -780px;}
+#style_about #endless p:hover {color: #859A01;}
+#style_about #items .item .item_icon {border-top: solid 1px #859A01;}
+#style_about .break_title {border-top: solid 1px #859A01;}
+
+/* Case Studies */
+/*
+Dark - #D33683
+Light - #F642B1
+Lightest - #F893E1
+*/
+#style_casestudies a, #style_casestudies a:active, #style_casestudies a:visited, #style_casestudies a:focus  {color: #D33683;}
+#style_casestudies a:hover {color: #FFF; background: #D33683;}
+#style_casestudies a:link {-webkit-tap-highlight-color: #D33683;}
+#style_casestudies ::-moz-selection {background: #D33683;}
+#style_casestudies ::selection {background: #D33683;}
+#style_casestudies #header #search_form input[type="submit"]:hover {background: #D33683;}
+#style_casestudies #header #client_login_form_wrapper {background: #D33683;}
+#style_casestudies #header #client_login_form_wrapper a {color: #F893E1;}
+#style_casestudies #header #client_login_form_wrapper #login_button {background: #F642B1;}
+#style_casestudies #header #client_login_form_button {background: #D33683;}
+#style_casestudies #header #logo span {color: #D33683;}
+#style_casestudies #footer .tweet {background: #FFF url(images/twitter_bird.png) no-repeat; background-position: 185px -580px;}
+#style_casestudies #endless p:hover {color: #D33683;}
+#casestudies .casestudy .casestudy_image {background: #D33683;}
+#style_casestudies #casestudy_banner_box {background: #D33683;}
+#style_casestudies .related_case .casestudy_image {background: #D33683;}
+#style_casestudies #related_case_studies div.slider-nav span.right {background-position: 25px -180px;}
+#style_casestudies #related_case_studies div.slider-nav span.right:hover {background-position: 25px -210px;}
+#style_casestudies #related_case_studies div.slider-nav span.left {background-position: 0 -180px;}
+#style_casestudies #related_case_studies div.slider-nav span.left:hover {background-position: 0 -210px;}
+#style_casestudies #related_cases {background: #F0F0F0 url('images/loading_solutions.gif') no-repeat center 45px;}
+
+/* Blog */
+/*
+Dark - #DB322F
+Light - #FB4B49
+Lightest - #F69496
+*/
+#style_blog a, #style_blog a:active, #style_blog a:visited, #style_blog a:focus  {color: #DB322F;}
+#style_blog a:hover {color: #FFF !important; background: #DB322F;}
+#style_blog a:link {-webkit-tap-highlight-color: #DB322F;}
+#style_blog ::-moz-selection {background: #DB322F;}
+#style_blog ::selection {background: #DB322F;}
+#style_blog #header #search_form input[type="submit"]:hover {background: #DB322F;}
+#style_blog #header #client_login_form_wrapper {background: #DB322F;}
+#style_blog #header #client_login_form_wrapper a {color: #F69496;}
+#style_blog #header #client_login_form_wrapper #login_button {background: #FB4B49;}
+#style_blog #header #client_login_form_button {background: #DB322F;}
+#style_blog #header #logo span {color: #DB322F;}
+#style_blog #header #nav_main ul #nav_blog a {border-bottom: solid 1px #DB322F; height: 29px;}
+#style_blog #footer .tweet {background: #FFF url(images/twitter_bird.png) no-repeat; background-position: 185px -1180px;}
+#style_blog #endless p:hover {color: #DB322F;}
+
+/* Contact */
+/*
+Dark - #268BD3
+Light - #4AC6FF
+Lightest - #4AC6FF
+*/
+#style_contact a, #style_contact a:active, #style_contact a:visited, #style_contact a:focus  {color: #268BD3;}
+#style_contact a:hover {color: #FFF; background: #268BD3;}
+#style_contact a:link {-webkit-tap-highlight-color: #268BD3;}
+#style_contact ::-moz-selection {background: #268BD3;}
+#style_contact ::selection {background: #268BD3;}
+#style_contact #header #search_form input[type="submit"]:hover {background: #268BD3;}
+#style_contact #header #client_login_form_wrapper {background: #268BD3;}
+#style_contact #header #client_login_form_wrapper a {color: #4AC6FF;}
+#style_contact #header #client_login_form_wrapper #login_button {background: #4AC6FF;}
+#style_contact #header #client_login_form_button {background: #268BD3;}
+#style_contact #header #logo span {color: #268BD3;}
+#style_contact #header #nav_main ul #nav_contact a {border-bottom: solid 1px #268BD3; height: 29px;}
+#style_contact #footer .tweet {background: #FFF url(images/twitter_bird.png) no-repeat; background-position: 185px -980px;}
+#style_contact #endless p:hover {color: #268BD3;}
+
+
+
+/* ------------------------------------------------------------------
+
+7. MEDIA QUERIES
+
+------------------------------------------------------------------ */
+
+
+
+/* ----- Medium Devices (smaller browsers, netbooks and iPads etc.) ----- */
+
+@media screen and (min-width: 680px) and (max-width: 978px) {
+
+  .container, .grid_full {width: 640px;}
+  .grid6, .grid5, .break {width: 600px !important;}
+
+  /* Header */
+  #hat {width: 600px; padding-bottom: 30px !important; overflow: hidden;}
+  #hat #login_explanation, #hat #client_login_form_wrapper form, #hat #forgot_password_wrapper, #hat #login_links {width: 240px;}
+  #hat #forgot_password {margin-top: 10px;}
+  #header {width: 640px !important;}
+  #header #search_form {padding-left: 0;}
+  #header #logo {width: 140px; padding-right: 0;}
+  #header #nav_main {width: 470px; padding: 6px 0 40px 10px; float: right;}
+  #header #nav_main ul li {padding: 0; margin: 0 0 0 5px; float: left;}
+  #header #nav_main ul li a {
+    padding: 8px; background: #FFF; margin: 0; border: 0 !important; height: 20px !important;
+    -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
+  #header #nav_main ul li a:hover, #header #nav_main ul li a:focus, #header #nav_main ul li a:active {background: #FFF;}
+
+  /* Footer */
+  #footer #infinity_on_twitter {display: none;}
+  #footer #copyright, #footer #nav_bottom {width: 280px;}
+
+	/* The Possibilities Are Endless */
+	#footer_sleeve {height: 40px;}
+	#secret {position: absolute; top: 80px; left: 0; height: 380px; width: 100%; font-size: 1.1em; }
+	#secret_text {width: 200px; height: 380px; float: left;}
+	#secret_text p {
+	  font: normal 16px "swister-1", "swister-2", helvetica, arial, sans-serif; font-weight: 500; line-height: 1.3em;}
+	#secret_spinner {width: 400px; height: 380px; float: left; text-align: right;}
+
+  /* General */
+  #page_intro {width: 600px; padding-top: 0px;}
+  #nav_sub .break {width: 120px !important;}
+  #related_blog_posts .break {width: 280px !important;}
+
+  /* Home */
+  #welcome_to_infinity {width: 600px;}
+  #style_home .orbit-wrapper, #homepage_banner {display: none;}
+  #homepage_banner_static {
+    float: left; display: block; width: 560px; background: #29A198; margin: 20px 0 0 20px; padding: 20px;
+    -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; text-align: center;}
+  #homepage_banner_static .homepage_banner_kaleidoscope, #homepage_banner_static .homepage_banner_text {width: 420px; padding: 0 70px 20px 70px;}
+
+  /* Personal and Corporate Solutions > Index */
+  #items .item {width: 600px; height: 180px;}
+  #items .item .item_details {width: 440px;}
+
+  /* Personal and Corporate Solutions > Show */
+  #solution_calltoaction {width: 570px; font-size: 18px !important;}
+
+  /* About Us > Infinity And You */
+  #page_content {width: 440px !important;}
+  #page_content #experience {width: 440px !important; clear: both; margin-top: 40px;}
+  #page_content #experience p {width: 400px !important;}
+
+  /* About Us > Our People */
+  #country_map {margin: 0; width: 340px !important;}
+  #type_list {width: 100px !important; margin: 0; padding: 80px 0 0 0;}
+  #people {clear: both; margin: 50px 0 0 0;}
+  #people h4 {width: 440px; margin: 0;}
+  .people {border: 0; width: 440px;}
+  #style_about .person {padding: 20px 0 20px 0 !important; margin: 0 25px 0 0 !important;}
+  .single_person_details {width: 260px;}
+  #single_person_profile, #single_person_contact, #single_person_bio {width: 240px !important; padding: 0 0 20px 0;}
+
+  /* About Us > Customer Testimonials */
+  .testimonial_name {width: 400px !important;}
+  .testimonial_text {width: 240px !important;}
+  .testimonial_text p {width: 280px; font-size: 12px;}
+
+  /* About Us > Our Partners */
+  .tooltip {margin: 0 26px 20px 0 !important;}
+  .popup {display: none !important;}
+
+  /* About Us > Careers */
+  #things {width: 440px !important; clear: both; margin-top: 40px;}
+  #things p {width: 400px !important;}
+  .person {padding: 0 20px 15px 0 !important;}
+  #on_facebook {display: none;}
+
+  /* About Us > Company Information */
+  .page_companyinformation #page_content h4 {width: 440px;}
+  .page_companyinformation #page_content p {width: 440px;}
+  .page_companyinformation #page_content ul {width: 425px;}
+
+  /* Blog */
+  #style_blog #page_title {width: 180px;}
+  #blog_filter {width: 380px; padding: 35px 0 0 20px;}
+  #filter_wrapper #blog_tagcloud {width: 280px;}
+  .blog_title {width: 600px !important;}
+  .blog_excerpt {width: 440px !important; border: 0 !important; padding: 0 !important;}
+  .blog_thumb, .share_buttons {padding: 0 0 0 40px !important; border: 0 !important;}
+  .infinity_ad {display: none;}
+  .latest_posts_on_single {display: none;}
+  .blog_content {width: 440px; border: 0 !important; padding: 0 !important;}
+  #style_blog .blog_date, #style_blog .blog_tags {float: left; margin-right: 20px;}
+  #comments h4 {padding: 0 0 0 220px !important;}
+  #comments .comment_author {width: 200px; background-position: 210px 10px;}
+  #comments .comment_text {width: 390px;}
+  #comments .comment_label {width: 210px !important;}
+  #comments input[type="text"], #comments .comment_input, #comments textarea {width: 420px !important;}
+  #comments #sectionsubmit, #comments #no_comments, #comments #logged_in {padding-left: 220px !important;}
+
+  /* Case Studies */
+  #casestudy_title {width: 240px !important;}
+  #casestudy_title h2 {font-size: 16px !important;}
+
+  /* Contact */
+  .office_details {clear: both; display: block !important; padding: 20px 0 0 180px !important; float: none !important;}
+  .office {clear: both; height: 540px !important;}
+
+}
+
+
+
+/* ----- Smaller Devices (iPhones, Androids and mobiles etc.)----- */
+
+@media screen and (max-width: 680px), handheld and (max-width: 680px) {
+
+  .container, .grid_full {width: 320px;}
+  .grid6, .grid5, .grid4, .grid3, .break {width: 280px !important;}
+
+  /* 404 */
+  #four_zero_four {width: 240px;}
+
+  /* Header */
+  #hat {width: 280px; padding-bottom: 30px !important; overflow: hidden;}
+  #hat #login_explanation, #hat #client_login_form_wrapper form, #hat #forgot_password_wrapper, #hat #login_links {width: 200px;}
+  #hat #login_explanation {height: 140px;}
+  #hat #client_login_form_wrapper form {height: 180px;}
+  #hat #forgot_password {margin-top: 10px;}
+  #header {width: 320px !important;}
+  #header #search_form {padding: 50px 0 0 0;}
+  #header #search_form input[type="text"] {width: 167px;}
+  #header #client_login_form_button {top: -120px; float: left;}
+  #header #logo {width: 140px; padding: 0 0 20px 23px; clear: both; position: relative; top: -70px;}
+  #header #nav_main {width: 280px; padding: 0 0 0 5px; float: left; position: relative; top: -50px;}
+  #header #nav_main ul li {padding: 0; margin: 0 0 0 5px; float: left;}
+  #header #nav_main ul li a {
+    padding: 8px; background: #FFF; margin: 0 5px 10px 0; border: 0 !important; height: 20px !important;
+    -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
+  #header #nav_main ul li a:hover, #header #nav_main ul li a:focus, #header #nav_main ul li a:active {background: #FFF;}
+
+  /* Footer */
+  #footer #infinity_on_twitter {display: none;}
+  #footer #copyright, #footer #nav_bottom {width: 280px; text-align: left;}
+  #footer #copyright {padding-bottom: 0;}
+  #footer #nav_bottom {padding-top: 0; padding-bottom: 20px;}
+  #footer #nav_bottom ul {text-align: left;}
+  #footer #nav_bottom ul li {padding: 0 10px 0 0;}
+
+	/* The Possibilities Are Endless */
+	#footer_sleeve {height: 40px;}
+	#endless {width: 280px;}
+	#secret {position: absolute; top: 80px; left: 0; height: 480px; width: 100%; font-size: 1.1em; }
+	#secret_text {width: 280px; height: 480px; float: left;}
+	#secret_text p {
+	  font: normal 16px "swister-1", "swister-2", helvetica, arial, sans-serif; font-weight: 500; line-height: 1.4em;}
+	#secret_spinner {width: 280px; height: 480px; float: left; text-align: right;}
+
+  /* General */
+  #page_intro {width: 280px; padding-top: 0px;}
+  #nav_sub {width: 280px;}
+  #nav_sub .current_solution, #nav_sub .current_page_item {
+    background: none !important; width: 260px !important; padding: 0 !important; left: 0 !important;}
+  #nav_sub .break {width: 280px !important;}
+  #related_blog_posts .break {width: 280px !important;}
+
+  /* Home */
+  #style_home .orbit-wrapper, #homepage_banner {display: none;}
+  #homepage_banner_static {
+    float: left; display: block; width: 240px; background: #29A198; margin: 20px 0 0 20px; padding: 20px;
+    -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; text-align: center;}
+  #homepage_banner_static .homepage_banner_kaleidoscope {width: 240px; padding: 0;}
+  #homepage_banner_static .homepage_banner_kaleidoscope img {width: 240px; height: 122px;}
+  #homepage_banner_static .homepage_banner_text {width: 240px; padding: 20px 0 0 0;}
+  #homepage_banner_static .homepage_banner_text h2 {font-size: 22px;}
+  #homepage_banner_static .homepage_banner_text p {font-size: 12px;}
+
+  /* Personal and Corporate Solutions > Index */
+  #items .item {width: 280px; height: 220px !important;}
+  #items .item .item_icon {display: none;}
+  #items .item .item_details {width: 280px; padding: 20px 0 0 0; height: 300px;}
+
+  /* Personal and Corporate Solutions > Show */
+  #solution_calltoaction {width: 250px; font-size: 18px !important;}
+
+  /* About Us > Infinity And You */
+  #page_content {width: 280px !important;}
+  #page_content #experience {width: 320px !important; clear: both; margin-top: 40px;}
+  #page_content #trusted {width: 280px !important; padding-right: 0px !important;}
+  #page_content #experience {width: 280px !important;}
+
+  /* About Us > Our People */
+  #country_map {display: none;}
+  #options #country_list {display: block; clear: both; margin: 0; width: 120px; float: left;}
+  #type_list {width: 120px !important; margin: 0; padding: 0;}
+  #people {clear: both; margin: 50px 0 0 0;}
+  #people h4 {width: 280px; margin: 0;}
+  .people {border: 0; width: 280px;}
+  .person {padding: 0 !important; margin: 0 15px 20px 0 !important;}
+  .single_person {width: 280px !important; padding: 20px 0 20px 0 !important;}
+  .single_person_details {width: 280px; padding: 20px 0 0 0 !important;}
+  #single_person_profile {padding: 0 0 20px 0;}
+  #single_person_bio {width: 240px;}
+
+  /* About Us > Customer Testimonials */
+  .testimonial_name {width: 240px !important;}
+  .testimonial_text {width: 80px !important;}
+  .testimonial_text p {width: 150px; font-size: 12px;}
+
+  /* About Us > Our Partners */
+  .tooltip {margin: 0 16px 20px 0 !important;}
+  .popup {display: none !important;}
+
+  /* About Us > Careers */
+  #things {width: 280px !important; clear: both; margin-top: 40px;}
+  #things p {width: 240px !important;}
+  #great {width: 280px !important;}
+  #meet_our_team .person {padding: 0 0 5px 0 !important;}
+  #on_facebook {display: none;}
+
+  /* About Us > Company Information */
+  .page_companyinformation #page_content h4 {width: 280px;}
+  .page_companyinformation #page_content p {width: 280px;}
+  .page_companyinformation #page_content ul {width: 265px;}
+
+  /* Blog */
+  #style_blog #page_title {width: 180px;}
+  #blog_filter {width: 380px; padding: 0 0 30px 20px; text-align: left !important;}
+  #blog_filter a {display: block; margin: 0 0 10px 0;}
+  #filter_wrapper {padding: 0; margin-left: 20px;}
+  #filter_wrapper #blog_tagcloud {width: 240px; padding-bottom: 30px;}
+  .blog_title {width: 280px !important;}
+  .blog_excerpt {width: 280px !important; border: 0 !important; padding: 0 !important;}
+  .blog_thumb, .share_buttons {display: none;}
+  .infinity_ad {display: none;}
+  .latest_posts_on_single {display: none;}
+  .blog_content {width: 280px !important; border: 0 !important; padding: 0 !important;}
+  .content_thumbnail {width: 220px !important;}
+  .blog_content img {height: auto !important; width: 90%;}
+  .related_person {width: 280px;}
+  .related_person .person_image {height: 105px !important; overflow: hidden; padding: 0 5px 0 5px !important;}
+  .related_person .person_details {width: 120px; height: 85px;}
+  .related_person .person_details p {display: none;}
+  #comments {width: 280px;}
+  #comments h4 {padding: 0 0 0 130px !important;}
+  #comments .comment_author {width: 105px; background-position: 115px 10px;}
+  #comments .comment_text {width: 125px;}
+  #comments .comment_text p {font-size: 12px;}
+  #comments .comment_label {width: 115px !important;}
+  #comments input[type="text"], #comments .comment_input, #comments textarea {width: 155px !important;}
+  #comments #sectionsubmit, #comments #no_comments, #comments #logged_in {padding-left: 125px !important;}
+
+  /* Case Studies */
+  #casestudy_banner_box {height: 130px !important;}
+  #casestudy_image {width: 120px !important; height: 120px !important; padding: 10px 10px 0 10px !important;}
+  #casestudy_image img {width: 120px !important; height: 120px !important;}
+  #casestudy_title {width: 120px !important; padding: 10px !important;}
+  #casestudy_title h2 {font-size: 12px !important;}
+
+  /* Contact */
+  .office_map {display: none;}
+  .office_details {clear: both; display: block !important; padding: 20px 0 0 0 !important; float: none !important;}
+  .office {clear: both; height: 340px !important;}
+
+}
+
+
+
+/* ----- Print ----- */
+
+@media print {
+  * {background: transparent !important; color: #000 !important; text-shadow: none !important;}
+  body {font-family: helvetica, arial, sans-serif;}
+  a, a:visited {color: #0099FF !important; text-decoration: underline;}
+  a:after { content: " (" attr(href) ")"; }
+  abbr:after { content: " (" attr(title) ")"; }
+  .ir a:after { content: ""; }  /* Don't show links for images */
+  pre, blockquote {border: 1px solid #CCC; page-break-inside: avoid;}
+  tr, img {page-break-inside: avoid;}
+  @page {margin: 0.5cm;}
+  p, h2, h3 {orphans: 3; widows: 3;}
+  h2, h3{page-break-after: avoid;}
+}
+
+
+
+/* ------------------------------------------------------------------
+
+8. ADDITIONS
+
+The CSS now needs a significant rewrite, so rather than pollute the
+existing styles above all new styles will be added here as addition.
+
+------------------------------------------------------------------ */
+
+/* Disclaimer. */
+.disclaimer {
+  border: solid 1px #FFFFFF;
+  clear: both;
+  float: none;
+  margin: 30px 20px 30px 20px;
+  max-width: 960px;
+  padding: 30px 0 20px 0;
+  text-align: center;
+}
+.disclaimer .heading {
+  font-weight: bold;
+  padding: 0 30px 0 30px;
+}
+.disclaimer p {
+  font-size: 13px;
+  margin: 0 0 10px 0;
+  padding: 0 30px 0 30px;
+}
+
+/* Alternative. */
+.alternative .stamps img {
+  max-width: 320px;
+  width: 100%;
+}
+
+/* Japan link on home page */
+a.japan-link {
+  background: #4AC6FF;
+  color: #FFFFFF !important;
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  max-width: 240px;
+  padding: 20px;
+  text-align: center;
+  -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;
+  width: 100%;
+}
+a.japan-link:hover {
+  background: #23BAFF !important;
+  color: #FFFFFF;
+}
