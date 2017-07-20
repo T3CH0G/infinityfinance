@@ -1,0 +1,75 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+<div class="container">
+	<div class="row main">
+			<div class="col-md-12">
+					<div class="main-login main-center">
+						<h2>APR Calculator</h2>
+						<div class="col-lg-2">
+								<%= form_for :apr2, url:"apr2" do |f| %>
+								<div class="form-group">
+									<label for="name" class="cols-sm-2 control-label">Balance</label>
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="apr2[balance]" id="apr2_balance" value=<%=@balance%>>
+										</div>
+									</div>
+								</div>
+
+
+								<div class="form-group">
+									<label for="email" class="cols-sm-2 control-label">Interest Rate Percentage</label>
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-percent" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="apr2[interest]" id="apr2_interest" value=<%=@interest%>>
+										</div>
+									</div>
+								</div>
+
+								<hr>
+								<div class="form-group">
+									<label for="password" class="cols-sm-2 control-label">Months</label>
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="apr2[months]" id="apr2_months" value=<%=@months%>>
+										</div>
+									</div>
+								</div>
+
+								<p>OR</p>
+
+								<div class="form-group">
+									<label for="password" class="cols-sm-2 control-label">Payments</label>
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="apr2[payment]" id="apr2_payment" value=<%=@payment%>>
+										</div>
+									</div>
+								</div>
+
+								<hr>
+
+
+								<div class="form-group ">
+									  <%= f.submit "Calculate!", :class => 'btn btn-primary' %>
+									<% end %>
+								</div>
+						</div>
+					</div>
+				<%if @balance %>
+					<div class="col-lg-10">
+						<%=render "graph_apr"%>
+					</div>
+
+				<%else%>
+					<div class="col-lg-10">
+						<%=render "dummygraph"%>
+					</div>
+				<%end%>
+	</div>
+</div>
+</div>

@@ -7,19 +7,26 @@
 </div>
 <div class="row">
 <div id="donughtchart">
-<div class="col-lg-6">
+<div class="col-lg-12">
 <canvas id="donught" width="300" height="300"></canvas>
-Total: <%=@total%></br>
-<%if @formula%>
-Formula: <%=@formula%></br>
-Premium: <%=@premium%></br>
-<%end%>
+Total: <%=@total.round(2)%></br>
+Premium: <%=@premium.round(2)%></br>
 </div>
+  <!-- Nav tabs -->
 </div>
-<div class="col-lg-3">
+<div>
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#childexpenses" aria-controls="childexpenses" role="tab" data-toggle="tab">Child Expenses</a></li>
+    <li role="presentation"><a href="#fundbreakdown" aria-controls="fundbreakdown" role="tab" data-toggle="tab">Fund Breakdown</a></li>
+  </ul>
+</div>
+
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="childexpenses">
+  <div class="col-lg-12">
               <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Nominal Growth Panel</h3>
+                                <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Child Expenses </h3>
                             </div>
                             <div class="panel-body">
                                 <div class="table-responsive">
@@ -27,28 +34,74 @@ Premium: <%=@premium%></br>
                                         <thead>
                                             <tr>
                                                 <th>Year</th>
-                                                <th>Value</th>
+                                            <% @child_names.each do |i|%>
+                                                <%if i == nil%>
+                                                <%else%>
+                                                <th><%=i%></th>
+                                                <%end%>
+                                            <%end%>
+                                                <th>Total</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <% x=@child_currentage.to_int%>
-                                        <% @outputs.each do |i|%>
+                                        <% x = 0%>
+                                        <% @totalexpenses.each do |i|%>
                                             <tr>
                                               <td><%=x%></td>
-                                              <td><%=i%></td> 
+                                              <%if @child_name%>
+                                              <td><%=i[0].round(2)%></td> 
+                                              <%end%>
+                                              <%if @child2_name%>
+                                              <td><%=i[1].round(2)%></td> 
+                                              <%end%>
+                                              <%if @child3_name%>
+                                              <td><%=i[2].round(2)%></td> 
+                                              <%end%>
+                                              <%if @child4_name%>
+                                              <td><%=i[3].round(2)%></td> 
+                                              <%end%>
+                                              <%if @child5_name%>
+                                              <td><%=i[4].round(2)%></td>
+                                              <%end%>
+                                              <%if @total%>
+                                              <td><%=i[5].round(2)%></td>
+                                              <%end%>
+                                              <%x+=1%> 
                                             </tr>
-                                            <%x+=1%>
                                             <%end%>
+                                            <tr>
+                                            <td> Total: </td>
+                                            <%if @child_total !=0%>
+                                            <td><%=@child_total%></td>
+                                            <%end%>
+                                            <%if @child2_total !=0%>
+                                            <td><%=@child2_total%></td>
+                                            <%end%>
+                                            <%if @child3_total !=0%>
+                                            <td><%=@child3_total%></td>
+                                            <%end%>
+                                            <%if @child4_total !=0%>
+                                            <td><%=@child4_total%></td>
+                                            <%end%>
+                                            <%if @child5_total !=0%>
+                                            <td><%=@child5_total%></td>
+                                            <%end%>
+                                            <%if @childall_total !=0%>
+                                            <td><%=@childall_total%></td>
+                                            <%end%>
+                                          </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3">
+          </div>
+<div role="tabpanel" class="tab-pane active" id="fundbreakdown">
+<div class="col-lg-12">
               <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Real Growth Panel</h3>
+                                <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Withdrawal and Fund Values </h3>
                             </div>
                             <div class="panel-body">
                                 <div class="table-responsive">
@@ -56,27 +109,32 @@ Premium: <%=@premium%></br>
                                         <thead>
                                             <tr>
                                                 <th>Year</th>
-                                                <th>Value</th>
+                                                <th>Opening Balance</th>
+                                                <th>Withdrawals</th>
+                                                <th>End Balance</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <% x = @child_currentage.to_i%>
-                                        <% if @outputs2%>
-                                        <% @outputs2.each do |i|%>
+                                        <% x = 0%>
+                                        <% y = 0%>
+                                        <% @totaltimes.to_i.times do %>
                                             <tr>
-                                              <td><%=x%></td>
-                                              <td><%=i%></td> 
+                                              <td><%=y%></td>
+                                              <td><%=@pres[x]%></td>
+                                              <td><%=@totals[x]%></td>
+                                              <td><%=@post[x]%></td>
+                                              <%x+=1%> 
+                                              <%y+=1%> 
                                             </tr>
-                                            <%x+=1%>
                                             <%end%>
-                                             <%end%>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </div>
-</div>
+          </div>
+          </div>
 <script>
 var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {

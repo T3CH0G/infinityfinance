@@ -11,7 +11,6 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   <!-- General Meta Info -->
   <meta charset="utf-8" />
   <title>Expat Financial Services in Asia | Infinity Financial Solutions</title>
@@ -153,8 +152,10 @@ img.emoji {
         <li><a href="http://localhost:3000/investment_calculator">Investment</a></li>
         <li><a href="http://localhost:3000/retirement_planner">Retirement</a></li>
         <li><a href="http://localhost:3000/education_calculator">Education</a></li>
-        <li><a href="http://localhost:3000/lumpsum">Real/Nominal</a></li>
-      <li><a href="http://www.infinitysolutions.com/">Back to Main Site</a></li>
+        <li><a href="http://localhost:3000/apr2">APR</a></li>
+        <li><a href="http://localhost:3000/mortgage">Mortgage</a></li>
+        <li><a href="http://localhost:3000/insurance">Insurance</a></li>
+        <li><a href="http://www.infinitysolutions.com/">Back to Main Site</a></li>
     </ul>
   </div>
 
@@ -301,4 +302,5 @@ So, although financial planning might not seem very exciting, we are really posi
 </div>
 
 </body>
+<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </html>

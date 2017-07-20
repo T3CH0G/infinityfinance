@@ -1,5 +1,6 @@
 <script type="text/javascript" src="application"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script>
+<div id="blur">
 <div class="row">
 <div class="col-md-12">
 <canvas id="myChart"></canvas>
@@ -32,10 +33,10 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                              <td><%=@formula.round(2)%></td> 
-                                              <td><%=@premium.round(2)%></td>
-                                              <td><%=@difference%></td> 
-                                              <td><%=@advice%></td>
+                                              <td>100</td> 
+                                              <td>100</td>
+                                              <td>100</td> 
+                                              <td>100</td>
                                               </tr>
                                         </tbody>
                                     </table>
@@ -64,18 +65,12 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <% x = @current_age.to_i%>
-                                        <% y=0%>
                                             <tr>
-                                             <% @outputs.each do |i|%>
-                                              <td><%=x%></td>
-                                              <td><%=i%></td> 
-                                              <td><%=@outputs_int2[y]%></td>
-                                              <td><%=@growths[y]%></td>
+                                              <td>test</td>
+                                              <td>test2</td> 
+                                              <td>test3</td>
+                                              <td>test4</td>
                                               </tr>
-                                              <%y+=1%>
-                                              <%x+=1%>
-                                              <%end%>
                                         </tbody>
                                     </table>
                                 </div>
@@ -85,30 +80,31 @@
                   </div>
                   </div>
                   </div>
+                  </div>
 
 <script>
 var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: <%=@labels%>,
+        labels: ['test','test','test','test'],
         datasets: [{
           type: 'line',
           label: '',
           fill: false,
-          data: <%=@outputs_int%>,
+          data: [10,10,10,10],
           borderColor: '#FF0000'
         },
         {
           label: 'Nominal',
           backgroundColor: '#99CC99',
-          data: <%=@outputs_int%>
+          data: [10,10,10,10]
 
         },
         <% if @outputs2_int%>
         {
           label: 'Real value',
-          data: <%=@outputs2_int%>,
+          data: [10,10,10,10],
           backgroundColor: '#FF0000'
         }
         <%end%>]

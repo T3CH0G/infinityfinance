@@ -230,6 +230,7 @@
 									<button class="add_field_button">+</button>
 									
 									<button class="remove_field">-</button>
+									<hr>
 
 
 						
@@ -243,6 +244,10 @@
 				<%if @deposit %>
 					<div class="col-lg-10">
 						<%=render "graph"%>
+					</div>
+				<% else %>
+				<div class="col-lg-10">
+						<%=render "dummygraph"%>
 					</div>
 				<%end%>
 	</div>

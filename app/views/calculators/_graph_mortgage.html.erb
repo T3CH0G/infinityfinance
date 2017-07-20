@@ -5,49 +5,11 @@
 <canvas id="myChart"></canvas>
 </div>
 </div>
-<div>
-
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#information" aria-controls="information" role="tab" data-toggle="tab">Fund & Premium Information</a></li>
-    <li role="presentation"><a href="#fundbreakdown" aria-controls="fundbreakdown" role="tab" data-toggle="tab">Fund Breakdown</a></li>
-  </ul>
-
+<div class="row">
+<div class="col-md-6">
+<canvas id="donught"></canvas>
 </div>
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="information">
-<div class="row">
-<div class="col-md-12">
-              <div class="panel panel-default">
-                            <div class="panel-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-hover table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Fund Value Required for Retirement</th>
-                                                <th>Premium</th>
-                                                <th>Difference</th>
-                                                <th>Advice</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                              <td><%=@formula.round(2)%></td> 
-                                              <td><%=@premium.round(2)%></td>
-                                              <td><%=@difference%></td> 
-                                              <td><%=@advice%></td>
-                                              </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                  </div>
-                  </div>
-<div role="tabpanel" class="tab-pane" id="fundbreakdown">
-<div class="row">
-<div class="col-md-12">
+<div class="col-md-6">
               <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>Table</h3>
@@ -57,24 +19,20 @@
                                     <table class="table table-bordered table-hover table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Age</th>
-                                                <th>Fund Value</th>
-                                                <th>Withdrawals</th>
-                                                <th>Growth</th>
+                                                <th>Years</th>
+                                                <th>Amount</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <% x = @current_age.to_i%>
-                                        <% y=0%>
+                                        <% x = 1%>
                                             <tr>
-                                             <% @outputs.each do |i|%>
+                                            <% if @plas%>
+                                             <% @plas.each do |i|%>
                                               <td><%=x%></td>
                                               <td><%=i%></td> 
-                                              <td><%=@outputs_int2[y]%></td>
-                                              <td><%=@growths[y]%></td>
                                               </tr>
-                                              <%y+=1%>
                                               <%x+=1%>
+                                              <%end%>
                                               <%end%>
                                         </tbody>
                                     </table>
@@ -82,10 +40,43 @@
                             </div>
                         </div>
                     </div>
-                  </div>
-                  </div>
+                    <p> Payments : <%=@payment%> </p>
                   </div>
 
+                  <div class="col-md-6">
+              <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>Table</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Years</th>
+                                                <th>Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <% x = 1%>
+                                            <tr>
+                                            <% if @plas2%>
+                                             <% @plas2.each do |i|%>
+                                              <td><%=x%></td>
+                                              <td><%=i%></td> 
+                                              </tr>
+                                              <%x+=1%>
+                                              <%end%>
+                                              <%end%>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p> Payments : <%=@payment%> </p>
+                  </div>
+                  
 <script>
 var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
@@ -96,22 +87,15 @@ var myChart = new Chart(ctx, {
           type: 'line',
           label: '',
           fill: false,
-          data: <%=@outputs_int%>,
+          data: <%=@balances%>,
           borderColor: '#FF0000'
         },
         {
           label: 'Nominal',
           backgroundColor: '#99CC99',
-          data: <%=@outputs_int%>
+          data: <%=@balances%>
 
-        },
-        <% if @outputs2_int%>
-        {
-          label: 'Real value',
-          data: <%=@outputs2_int%>,
-          backgroundColor: '#FF0000'
-        }
-        <%end%>]
+        }]
     },
     options: {
         scales: {
@@ -124,4 +108,21 @@ var myChart = new Chart(ctx, {
     }
 });
 
+</script>
+
+<script>
+var dtx = document.getElementById("donught").getContext('2d');
+var myChart = new Chart(dtx, {
+  type: 'doughnut',
+  data: {
+    labels: ["Interest", "Repayments"],
+    datasets: [{
+      backgroundColor: [
+        "#2ecc71",
+        "#000080"
+      ],
+      data: [<%=@totalinterest%>, <%=@repayments%>]
+    }]
+  }
+});
 </script>

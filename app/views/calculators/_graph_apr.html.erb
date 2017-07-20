@@ -1,0 +1,94 @@
+<script type="text/javascript" src="application"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script>
+<div class="row">
+<div class="col-md-12">
+<canvas id="myChart"></canvas>
+</div>
+</div>
+<div class="row">
+<div class="col-md-6">
+<canvas id="donught"></canvas>
+</div>
+<div class="col-md-6">
+              <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>Table</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Months</th>
+                                                <th>Balance</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <% x = 1%>
+                                            <tr>
+                                            <% if @balances%>
+                                             <% @balances.each do |i|%>
+                                              <td><%=x%></td>
+                                              <td><%=i%></td> 
+                                              </tr>
+                                              <%x+=1%>
+                                              <%end%>
+                                              <%end%>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p> Payments : <%=@payment%> </p>
+                  </div>
+                  
+<script>
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: <%=@labels%>,
+        datasets: [{
+          type: 'line',
+          label: '',
+          fill: false,
+          data: <%=@balances%>,
+          borderColor: '#FF0000'
+        },
+        {
+          label: 'Nominal',
+          backgroundColor: '#99CC99',
+          data: <%=@balances%>
+
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+
+</script>
+
+<script>
+var dtx = document.getElementById("donught").getContext('2d');
+var myChart = new Chart(dtx, {
+  type: 'doughnut',
+  data: {
+    labels: ["Interest", "Repayments"],
+    datasets: [{
+      backgroundColor: [
+        "#2ecc71",
+        "#000080"
+      ],
+      data: [<%=@totalinterest%>, <%=@repayments%>]
+    }]
+  }
+});
+</script>
