@@ -817,6 +817,45 @@ class CalculatorsController < ApplicationController
 
 			while @pres.all?(&:positive?)
 				@premium-=0.01
+				if @premium < 0.1
+						@amount=@lumpsum.to_i
+						@amount=@lumpsum.to_i
+					@amount1=(@amount*@mci)+(@premium*@mci)
+					@pres=[@amount1]
+					@totaltimes=@totaltimes
+					@years=@totaltimes	
+					@months=@totaltimes*12
+					if @frequency=="Monthly"
+						@months.to_i.times do
+							@amount=(@amount*@mci)
+							@amount = @amount.round(2)
+							@pres.push(@amount)
+						end
+						n=12
+						@pres = (n - 1).step(@pres.size - 1, n).map { |i| @pres[i] }
+						y=1
+						z=0
+						@pres2=[]
+						@timezzz = @totaltimes.to_i-1
+						@timezzz.times do
+							@var=@pres[y]-@totals[z]
+							@pres2.push(@var)
+							y+=1
+							x+=1
+						end
+						@pres=@pres2
+						break
+					elsif @frequency=="Yearly"
+						y=0
+						@years.to_i.times do
+						@amount=(@amount*@mci)-@totals[y]
+						@amount = @amount.round(2)
+						@pres.push(@amount)
+							y+=1
+						end
+						break
+					end
+				end
 
 				if @frequency=="Monthly"
 					@exp=1/12.to_f
