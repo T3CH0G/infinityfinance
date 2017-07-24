@@ -10,7 +10,7 @@
 								<div class="form-group">
 									<label for="name" class="cols-sm-2 control-label">Balance</label>
 									<div class="cols-sm-10">
-										<div class="input-group">
+										<div class="input-group" data-toggle="tooltip" data-placement="right" title="This is how much you have to pay.">
 											<span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
 											<input class="form-control" type="number" name="apr2[balance]" id="apr2_balance" value=<%=@balance%>>
 										</div>
@@ -19,9 +19,9 @@
 
 
 								<div class="form-group">
-									<label for="email" class="cols-sm-2 control-label">Interest Rate Percentage</label>
+									<label for="email" class="cols-sm-2 control-label">Annual Interest Rate</label>
 									<div class="cols-sm-10">
-										<div class="input-group">
+										<div class="input-group" data-toggle="tooltip" data-placement="right" title="This is how much your debt increases by every year.">
 											<span class="input-group-addon"><i class="fa fa-percent" aria-hidden="true"></i></span>
 											<input class="form-control" type="number" name="apr2[interest]" id="apr2_interest" value=<%=@interest%>>
 										</div>
@@ -32,7 +32,7 @@
 								<div class="form-group">
 									<label for="password" class="cols-sm-2 control-label">Months</label>
 									<div class="cols-sm-10">
-										<div class="input-group">
+										<div class="input-group" data-toggle="tooltip" data-placement="right" title="This is how long you would like to pay for until your debt is cleared.">
 											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
 											<input class="form-control" type="number" name="apr2[months]" id="apr2_months" value=<%=@months%>>
 										</div>
@@ -44,7 +44,7 @@
 								<div class="form-group">
 									<label for="password" class="cols-sm-2 control-label">Payments</label>
 									<div class="cols-sm-10">
-										<div class="input-group">
+										<div class="input-group" data-toggle="tooltip" data-placement="right" title="This is how much you currently pay per month towards clearing your debt.">
 											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
 											<input class="form-control" type="number" name="apr2[payment]" id="apr2_payment" value=<%=@payment%>>
 										</div>

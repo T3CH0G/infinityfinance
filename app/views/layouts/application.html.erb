@@ -11,6 +11,7 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   <!-- General Meta Info -->
   <meta charset="utf-8" />
   <title>Expat Financial Services in Asia | Infinity Financial Solutions</title>
@@ -273,6 +274,11 @@ So, although financial planning might not seem very exciting, we are really posi
     </script>
   
 </div>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+});
+</script>
 
 </body>
 <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>

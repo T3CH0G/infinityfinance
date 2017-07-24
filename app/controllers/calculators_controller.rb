@@ -572,9 +572,9 @@ class CalculatorsController < ApplicationController
 		@difference=@difference.round(2)
 
 		render 'retirement_planner'
-	else
-		render 'retirement_planner'
-	end
+		else
+			render 'retirement_planner'
+		end
 	end
 
 	def education_calculator
@@ -771,6 +771,7 @@ class CalculatorsController < ApplicationController
 			@total=@totals.max
 			@premium=@total/12
 
+			@pres=[]
 			if @frequency=="Monthly"
 				@exp=1/12.to_f
 				@mci = (1.00+@ir)**@exp
@@ -778,100 +779,21 @@ class CalculatorsController < ApplicationController
 				@mci = 1+@ir
 			end
 
-			@amount=@lumpsum.to_i
-			@amount1=(@amount*@mci)+(@premium*@mci)
-			@pres=[@amount1]
-			@totaltimes=@totaltimes
-			@years=@totaltimes	
-			@months=@totaltimes*12
-			if @frequency=="Monthly"
-				@months.to_i.times do
-					@amount=(@amount*@mci)+(@premium*@mci)
-					@amount = @amount.round(2)
-					@pres.push(@amount)
-				end
-				n=12
-				@pres = (n - 1).step(@pres.size - 1, n).map { |i| @pres[i] }
-				y=1
-				z=0
-				@pres2=[]
-				@timezzz = @totaltimes.to_i-1
-				@timezzz.times do
-					@var=@pres[y]-@totals[z]
-					@pres2.push(@var)
-					y+=1
-					x+=1
-				end
-				@pres=@pres2
-			elsif @frequency=="Yearly"
-				y=0
-				@years.to_i.times do
-				@amount=(@amount*@mci)+((@premium*12)*@mci)-@totals[y]
-				@amount = @amount.round(2)
-				@pres.push(@amount)
-					y+=1
-				end
-			end
 
 
 
-			while @pres.all?(&:positive?)
-				@premium-=0.01
+			while @pres.all?(&:positive?) || @pres==[]
 				if @premium < 0.1
-						@amount=@lumpsum.to_i
-						@amount=@lumpsum.to_i
-					@amount1=(@amount*@mci)+(@premium*@mci)
-					@pres=[@amount1]
-					@totaltimes=@totaltimes
-					@years=@totaltimes	
-					@months=@totaltimes*12
-					if @frequency=="Monthly"
-						@months.to_i.times do
-							@amount=(@amount*@mci)
-							@amount = @amount.round(2)
-							@pres.push(@amount)
-						end
-						n=12
-						@pres = (n - 1).step(@pres.size - 1, n).map { |i| @pres[i] }
-						y=1
-						z=0
-						@pres2=[]
-						@timezzz = @totaltimes.to_i-1
-						@timezzz.times do
-							@var=@pres[y]-@totals[z]
-							@pres2.push(@var)
-							y+=1
-							x+=1
-						end
-						@pres=@pres2
-						break
-					elsif @frequency=="Yearly"
-						y=0
-						@years.to_i.times do
-						@amount=(@amount*@mci)-@totals[y]
-						@amount = @amount.round(2)
-						@pres.push(@amount)
-							y+=1
-						end
-						break
-					end
+					break
 				end
-
-				if @frequency=="Monthly"
-					@exp=1/12.to_f
-					@mci = (1.00+@ir)**@exp
-				elsif @frequency=="Yearly"
-					@mci = 1+@ir
-				end
-
+				@premium-=1
 				@amount=@lumpsum.to_i
-				@amount1=(@amount*@mci)+(@premium*@mci)
-				@pres=[@amount1]
-				@totaltimes=@totaltimes
+				@pres=[@amount]
 				@years=@totaltimes	
 				@months=@totaltimes*12
 				if @frequency=="Monthly"
-					@months.to_i.times do
+
+					@months.to_i.times do	
 						@amount=(@amount*@mci)+(@premium*@mci)
 						@amount = @amount.round(2)
 						@pres.push(@amount)
@@ -880,25 +802,68 @@ class CalculatorsController < ApplicationController
 					@pres = (n - 1).step(@pres.size - 1, n).map { |i| @pres[i] }
 					y=1
 					z=0
-					@pres2=[]
+					@pres2=[@lumpsum]
 					@timezzz = @totaltimes.to_i-1
-					@timezzz.times do
+					@timezzz.times do						
 						@var=@pres[y]-@totals[z]
+
 						@pres2.push(@var)
 						y+=1
-						x+=1
-					end
+						z+=1
+					 end
 					@pres=@pres2
+
 				elsif @frequency=="Yearly"
+
 					y=0
 					@years.to_i.times do
-					@amount=(@amount*@mci)+((@premium*12)*@mci)-@totals[y]
+					@amount=(@amount*@mci)+(@premium*@mci)-@totals[y]
 					@amount = @amount.round(2)
 					@pres.push(@amount)
 						y+=1
 					end
 				end
+
 			end
+
+			@premium = @premium + 1
+				@amount=@lumpsum.to_i
+				@pres=[@amount]
+				@years=@totaltimes	
+				@months=@totaltimes*12
+				if @frequency=="Monthly"
+
+					@months.to_i.times do	
+						@amount=(@amount*@mci)+(@premium*@mci)
+						@amount = @amount.round(2)
+						@pres.push(@amount)
+					end
+					n=12
+					@pres = (n - 1).step(@pres.size - 1, n).map { |i| @pres[i] }
+					y=1
+					z=0
+					@pres2=[@lumpsum]
+					@timezzz = @totaltimes.to_i-1
+					@timezzz.times do						
+						@var=@pres[y]-@totals[z]
+
+						@pres2.push(@var)
+						y+=1
+						z+=1
+					 end
+					@pres=@pres2
+
+				elsif @frequency=="Yearly"
+
+					y=0
+					@years.to_i.times do
+					@amount=(@amount*@mci)+(@premium*@mci)-@totals[y]
+					@amount = @amount.round(2)
+					@pres.push(@amount)
+						y+=1
+					end
+				end
+			@pres.push(0)
 			@post=[]
 			@lengthzz=@pres.length-1
 			h=1
@@ -907,12 +872,40 @@ class CalculatorsController < ApplicationController
 				h+=1
 			end
 
+			u=0
+			@labels=[]
+			@kek = @pres.length
+			@kek = @kek-1
+			@kek.times do
+				@labels.push(u)
+				u+=1
+			end
+
+
 			@child_total=@expenses.inject(0){|sum,x| sum + x }
 			@child2_total=@expenses2.inject(0){|sum,x| sum + x }
 			@child3_total=@expenses3.inject(0){|sum,x| sum + x }
 			@child4_total=@expenses4.inject(0){|sum,x| sum + x }
 			@child5_total=@expenses5.inject(0){|sum,x| sum + x }
 			@childall_total=@child_total+@child2_total+@child3_total+@child4_total+@child5_total
+
+			@child_total_array =[@child_total.to_i,@child2_total.to_i,@child3_total.to_i,@child4_total.to_i,@child5_total.to_i]
+
+
+			@child_name_labels= []
+			@child_names.each do |i|
+				if i == nil
+				else
+					@child_name_labels.push(i)
+				end
+			end
+			@child_final_totals=[]
+			@child_total_array.each do |i|
+				if i == nil || i == 0
+				else
+					@child_final_totals.push(i)
+				end
+			end
 
 
 
@@ -1092,7 +1085,7 @@ class CalculatorsController < ApplicationController
 		@collegefund3=params[:insurance][:collegefund3].to_f
 		@spouseincomeamount = params[:insurance][:spouseincomeamount].to_f
 		@spouseincomestart = params[:insurance][:spouseincomestart].to_f
-		@spouseincomeend = params[:insurance][:spouseincomeend].to_f
+		@spouseincomeyears = params[:insurance][:spouseincomeyears].to_f
 		@otherincomeamount = params[:insurance][:otherincomeamount].to_f
 		@otherincomestart = params[:insurance][:otherincomestart].to_f
 		@otherincomeend = params[:insurance][:otherincomeend].to_f
@@ -1102,6 +1095,7 @@ class CalculatorsController < ApplicationController
 		@other= params[:insurance][:other].to_f
 
 		@inflation_rate=(@inflation/100)+1
+		@ir=(@rateearnedinvest/100)+1
 
 		@t1=@childcarestartyear+@childcareendyear
 		@t2=@lechildhomestartyear+@lechildhomeendyear
@@ -1109,11 +1103,13 @@ class CalculatorsController < ApplicationController
 		@t4=@childrencollegestartyear+@childrencollegeendyear
 		@t5=@retrainingstartyear+@retrainingendyear
 		@t6=@oestartyear+@oeendyear
+		@t7=@spouseincomestart+@spouseincomeyears
+		@t8=@otherincomestart+@otherincomeend
 
-		@totals=[@t1,@t2,@t3,@t4,@t5,@t5,@t6]
+		@totals=[@t1,@t2,@t3,@t4,@t5,@t5,@t6,@t7,@t8]
 		@totaltimes=@totals.max 
 
-		@earliestarray=[@childcarestartyear,@lechildhomestartyear,@lechildgonestartyear,@childrencollegestartyear,@retrainingstartyear,@oestartyear]
+		@earliestarray=[@childcarestartyear,@lechildhomestartyear,@lechildgonestartyear,@childrencollegestartyear,@retrainingstartyear,@oestartyear,@spouseincomestart,@otherincomestart]
 		
 		#childcare
 			@childcarearray=[]
@@ -1240,39 +1236,121 @@ class CalculatorsController < ApplicationController
 			end
 
 		#total
-		@totalarray=[]
+		@totalexpensearray=[]
 		i=0
 		@totaltimes.to_i.times do
 			@sum=@childcarearray[i]+@lechildhomearray[i]+@lechildgonearray[i]+@childrencollegearray[i]+@retrainingarray[i]+@oearray[i]
-			@totalarray.push(@sum)
+			@totalexpensearray.push(@sum)
 			i+=1
 		end
 
 		@remainder=@yearstocover-@totaltimes
 		if @remainder > 0
 		@remainder.to_i.times do
-			@totalarray.push(0)
+			@totalexpensearray.push(0)
 		end
 
-		@spouseincomes=[]
-			@first=@ospouseincomes*12
+		@spouseincomearray=[]
+			@first=@spouseincomeamount*12
 			#from 0 to start
-			@oestartyear.to_i.times do
-				@oearray.push(0)
+			@spouseincomestart.to_i.times do
+				@spouseincomearray.push(0)
 				@first=@first*@inflation_rate
 			end
 			#first year
 			#rest of year
-			@oeendyear.to_i.times do
-				@oearray.push(@first)
+			@spouseincomeyears.to_i.times do
+				@spouseincomearray.push(@first)
 				@first=@first*@inflation_rate
 			end
-			@remaining=@totaltimes-@t6
+			@remaining=@totaltimes-@t7
 			#after 0
 			@remaining.to_i.times do
-				@oearray.push(0)
+				@spouseincomearray.push(0)
 			end
-	end
+
+		@otherincomearray=[]
+		@first=@otherincomeamount*12
+		#from 0 to start
+		@otherincomestart.to_i.times do
+			@otherincomearray.push(0)
+			@first=@first*@inflation_rate
+		end
+		#first year
+		#rest of year
+		@otherincomeend.to_i.times do
+			@otherincomearray.push(@first)
+			@first=@first*@inflation_rate
+		end
+		@remaining=@totaltimes-@t8
+		#after 0
+		@remaining.to_i.times do
+			@otherincomearray.push(0)
+		end
+
+		@totalincomearray=[]
+		i=0
+		@totaltimes.to_i.times do
+			@sum=@spouseincomearray[i]+@otherincomearray[i]
+			@totalincomearray.push(@sum)
+			i+=1
+		end
+
+		@remainder=@yearstocover-@totaltimes
+		if @remainder > 0
+		@remainder.to_i.times do
+			@totalincomearray.push(0)
+		end
+		end
+
+		@investmentarray=[@investments]
+		@differencearray=[]
+		@investments2=@investments
+		x=0
+		@totaltimes.to_i.times do 
+			if @totalexpensearray[x] > @totalincomearray[x]
+				@investments2=(@investments2*@ir)+@totalincomearray[x]-@totalexpensearray[x]
+				@investmentarray.push(@investments2)
+			else
+				@investments2=@investments2*@ir
+				@investmentarray.push(@investments2)
+			end
+			x+=1
+		end
+		x=0
+		@totaltimes.to_i.times do 
+				@difference =@investmentarray[x]+@totalincomearray[x]-@totalexpensearray[x]
+				@differencearray.push(@difference)
+				x+=1
+		end
+
+		@labels=[]
+		x=0
+		@labeltime=@totaltimes-1
+		@labeltime.to_i.times do
+			@labels.push(x)
+			x+=1
+		end
+
+		@graph_expense=[]
+		@totalexpensearray.each do |x|
+			@graph_expense.push(x.round(2))
+		end
+
+		@graph_expense=@graph_expense.first @graph_expense.size - 1
+
+
+		@graph_income=[]
+		@totalincomearray.each do|x|
+			@graph_income.push(x.round(2))
+		end
+
+		@graph_income=@graph_income.first @graph_income.size - 1
+
+		@graph_investment=[]
+		@investmentarray.each do|x|
+			@graph_investment.push(x.round(2))
+		end
 
 
 
@@ -1283,6 +1361,7 @@ class CalculatorsController < ApplicationController
 
 
 	end
+end
 
 
 

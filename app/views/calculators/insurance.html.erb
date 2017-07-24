@@ -2,14 +2,22 @@
 
 <div class="container">
 			<div class="row main">
-			<div class="col-lg-12">
+			<div role="tabpanel">
+				<ul class="nav nav-tabs" role="tablist">
+			    <li role="presentation" class="active"><a href="#livingexpense" aria-controls="livingexpense" role="tab" data-toggle="tab">Living Expense</a></li>
+			    <li role="presentation"><a href="#otherexpenses" aria-controls="otherexpenses" role="tab" data-toggle="tab">Other Expenses</a></li>
+			    <li role="presentation"><a href="#income" aria-controls="income" role="tab" data-toggle="tab">Income</a></li>
+			    <li role="presentation"><a href="#assets" aria-controls="assets" role="tab" data-toggle="tab">Assets</a></li>
+			  </ul>
+			<div class="col-lg-2">
 				<div class="main-login main-center">
 				<h2>Insurance</h2>
-				<div class="col-lg-2">
-						<%= form_for :insurance, url:"insurance" do |f| %>
+				<%= form_for :insurance, url:"insurance" do |f| %>
+				<div class="col-lg-12">
+					<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="livingexpense">
 
 				<div class="form-group">
-							<label for="name" class="cols-sm-2 control-label">Main:</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 								<label for="name" class="cols-sm-2 control-label">Years for insurance to cover:</label>
@@ -148,7 +156,7 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
-									<input class="form-control" type="number" name="insurance[childrencollegeendyear]" id="childrencollegeendyear" value=<%=@childrencollegeendyear%>>
+									<input class="form-control" type="number" name="insurance[childrencollegeendyear]" id="insurance_childrencollegeendyear" value=<%=@childrencollegeendyear%>>
 								</div>
 								</div>
 							</div>
@@ -178,16 +186,23 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
-									<input class="form-control" type="number" name="insurance[retrainingendyear]" id="retrainingendyear" value=<%=@retrainingendyear%>>
+									<input class="form-control" type="number" name="insurance[retrainingendyear]" id="insurance_retrainingendyear" value=<%=@retrainingendyear%>>
 								</div>
 								</div>
 							</div>
 							</div>
 						</div>
+						</div>
 
+
+
+
+
+
+
+						<div role="tabpanel" class="tab-pane" id="otherexpenses">
 
 						<div class="form-group">
-							<label for="name" class="cols-sm-2 control-label">Other Expenses:</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 								<label for="name" class="cols-sm-2 control-label">Monthly Amount</label>
@@ -208,14 +223,9 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
-									<input class="form-control" type="number" name="insurance[oeendyear]" id="oeendyear" value=<%=@oeendyear%>>
+									<input class="form-control" type="number" name="insurance[oeendyear]" id="insurance_oeendyear" value=<%=@oeendyear%>>
 								</div>
 								</div>
-							</div>
-							</div>
-						</div>
-
-						<div class="form-group">
 							<label for="name" class="cols-sm-2 control-label">Other Expenses:</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
@@ -237,50 +247,59 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
-									<input class="form-control" type="number" name="insurance[funeralcosts]" id="funeralcosts" value=<%=@funeralcosts%>>
+									<input class="form-control" type="number" name="insurance[funeralcosts]" id="insurance_funeralcosts" value=<%=@funeralcosts%>>
 								</div>
 								</div>
 							<label for="email" class="cols-sm-2 control-label">Uninsured Medical Costs:</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
-									<input class="form-control" type="number" name="insurance[uninsuredmedicalcosts]" id="uninsuredmedicalcosts" value=<%=@uninsuredmedicalcosts%>>
+									<input class="form-control" type="number" name="insurance[uninsuredmedicalcosts]" id="insurance_uninsuredmedicalcosts" value=<%=@uninsuredmedicalcosts%>>
 								</div>
 								</div>
 							<label for="email" class="cols-sm-2 control-label">Debt Repayment:</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
-									<input class="form-control" type="number" name="insurance[debtrepayment]" id="debtrepayment" value=<%=@debtrepayment%>>
+									<input class="form-control" type="number" name="insurance[debtrepayment]" id="insurance_debtrepayment" value=<%=@debtrepayment%>>
 								</div>
 								</div>
 							<label for="email" class="cols-sm-2 control-label">College Fund for Child 1:</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
-									<input class="form-control" type="number" name="insurance[collegefund1]" id="collegefund1" value=<%=@collegefund1%>>
+									<input class="form-control" type="number" name="insurance[collegefund1]" id="insurance_collegefund1" value=<%=@collegefund1%>>
 								</div>
 								</div>
 							<label for="email" class="cols-sm-2 control-label">College Fund for Child 2:</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
-									<input class="form-control" type="number" name="insurance[collegefund2]" id="collegefund2" value=<%=@collegefund2%>>
+									<input class="form-control" type="number" name="insurance[collegefund2]" id="insurance_collegefund2" value=<%=@collegefund2%>>
 								</div>
 								</div>
 							<label for="email" class="cols-sm-2 control-label">College Fund for Child 3:</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
-									<input class="form-control" type="number" name="insurance[collegefund3]" id="collegefund3" value=<%=@collegefund3%>>
+									<input class="form-control" type="number" name="insurance[collegefund3]" id="insurance_collegefund3" value=<%=@collegefund3%>>
 								</div>
 								</div>
+							</div>
+							</div>
 							</div>
 							</div>
 						</div>
-						
+						</div>
+
+
+
+
+
+
+
+						<div role="tabpanel" class="tab-pane" id="income">
 						<div class="form-group">
-							<label for="name" class="cols-sm-2 control-label">Income:</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 								<label for="name" class="cols-sm-2 control-label">Spouse Income Monthly Amount</label>
@@ -297,40 +316,45 @@
 									<input class="form-control" type="number" name="insurance[spouseincomestart]" id="insurance_spouseincomestart" value=<%=@spouseincomestart%>>
 								</div>
 								</div>
-							<label for="email" class="cols-sm-2 control-label">Spouse Income End Year:</label>
+							<label for="email" class="cols-sm-2 control-label">Spouse Income End Year</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
-									<input class="form-control" type="number" name="insurance[spouseincomeend]" id="spouseincomeend" value=<%=@spouseincomeend%>>
+									<input class="form-control" type="number" name="insurance[spouseincomeyears]" id="insurance_spouseincomeyears" value=<%=@spouseincomeyears%>>
 								</div>
 								</div>
 							<label for="email" class="cols-sm-2 control-label">Other Monthly Income:</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
-									<input class="form-control" type="number" name="insurance[otherincomeamount]" id="otherincomeamount" value=<%=@otherincomeamount%>>
+									<input class="form-control" type="number" name="insurance[otherincomeamount]" id="insurance_otherincomeamount" value=<%=@otherincomeamount%>>
 								</div>
 								</div>
 							<label for="email" class="cols-sm-2 control-label">Other Income Start:</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
-									<input class="form-control" type="number" name="insurance[otherincomestart]" id="otherincomestart" value=<%=@otherincomestart%>>
+									<input class="form-control" type="number" name="insurance[otherincomestart]" id="insurance_otherincomestart" value=<%=@otherincomestart%>>
 								</div>
 								</div>
 							<label for="email" class="cols-sm-2 control-label">Other Income End:</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
-									<input class="form-control" type="number" name="insurance[otherincomeend]" id="otherincomeend" value=<%=@otherincomeend%>>
+									<input class="form-control" type="number" name="insurance[otherincomeend]" id="insurance_otherincomeend" value=<%=@otherincomeend%>>
 								</div>
 								</div>
 							</div>
 							</div>
 						</div>
+						</div>
 
+
+
+
+
+						<div role="tabpanel" class="tab-pane" id="assets">
 						<div class="form-group">
-							<label for="name" class="cols-sm-2 control-label">Assets:</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 								<label for="name" class="cols-sm-2 control-label">Cash and Savings</label>
@@ -345,13 +369,6 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
 									<input class="form-control" type="number" name="insurance[homeequity]" id="insurance_homeequity" value=<%=@homeequity%>>
-								</div>
-								</div>
-							<label for="email" class="cols-sm-2 control-label">Spouse Income End Year:</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
-									<input class="form-control" type="number" name="insurance[spouseincomeend]" id="spouseincomeend" value=<%=@spouseincomeend%>>
 								</div>
 								</div>
 							<label for="email" class="cols-sm-2 control-label">Investments:</label>
@@ -371,12 +388,23 @@
 							</div>
 							</div>
 						</div>
+						</div>
+						</div>
+
+
+
+
+
+
+
 					
 						<div class="form-group ">
 							  <%= f.submit "Calculate!", :class => 'btn btn-primary' %>
 							<% end %>
 						</div>
+						</div>
 				</div>
+			</div>
 			</div>
 
 

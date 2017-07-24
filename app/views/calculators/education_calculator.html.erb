@@ -4,15 +4,15 @@
 <div class="row main">
 <div class="col-md-12">
 <div class="main-login main-center">
-						<h2>Education Calculator</h2>
-						<div class="col-lg-2">
+<h2>Education Calculator</h2>
+<div class="col-lg-2">
 		<%= form_for :education_calculator, url:"education_calculator" do |f| %>
 
 
 		<div class="form-group">
-			<label for="email" class="cols-sm-2 control-label">Interest Rate Percentage</label>
+			<label for="email" class="cols-sm-2 control-label">Expected Growth Rate</label>
 			<div class="cols-sm-10">
-				<div class="input-group">
+				<div class="input-group" data-toggle="tooltip" data-placement="right" title="This is how much you expect the value of your savings to grow annually. Typically, a conservative fund will grow by about 3% per annum, whereas  a more aggressive fund would expect to grow by around 7% per annum.">
 					<span class="input-group-addon"><i class="fa fa-percent" aria-hidden="true"></i></span>
 					<input class="form-control" type="number" name="education_calculator[interest]" id="education_calculator_interest" value=<%=@interest%>>
 				</div>
@@ -22,7 +22,7 @@
 		<div class="form-group">
 			<label for="username" class="cols-sm-2 control-label">Frequency</label>
 			<div class="cols-sm-10">
-				<div class="input-group">
+				<div class="input-group" data-toggle="tooltip" data-placement="right" title="This is how often you’re contributing to your savings.">
 					<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
 					  <select class="form-control" name="education_calculator[frequency]"id="education_calculator_frequency" value=<%=@frequency%>>
 					    <option>Yearly</option>
@@ -36,7 +36,7 @@
 		<div class="form-group">
 			<label for="confirm" class="cols-sm-2 control-label">Lump Sum</label>
 			<div class="cols-sm-10">
-				<div class="input-group">
+				<div class="input-group" data-toggle="tooltip" data-placement="right" title="This is how much you’ve already saved, or how much you’re starting the fund with.">
 					<span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
 					<input class="form-control" type="number" name="education_calculator[lumpsum]" id="education_calculator_lumpsum" value=<%=@lumpsum%>>
 				</div>
@@ -46,7 +46,7 @@
 		<div class="form-group">
 			<label for="confirm" class="cols-sm-2 control-label">General Inflation</label>
 			<div class="cols-sm-10">
-				<div class="input-group">
+				<div class="input-group" data-toggle="tooltip" data-placement="right" title="This is how much the general price level increases by every year. For example, $100,000 in ten years time will be equivalent to $61391.33 in today’s money, according to a 5% inflation level.">
 					<span class="input-group-addon"><i class="fa fa-percent" aria-hidden="true"></i></span>
 					<input class="form-control" type="number" name="education_calculator[inflation]" id="education_calculator_inflation" value=<%=@inflation%>>
 				</div>
@@ -54,9 +54,9 @@
 		</div>
 
 		<div class="form-group">
-			<label for="confirm" class="cols-sm-2 control-label">Tuition Inflation</label>
+			<label for="confirm" class="cols-sm-2 control-label">Tuition Fees Inflation</label>
 			<div class="cols-sm-10">
-				<div class="input-group">
+				<div class="input-group" data-toggle="tooltip" data-placement="right" title="This is how much the tuition fees increase by every year.">
 					<span class="input-group-addon"><i class="fa fa-percent" aria-hidden="true"></i></span>
 					<input class="form-control" type="number" name="education_calculator[tuition_inflation]" id="education_calculator_tuition_inflation" value=<%=@tuition_inflation%>>
 				</div>
@@ -73,28 +73,28 @@
 											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
 											<input class="form-control" type="textarea" name="education_calculator[child_name]" id="education_calculator_child_name" value=<%=@child_name%>>
 										</div>
-									<label for="confirm" class="cols-sm-2 control-label">Starting Age</label>
-										<div class="input-group">
-											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-											<input class="form-control" type="number" name="education_calculator[child_startingage]" id="education_calculator_child_startingage" value=<%=@child_startingage%>>
-										</div>
-										<label for="confirm" class="cols-sm-2 control-label">Current Age</label>
-										<div class="input-group">
+									<label for="confirm" class="cols-sm-2 control-label">Current Age</label>
+										<div class="input-group" data-toggle="tooltip" data-placement="right" title="This is how old your child is now.">
 											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
 											<input class="form-control" type="number" name="education_calculator[child_currentage]" id="education_calculator_child_currentage" value=<%=@child_currentage%>>
 										</div>
-										<label for="confirm" class="cols-sm-2 control-label">Years</label>
-										<div class="input-group">
+									<label for="confirm" class="cols-sm-2 control-label">Starting Age</label>
+										<div class="input-group" data-toggle="tooltip" data-placement="right" title="This is how old your child will be when they start their education.">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input class="form-control" type="number" name="education_calculator[child_startingage]" id="education_calculator_child_startingage" value=<%=@child_startingage%>>
+										</div>
+										<label for="confirm" class="cols-sm-2 control-label">Years of Education</label>
+										<div class="input-group" data-toggle="tooltip" data-placement="right" title="This is how long your child will be studying for.">
 											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
 											<input class="form-control" type="number" name="education_calculator[child_years]" id="education_calculator_child_years" value=<%=@child_years%>>
 										</div>
-										<label for="confirm" class="cols-sm-2 control-label">Tuition</label>
-										<div class="input-group">
+										<label for="confirm" class="cols-sm-2 control-label">Tuition Fees</label>
+										<div class="input-group" data-toggle="tooltip" data-placement="right" title="This is how much it costs for one year of your child’s education.">
 											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
 											<input class="form-control" type="number" name="education_calculator[child_tuition]" id="education_calculator_child_tuition" value=<%=@child_tuition%>>
 										</div>
 										<label for="confirm" class="cols-sm-2 control-label">Living Expense</label>
-										<div class="input-group">
+										<div class="input-group" data-toggle="tooltip" data-placement="right" title="This is how much it’ll cost to pay for your child’s living expenses, such as accommodation, spending money, etc.">
 											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
 											<input class="form-control" type="number" name="education_calculator[child_living_expense]" id="education_calculator_child_living_expense" value=<%=@child_living_expense%>>
 										</div>

@@ -8,10 +8,13 @@
 <div class="row">
 <div id="donughtchart">
 <div class="col-lg-12">
-<canvas id="donught" width="300" height="300"></canvas>
+<canvas id="myChart2"></canvas>
+</div>
+
 Total: <%=@total.round(2)%></br>
 Premium: <%=@premium.round(2)%></br>
-</div>
+<%=@child_final_totals%>
+<%=@child_name_labels%>
   <!-- Nav tabs -->
 </div>
 <div>
@@ -145,22 +148,15 @@ var myChart = new Chart(ctx, {
           type: 'line',
           label: '',
           fill: false,
-          data: <%=@outputs_int%>,
-          borderColor: '#FF0000'
+          data: <%=@pres%>,
+          borderColor: '#99CC99'
         },
         {
-          label: 'Nominal',
-          backgroundColor: '#99CC99',
-          data: <%=@outputs_int%>
+          label: 'Cost',
+          backgroundColor: '#FF0000',
+          data: <%=@totals%>
 
-        },
-        <% if @outputs2_int%>
-        {
-          label: 'Real value',
-          data: <%=@outputs2_int%>,
-          backgroundColor: '#FF0000'
-        }
-        <%end%>]
+        }]
     },
     options: {
         scales: {
@@ -174,20 +170,34 @@ var myChart = new Chart(ctx, {
 });
 
 </script>
+
 <script>
-var dtx = document.getElementById("donught").getContext('2d');
+var dtx = document.getElementById("myChart2");
 var myChart = new Chart(dtx, {
-  type: 'doughnut',
-  data: {
-    labels: ["Growth", "Initial", "Contributions"],
-    datasets: [{
-      backgroundColor: [
-        "#2ecc71",
-        "#000080",
-        "#3498db"
-      ],
-      data: [<%=@growth%>, <%=@initial%>, <%=@contributions%>]
-    }]
-  }
+    type: 'bar',
+    data: {
+        labels: <%=@child_name_labels%>,
+        datasets: [{
+          type: 'line',
+          label: '',
+          fill: false,
+          data: <%=@child_final_totals%>,
+          borderColor: '#99CC99'
+        },
+        {
+          label: 'Cost',
+          backgroundColor: '#FF0000',
+          data: ['10']
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
 });
 </script>

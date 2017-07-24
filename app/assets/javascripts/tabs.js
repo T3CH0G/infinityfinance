@@ -4,3 +4,4 @@ $('#myTabs a').click(function (e) {
   $(this).tab('show')
 })
 });
+$('#myTabs a[href="#livingexpense"]').tab('show');
