@@ -769,7 +769,7 @@ class CalculatorsController < ApplicationController
 			end
 
 			@total=@totals.max
-			@premium=@total/12
+			@premium=@total
 
 			@pres=[]
 			if @frequency=="Monthly"
@@ -779,39 +779,31 @@ class CalculatorsController < ApplicationController
 				@mci = 1+@ir
 			end
 
-
+			@u=0
 
 
 			while @pres.all?(&:positive?) || @pres==[]
 				if @premium < 0.1
 					break
 				end
-				@premium-=1
+				@premium-=4
 				@amount=@lumpsum.to_i
 				@pres=[@amount]
 				@years=@totaltimes	
 				@months=@totaltimes*12
 				if @frequency=="Monthly"
 
-					@months.to_i.times do	
-						@amount=(@amount*@mci)+(@premium*@mci)
-						@amount = @amount.round(2)
-						@pres.push(@amount)
-					end
-					n=12
-					@pres = (n - 1).step(@pres.size - 1, n).map { |i| @pres[i] }
-					y=1
 					z=0
-					@pres2=[@lumpsum]
-					@timezzz = @totaltimes.to_i-1
-					@timezzz.times do						
-						@var=@pres[y]-@totals[z]
-
-						@pres2.push(@var)
-						y+=1
-						z+=1
-					 end
-					@pres=@pres2
+					@pres=[@amount]
+					@years.to_i.times do
+					12.times do	
+						@amount=(@amount*@mci)+(@premium*@mci)
+					end
+					@amount=@amount-@totals[z]
+					@amount = @amount.round(2)
+					@pres.push(@amount)
+					z+=1
+					end
 
 				elsif @frequency=="Yearly"
 
@@ -822,6 +814,7 @@ class CalculatorsController < ApplicationController
 					@pres.push(@amount)
 						y+=1
 					end
+					@u+=1
 				end
 
 			end
@@ -830,28 +823,18 @@ class CalculatorsController < ApplicationController
 				@amount=@lumpsum.to_i
 				@pres=[@amount]
 				@years=@totaltimes	
-				@months=@totaltimes*12
 				if @frequency=="Monthly"
-
-					@months.to_i.times do	
+					z=0
+					@pres=[@amount]
+					@years.to_i.times do
+					12.times do	
 						@amount=(@amount*@mci)+(@premium*@mci)
 						@amount = @amount.round(2)
-						@pres.push(@amount)
 					end
-					n=12
-					@pres = (n - 1).step(@pres.size - 1, n).map { |i| @pres[i] }
-					y=1
-					z=0
-					@pres2=[@lumpsum]
-					@timezzz = @totaltimes.to_i-1
-					@timezzz.times do						
-						@var=@pres[y]-@totals[z]
-
-						@pres2.push(@var)
-						y+=1
-						z+=1
-					 end
-					@pres=@pres2
+					@amount=@amount-@totals[z]
+					@pres.push(@amount)
+					z+=1
+					end
 
 				elsif @frequency=="Yearly"
 
@@ -863,6 +846,7 @@ class CalculatorsController < ApplicationController
 						y+=1
 					end
 				end
+
 			@pres.push(0)
 			@post=[]
 			@lengthzz=@pres.length-1
@@ -1311,6 +1295,9 @@ class CalculatorsController < ApplicationController
 		@totaltimes.to_i.times do 
 			if @totalexpensearray[x] > @totalincomearray[x]
 				@investments2=(@investments2*@ir)+@totalincomearray[x]-@totalexpensearray[x]
+				if @investments2 <0
+					@investments2=0
+				end
 				@investmentarray.push(@investments2)
 			else
 				@investments2=@investments2*@ir
