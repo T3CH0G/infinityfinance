@@ -786,7 +786,7 @@ class CalculatorsController < ApplicationController
 				if @premium < 0.1
 					break
 				end
-				@premium-=4
+				@premium-=1
 				@amount=@lumpsum.to_i
 				@pres=[@amount]
 				@years=@totaltimes	
