@@ -14,8 +14,9 @@
 				<h2>Insurance</h2>
 				<%= form_for :insurance, url:"insurance" do |f| %>
 				<div class="col-lg-12">
-					<div class="tab-content">
-					<div role="tabpanel" class="tab-pane active" id="livingexpense">
+
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane active" id="livingexpense">
 
 				<div class="form-group">
 							<div class="cols-sm-10">
@@ -192,16 +193,7 @@
 							</div>
 							</div>
 						</div>
-						</div>
-
-
-
-
-
-
-
-						<div role="tabpanel" class="tab-pane" id="otherexpenses">
-
+						<label for="name" class="cols-sm-2 control-label">Other Expenses:</label>
 						<div class="form-group">
 							<div class="cols-sm-10">
 								<div class="input-group">
@@ -226,7 +218,16 @@
 									<input class="form-control" type="number" name="insurance[oeendyear]" id="insurance_oeendyear" value=<%=@oeendyear%>>
 								</div>
 								</div>
-							<label for="name" class="cols-sm-2 control-label">Other Expenses:</label>
+							</div>
+					
+
+
+
+
+
+
+
+						<div role="tabpanel" class="tab-pane" id="otherexpenses">
 							<div class="cols-sm-10">
 								<div class="input-group">
 								<label for="name" class="cols-sm-2 control-label">Death Duties</label>
@@ -390,12 +391,6 @@
 						</div>
 						</div>
 						</div>
-
-
-
-
-
-
 
 					
 						<div class="form-group ">

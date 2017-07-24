@@ -8,14 +8,32 @@
 <div>
 
   <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#information" aria-controls="information" role="tab" data-toggle="tab">Fund & Premium Information</a></li>
-    <li role="presentation"><a href="#fundbreakdown" aria-controls="fundbreakdown" role="tab" data-toggle="tab">Fund Breakdown</a></li>
-  </ul>
 
 </div>
-<div class="tab-content">
-<div role="tabpanel" class="tab-pane active" id="information">
+<div class="row">
+<div class="col-md-12">
+              <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Amount required for <%=@totaltimes-1%> years</th>
+                                                <th>Life insurance required for today</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                              <td><%=@different_sum.round(2)%></td>
+                                              <td><%=@requirementtoday.round(2)%></td>
+                                              </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
 <div class="row">
 <div class="col-md-12">
               <div class="panel panel-default">
@@ -49,8 +67,6 @@
                             </div>
                         </div>
                     </div>
-                  </div>
-                  </div>
                   </div>
 <script>
 var ctx = document.getElementById("myChart");

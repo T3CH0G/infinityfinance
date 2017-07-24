@@ -1038,7 +1038,7 @@ class CalculatorsController < ApplicationController
 	end
 
 	def insurance
-		if params[:insurance]
+	if params[:insurance]
 		@childcareamount = params[:insurance][:childcareamount].to_f
 		@childcarestartyear = params[:insurance][:childcarestartyear].to_f
 		@childcareendyear = params[:insurance][:childcareendyear].to_f
@@ -1060,6 +1060,8 @@ class CalculatorsController < ApplicationController
 		@yearstocover=params[:insurance][:yearstocover].to_f
 		@rateearnedinvest=params[:insurance][:rateearnedinvest].to_f
 		@inflation=params[:insurance][:inflation].to_f
+
+
 		@deathduties=params[:insurance][:deathduties].to_f
 		@probatecosts=params[:insurance][:probatecosts].to_f
 		@funeralcosts=params[:insurance][:funeralcosts].to_f
@@ -1068,6 +1070,8 @@ class CalculatorsController < ApplicationController
 		@collegefund1=params[:insurance][:collegefund1].to_f
 		@collegefund2=params[:insurance][:collegefund2].to_f
 		@collegefund3=params[:insurance][:collegefund3].to_f
+
+
 		@spouseincomeamount = params[:insurance][:spouseincomeamount].to_f
 		@spouseincomestart = params[:insurance][:spouseincomestart].to_f
 		@spouseincomeyears = params[:insurance][:spouseincomeyears].to_f
@@ -1234,6 +1238,7 @@ class CalculatorsController < ApplicationController
 		@remainder.to_i.times do
 			@totalexpensearray.push(0)
 		end
+		end
 
 		@spouseincomearray=[]
 			@first=@spouseincomeamount*12
@@ -1276,16 +1281,16 @@ class CalculatorsController < ApplicationController
 		@totalincomearray=[]
 		i=0
 		@totaltimes.to_i.times do
-			@sum=@spouseincomearray[i]+@otherincomearray[i]
+			@sum=@spouseincomearray[i]+@otherincomearray[i]+0
 			@totalincomearray.push(@sum)
 			i+=1
 		end
 
 		@remainder=@yearstocover-@totaltimes
 		if @remainder > 0
-		@remainder.to_i.times do
-			@totalincomearray.push(0)
-		end
+			@remainder.to_i.times do
+				@totalincomearray.push(0)
+			end
 		end
 
 		@investmentarray=[@investments]
@@ -1340,19 +1345,31 @@ class CalculatorsController < ApplicationController
 			@graph_investment.push(x.round(2))
 		end
 
+		@different_sum=@differencearray.inject(0){|sum,x| sum + x }
+
+		if @different_sum < 0
+			@different_sum = @different_sum*-1
+		elsif @different_sum > 0
+			@different_sum = @different_sum*-1
+		end
 
 
+		@requirementtoday = @different_sum/((1+@ir-@inflation_rate)**@totaltimes)
 
+		@otherstotal=@deathduties+@probatecosts+@funeralcosts+@uninsuredmedicalcosts+@debtrepayment+@collegefund1+@collegefund2+@collegefund3
 
+		@assetstotal=@cashandsavings+@homeequity+@other
 
+		@requirementtoday+=@otherstotal
 
+		@requirementtoday-=@assetstotal
 
-
+			render 'insurance'
+		else
+			render 'insurance'
+		end
 	end
-end
 
 
 
-
-end
 end
