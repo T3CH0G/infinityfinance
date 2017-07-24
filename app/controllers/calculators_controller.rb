@@ -896,7 +896,7 @@ class CalculatorsController < ApplicationController
 			@child_names.each do |i|
 				if i == nil
 				else
-					@child_name_labels.push(i)
+					@child_name_labels.push(i.to_s)
 				end
 			end
 			@child_final_totals=[]
@@ -906,6 +906,7 @@ class CalculatorsController < ApplicationController
 					@child_final_totals.push(i)
 				end
 			end
+
 
 
 

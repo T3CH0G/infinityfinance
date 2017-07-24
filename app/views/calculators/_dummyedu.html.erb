@@ -128,10 +128,11 @@ var myChart = new Chart(ctx, {
 </script>
 <script>
 var dtx = document.getElementById("donught").getContext('2d');
+var labels=<%= raw @labels %>
 var myChart = new Chart(dtx, {
   type: 'doughnut',
   data: {
-    labels: ["Growth", "Initial", "Contributions"],
+    labels: labels,
     datasets: [{
       backgroundColor: [
         "#2ecc71",

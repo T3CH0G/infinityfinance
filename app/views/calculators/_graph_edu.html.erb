@@ -1,22 +1,30 @@
 <script type="text/javascript" src="application"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script>
 <div class="row">
-<div class="col-md-12">
-<canvas id="myChart"></canvas>
+<div>
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#1" aria-controls="1" role="tab" data-toggle="tab">Illustration</a></li>
+    <li role="presentation"><a href="#2" aria-controls="2" role="tab" data-toggle="tab">Cost Graph</a></li>
+  </ul>
 </div>
+<div class="tab-content">
+  <div role="tabpanel" class="tab-pane active" id="1">
+    <div class="col-md-12">
+      <canvas id="myChart"></canvas>
+    </div>
+  </div>
+  <div role="tabpanel" class="tab-pane" id="2">
+    <div class="row">
+      <div class="col-lg-12">
+        <canvas id="myChart2"></canvas>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="row">
-<div id="donughtchart">
-<div class="col-lg-12">
-<canvas id="myChart2"></canvas>
 </div>
 
-Total: <%=@total.round(2)%></br>
-Premium: <%=@premium.round(2)%></br>
-<%=@child_final_totals%>
-<%=@child_name_labels%>
-  <!-- Nav tabs -->
-</div>
+
+
 <div>
 <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#childexpenses" aria-controls="childexpenses" role="tab" data-toggle="tab">Child Expenses</a></li>
@@ -100,7 +108,7 @@ Premium: <%=@premium.round(2)%></br>
                         </div>
                     </div>
           </div>
-<div role="tabpanel" class="tab-pane active" id="fundbreakdown">
+<div role="tabpanel" class="tab-pane" id="fundbreakdown">
 <div class="col-lg-12">
               <div class="panel panel-default">
                             <div class="panel-heading">
@@ -173,21 +181,16 @@ var myChart = new Chart(ctx, {
 
 <script>
 var dtx = document.getElementById("myChart2");
-var myChart = new Chart(dtx, {
+var myChart2 = new Chart(dtx, {
     type: 'bar',
     data: {
-        labels: <%=@child_name_labels%>,
-        datasets: [{
-          type: 'line',
-          label: '',
-          fill: false,
-          data: <%=@child_final_totals%>,
-          borderColor: '#99CC99'
-        },
+        labels: <%=raw @child_name_labels%>,
+        datasets: [
         {
           label: 'Cost',
           backgroundColor: '#FF0000',
-          data: ['10']
+          data: <%=@child_final_totals%>
+
         }]
     },
     options: {
